@@ -1,0 +1,84 @@
+/* 
+* @Author: Nokey
+* @Date:   2015-03-10 16:30:17
+* @Last Modified by:   Nokey
+* @Last Modified time: 2015-03-10 16:33:02
+*/
+
+/*     2015-3-10     */
+.stage{
+    margin: 30px auto;
+    width: 140px;
+    height: 100px;
+    background-color: #956129;
+}
+.transition{
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -ms-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+}
+.three-d{
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    -webkit-perspective: 200px;
+    -moz-perspective: 200px;
+    -ms-perspective: 200px;
+    perspective: 200px;
+}
+.three-d-box{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 100px;
+    text-align: center;
+    color: #fff;
+    background-color: rgba(50,50,50,.6);
+    -webkit-transform: translatez(-50px);
+    -moz-transform: translatez(-50px);
+    -ms-transform: translatez(-50px);
+    -o-transform: translatez(-50px);
+    transform: translatez(-50px);
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.front{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 100px;
+    text-align: center;
+    color: #fff;
+    background-color: rgba(50,100,100,.5);
+    -webkit-transform: rotatex(0deg) translatez(50px);
+    -moz-transform: rotatex(0deg) translatez(50px);
+    -ms-transform: rotatex(0deg) translatez(50px);
+    -o-transform: rotatex(0deg) translatez(50px);
+    transform: rotatex(0deg) translatez(50px);
+}
+.back{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 100px;
+    text-align: center;
+    color: #fff;
+    background-color: rgba(150,10,10,.5);
+    -webkit-transform: rotatex(-90deg) translatez(50px);
+    -moz-transform: rotatex(-90deg) translatez(50px);
+    -ms-transform: rotatex(-90deg) translatez(50px);
+    -o-transform: rotatex(-90deg) translatez(50px);
+    transform: rotatex(-90deg) translatez(50px);
+}
+
+

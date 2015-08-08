@@ -1,0 +1,106 @@
+/* 
+* @Author: Nokey
+* @Date:   2014-12-06 13:47:09
+* @Last Modified by:   apple
+* @Last Modified time: 2014-12-07 19:12:41
+*/
+/**************************/
+/*    P0-Style    */
+.p0-news{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p0.png) -0px -0px no-repeat;
+    width: 252px;
+    height: 74px;
+    top: 50px;
+    left: 50%;
+    margin-left: -126px;
+    -webkit-transform: translate3d(0,50px,0);
+    transform: translate3d(0,50px,0);
+    opacity: 0;
+}
+.p0-yangshi{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p0.png) -0px -134px no-repeat;
+    width: 54px;
+    height: 26px;
+    top: 20px;
+    right: 0;
+    opacity: 0;
+}
+.p0-workshop{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p0.png) -0px -74px no-repeat;
+    width: 218px;
+    height: 31px;
+    bottom: 108px;
+    left: 50%;
+    margin-left: -109px;
+    -webkit-transform: translate3d(0,50px,0);
+    transform: translate3d(0,50px,0);
+    opacity: 0;
+}
+.p0-zhaopin{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p0.png) -54px -134px no-repeat;
+    width: 89px;
+    height: 18px;
+    bottom: 52px;
+    left: 50%;
+    margin-left: -45px;
+    -webkit-transform: translate3d(0,50px,0);
+    transform: translate3d(0,50px,0);
+    opacity: 0;
+}
+.p0-html5{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p0.png) -0px -105px no-repeat;
+    width: 161px;
+    height: 29px;
+    top: 10px;
+    left: 50%;
+    margin-left: -80px;
+    -webkit-transform-origin: top center;
+    transform-origin: top center;
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+    opacity: 0;
+}
+.p0-ui{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p0.png) -161px -105px no-repeat;
+    width: 86px;
+    height: 28px;
+    bottom: -20px;
+    left: 50%;
+    margin-left: -60px;
+    -webkit-transform-origin: top center;
+    transform-origin: top center;
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+    opacity: 0;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-resolution: 240dpi){
+    .p0-news{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p0@2x.png) -0px -0px no-repeat;
+        background-size: 252px;
+    }
+    .p0-yangshi{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p0@2x.png) -0px -133px no-repeat;
+        background-size: 252px;
+    }
+    .p0-workshop{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p0@2x.png) -0px -73px no-repeat;
+        background-size: 252px;
+    }
+    .p0-zhaopin{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p0@2x.png) -54px -133px no-repeat;
+        background-size: 252px;
+    }
+    .p0-html5{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p0@2x.png) -0px -104px no-repeat;
+        background-size: 252px;
+    }
+    .p0-ui{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p0@2x.png) -161px -104px no-repeat;
+        background-size: 252px;
+    }
+}
+
+
+
+

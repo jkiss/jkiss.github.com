@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="">
+
+    <style>
+    /***************************/
+    /*     Debugging  Style    */
+    .debug{
+        top: 0;
+        left: 0;
+        width: 100%;
+        line-height: 20px;
+        text-align: center;
+        color: #a6e22d;
+        background-color: #272822;
+    }
+    /***************************/
+    /*      Loading  Style     */
+    .loading-wrap {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        z-index: 8;
+        background-color: #000;
+    }
+    #load {
+        position:absolute;
+        width:600px;
+        height:36px;
+        left:50%;
+        top:40%;
+        margin-left:-300px;
+        overflow:visible;
+        -webkit-user-select:none;
+        user-select:none;
+        cursor:default;
+    }
+
+    #load div {
+        position:absolute;
+        width:20px;
+        height:36px;
+        opacity:0;
+        animation:move 2s linear infinite;
+        -webkit-animation:move 2s linear infinite;
+        transform:rotate(180deg);
+        -webkit-transform:rotate(180deg);
+        color:#35C4F0;
+    }
+
+    #load div:nth-child(2) {
+        animation-delay:0.2s;
+        -webkit-animation-delay:0.2s;
+    }
+    #load div:nth-child(3) {
+        animation-delay:0.4s;
+        -webkit-animation-delay:0.4s;
+    }
+    #load div:nth-child(4) {
+        animation-delay:0.6s;
+        -webkit-animation-delay:0.6s;
+    }
+    #load div:nth-child(5) {
+        animation-delay:0.8s;
+        -webkit-animation-delay:0.8s;
+    }
+    #load div:nth-child(6) {
+        animation-delay:1s;
+        -webkit-animation-delay:1s;
+    }
+    #load div:nth-child(7) {
+        animation-delay:1.2s;
+        -webkit-animation-delay:1.2s;
+    }
+
+    @keyframes move {
+        0% {
+            left:0;
+            opacity:0;
+        }
+        35% {
+            left: 41%;
+            transform:rotate(0deg);
+            opacity:1;
+        }
+        65% {
+            left:59%;
+            transform:rotate(0deg); 
+            opacity:1;
+        }
+        100% {
+            left:100%;
+            transform:rotate(-180deg);
+            opacity:0;
+        }
+    }
+
+    @-webkit-keyframes move {
+        0% {
+            left:0; 
+            opacity:0;
+        }
+        35% {
+            left:41%;
+            -webkit-transform:rotate(0deg);
+            opacity:1;
+        }
+        65% {
+            left:59%; 
+            -webkit-transform:rotate(0deg);
+            opacity:1;
+        }
+        100% {
+            left:100%;
+            -webkit-transform:rotate(-180deg);
+            opacity:0;
+        }
+    }
+    </style>
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/p0.css">
+</head>
+<body>
+<div class="container">
+    <div class="loading-wrap">
+        <i class="abs loading hardware icon-spinner eleCircle"></i>
+        <div id="load">
+            <div>G</div>
+            <div>N</div>
+            <div>I</div>
+            <div>D</div>
+            <div>A</div>
+            <div>O</div>
+            <div>L</div>
+        </div>
+    </div>
+
+    <ul class="content-list">
+        <li class="ctt-li">
+            
+        </li>
+    </ul>
+
+    <!-- <div class="abs swipe-up swipeMove icon-angle-double-up"></div> -->
+
+    <!-- <div class="abs debug"></div> -->
+</div>
+
+    <script src="scripts/zepto.min.js"></script>
+    <script src="scripts/head.min.js"></script>
+    <script src="scripts/index.js"></script>
+    <script src="scripts/WeixinApi.js"></script>
+    <script src="scripts/vivus.js"></script>
+    <script>
+    $(function(){
+        preImage([
+            getImgUrl($('.p5-1')),
+            getImgUrl($('.p5-2')),
+            getImgUrl($('.p5-3'))
+        ], function(){
+            var loading = $('.loading-wrap');
+            loading.addClass('fadeOut');
+            setTimeout(function(){
+                loading.css('display', 'none');
+            },300);
+
+            firstScreenMovie();
+        });
+
+        // response ctt-li
+        $(window).on('resize', function(event) {
+            $(".ctt-li").each(function() {
+                $(this).css("height", $(window).height())
+            });
+            screenHeight = $(window).height();
+            console.log('Resize');
+        }).trigger('resize');
+    });
+
+    // 初始化WeixinApi，等待分享
+    WeixinApi.ready(function(Api) {
+        // 微信分享的数据
+        var wxData = {
+            "appId": "", // 服务号可以填写appId
+            "imgUrl" : 'http://blog.nokey.me/pages/cctv_redo/images/p5_1.png',
+            "link" : 'http://blog.nokey.me/pages/cctv_redo/',
+            "desc" : 'CCTVNews is constantly updated with top news from China and around the world. Offering news reports, live and on-demand video content and searchable archives.',
+            "title" : "央视CCTVNews - 多媒体全球工作室 - 市场化招聘"
+        };
+        // 分享的回调
+        var wxCallbacks = {
+            // 收藏操作不执行回调，默认是开启(true)的
+            favorite : false,
+            // 分享操作开始之前
+            ready : function() {
+                // 你可以在这里对分享的数据进行重组
+                // alert("准备分享");
+            },
+            // 分享被用户自动取消
+            cancel : function(resp) {
+                // 你可以在你的页面上给用户一个小Tip，为什么要取消呢？
+                // alert("分享被取消，msg=" + resp.err_msg);
+            },
+            // 分享失败了
+            fail : function(resp) {
+                // 分享失败了，是不是可以告诉用户：不要紧，可能是网络问题，一会儿再试试？
+                alert("分享失败，msg=" + resp.err_msg);
+            },
+            // 分享成功
+            confirm : function(resp) {
+                // 分享成功了，我们是不是可以做一些分享统计呢？
+                // alert("分享成功，msg=" + resp.err_msg);
+            },
+            // 整个分享过程结束
+            all : function(resp,shareTo) {
+                // 如果你做的是一个鼓励用户进行分享的产品，在这里是不是可以给用户一些反馈了？
+                // alert("分享" + (shareTo ? "到" + shareTo : "") + "结束，msg=" + resp.err_msg);
+            }
+        };
+        // 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+        Api.shareToFriend(wxData, wxCallbacks);
+        // 点击分享到朋友圈，会执行下面这个代码
+        Api.shareToTimeline(wxData, wxCallbacks);
+        // 点击分享到腾讯微博，会执行下面这个代码
+        Api.shareToWeibo(wxData, wxCallbacks);
+        // iOS上，可以直接调用这个API进行分享，一句话搞定
+        Api.generalShare(wxData,wxCallbacks);
+    });
+    </script>
+</body>
+</html>

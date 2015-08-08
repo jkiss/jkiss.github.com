@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>CCTVNews - Happy new year of sheep and play game to get good luck!</title>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="CCTVNews is constantly updated with top news from China and around the world. Offering news reports, live and on-demand video content and searchable archives.">
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/p0.css?v=1000">
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "//hm.baidu.com/hm.js?5a1441bafd7e165ac1c406881f372b04";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <div id='wx_pic' style='margin:0 auto;display:none;'>
+        <img src='images/wx_pic_300_v100.jpg'/>
+    </div>
+</head>
+<body>
+<div class="container">
+    <div class="loading-wrap">
+        <i class="abs loading hardware flash"></i>
+        <div class="abs load-text">
+            <span>L</span>
+            <span>o</span>
+            <span>a</span>
+            <span>d</span>
+            <span>i</span>
+            <span>n</span>
+            <span>g</span>
+            <!-- 1-3个点循环 -->
+            <span class="ellipsis">...</span>
+        </div>
+    </div>
+
+    <ul class="content-list">
+        <!-- Page 0 -->
+        <li class="ctt-li" id="page_0">
+            <div class="abs page">
+                <div class="abs p0-4"></div>
+                <div class="abs p0-3"></div>
+                <div class="abs p0-2"></div>
+            </div>
+            <div class="abs p0-logo"></div>
+            <div class="abs p0-shuimo1"></div>
+            <div class="abs p0-shuimo2"></div>
+            <div class="abs p0-shuimo3"></div>
+        </li>
+
+        <!-- Page 1 -->
+        <li class="ctt-li">
+            <div class="abs p1-6"></div>
+            <div class="abs page">
+                <div class="abs p1-5"></div>
+                <div class="abs p1-3"></div>
+                <div class="abs p1-2"></div>
+                <div class="abs p1-1"></div>
+            </div>
+            <div class="abs p1-4"></div>
+        </li>
+
+        <!-- Page 2 -->
+        <li class="ctt-li">
+            <div class="abs p2-8"></div>
+            <div class="abs p2-4"></div>
+            <div class="abs p2-6"></div>
+            <div class="abs p2-7"></div>
+            <div class="abs page">
+                <div class="abs p2-2"></div>
+                <div class="abs p2-3"></div>
+                <div class="abs p2-5"></div>
+            </div>
+            <div class="abs p2-1"></div>
+        </li>
+
+        <!-- Page 3 -->
+        <li class="ctt-li">
+            <div class="abs p3-2"></div>
+            <div class="abs p3-3"></div>
+            <div class="abs p3-1"></div>
+        </li>
+
+        <!-- Page 4 -->
+        <li class="ctt-li">
+            <div class="abs page">
+                <div class="abs p4-2">
+                    <div class="abs p4-3"></div>
+                </div>
+                <div class="abs p4-4"></div>
+            </div>
+            <div class="abs p4-1"></div>
+            <div class="abs p4-game-win">
+                <div class="abs page">
+                    <div class="abs p5-rb game-2">
+                        <div class="abs p5-y1 game-yang"></div>
+                        <div class="abs p5-1 game-1"></div>
+                    </div>
+                    <div class="abs p5-lb game-2">
+                        <div class="abs p5-y2 game-yang"></div>
+                        <div class="abs p5-2 game-1"></div>
+                    </div>
+                    <div class="abs p5-lt game-2">
+                        <div class="abs p5-y3 game-yang"></div>
+                        <div class="abs p5-3 game-1"></div>
+                    </div>
+                    <div class="abs p5-rt game-2">
+                        <div class="abs p5-y4 game-yang"></div>
+                        <div class="abs p5-4 game-1"></div>
+                    </div>
+                </div>
+                <!-- Score Board -->
+                <div class="abs p5-5">
+                    <div class="abs p5-scored"></div>
+                </div>
+                <!-- Count Down -->
+                <div class="abs game-count-down"></div>
+                <!-- Share Page -->
+                <div class="abs p5-share">
+                    <div class="abs page">
+                        <div class="abs p5-6"></div>
+                        <div class="abs p5-7">
+                            <div class="abs p5-share-scored">16</div>
+                        </div>
+                        <div class="abs p5-8"></div>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+        <!-- Page 5 -->
+        
+    </ul>
+
+    <div class="abs swipe-up swipeMove icon-angle-double-up"></div>
+    
+    <!-- Game sound effect -->
+    <audio id="game_tap" style="display: none">
+        <source src="musics/notify.mp3" type="audio/mpeg">
+        <source src="musics/notify.ogg" type="audio/ogg">
+        <source src="musics/notify.wav" type="audio/wav">
+    </audio>
+</div>
+
+    <script src="scripts/zepto.min.js"></script>
+    <script src="scripts/head.min.js"></script>
+    <script src="scripts/index.js?v=1010"></script>
+    <script>
+    $(function(){
+        preImage([
+            getImgUrl($('.p0-4')),
+            getImgUrl($('.p0-2')),
+            getImgUrl($('.p0-3')),
+            getImgUrl($('.p0-shuimo1')),
+            getImgUrl($('.p0-shuimo2')),
+            getImgUrl($('.p0-shuimo3')),
+            getImgUrl($('#page_0'))
+        ], function(){
+            var loading = $('.loading-wrap');
+            loading.addClass('fadeOut');
+            setTimeout(function(){
+                loading.css('display', 'none');
+                $('.p0-3').css('opacity', 1);
+                firstScreenMovie();
+            },300);
+        });
+
+        // response ctt-li
+        $(window).on('resize', function(event) {
+            $(".ctt-li").each(function() {
+                $(this).css("height", $(window).height())
+            });
+            screenHeight = $(window).height();
+            console.log('Resize');
+        }).trigger('resize');
+    });
+    </script>
+</body>
+</html>
+
+

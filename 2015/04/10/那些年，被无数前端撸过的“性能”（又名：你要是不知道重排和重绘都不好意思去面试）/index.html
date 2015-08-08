@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+            那些年，被无数前端撸过的“性能”（又名：你要是不知道重排和重绘都不好意思去面试） |
+        －木马人－    
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta http-equiv="cache-control" content="max-age=7200">
+    <!-- 禁止百度微信转码（移动端还有点人性，哈哈） -->
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- 作者 -->
+    <meta name="author" content="Nokey-木马人">
+    <meta name="baidu-site-verification" content="lmqYZpJ2tZ" />
+    <link rel="icon" type="image/x-icon" href="/image/king.png">
+    <link rel="stylesheet" href="/css/blog.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/post.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/noookey.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/highlight.css" type="text/css">
+
+  </head>
+<body>
+    <div id='wx_pic' style='margin:0 auto;display:none;'>
+    <img src='/image/nokey.png'/>
+</div>
+<header>
+    <i class="left">
+        <span class="dash-left transition">--</span>
+        <span class="word-w transition">W</span>
+        <span class="word-e transition">e</span>
+        <span class="word-l transition">l</span>
+        <span class="word-c transition">c</span>
+        <span class="word-o transition">o</span>
+        <span class="word-m transition">m</span>
+        <span class="word-e transition">e </span>
+        <span class="word-t transition">t</span>
+        <span class="word-o transition">o </span>
+    </i>
+    <a href="/pages/shanghai"><span class="word-n transition">N</span></a>
+    <span class="word-o transition">o</span>
+    <span class="word-k transition">k</span>
+    <span class="word-e transition">e</span>
+    <span class="word-y transition">y</span>
+    <span class="word-_ transition">_</span>
+    <span class="word-b transition">b</span>
+    <span class="word-l transition">l</span>
+    <span class="word-o transition">o</span>
+    <span class="word-g transition">g </span>
+    <i class="right">
+        <span class="dash-right transition">--</span>
+    </i>
+    
+    <p class="home">
+        <a href="/" title="Return Home">
+            <i class="icon-home transition" alt="Return Home"></i>
+        </a>
+    </p>
+</header>
+<div class="yellow-progress-bar progress-move"></div>
+    <div class="main">
+        <div class="one">
+  <a href="http://blog.nokey.me/2015/04/10/那些年，被无数前端撸过的“性能”（又名：你要是不知道重排和重绘都不好意思去面试）/">
+    <h1 class="p-title transition">那些年，被无数前端撸过的“性能”（又名：你要是不知道重排和重绘都不好意思去面试）</h1>
+</a>
+
+  <div class="micro-data clearfix">
+    <div class="date-wrap wrap">
+        <i class="icon-calendar"></i>
+        <span class="date">4月 10 2015</span>
+    </div>
+    <div class="tag-wrap wrap">
+        
+    <i class="icon-tag"></i>
+    <a class="post-link" href="/tags/CSS/">CSS</a>&nbsp;&nbsp;<a class="post-link" href="/tags/H5/">H5</a>&nbsp;&nbsp;<a class="post-link" href="/tags/Timeline/">Timeline</a>&nbsp;&nbsp;<a class="post-link" href="/tags/前端性能/">前端性能</a>
+
+    </div>
+</div>
+
+  <div class="content">
+    
+        <p><strong>在这个年代写前端的我们是幸福的。</strong></p>
+<p>大学时期看过一本书－－《黑客》。很极致的表现了黑客的文化，真是看的我热血沸腾，好吧，我承认我是在打广告，如果不介意，顺便插入一段简介吧：“从20世纪50年代早期跨越到80年代后期，追述了计算机革命中初期黑客的丰功伟绩，他们都是最聪明和最富有个性的精英。他们勇于承担风险，勇于挑战规则，并把世界推向了一个全新的发展方向。这本书涵盖了一些著名黑客的最新资料，包括比尔•盖茨、马克•扎克伯格、理查德•托斯曼和史蒂夫•沃兹尼亚克，并讲述了从早期计算机研究实验室到最初的家用计算机期间一些妙趣横生的故事。”</p>
+<a id="more"></a>
+<p>OK，视线回到21世纪来吧，毕竟活在当下才是正题，而在“当下”写代码更是重中之重，作为一名前端开发，我就来讲一讲“古猿”们非常重视的性能问题，这也是我们幸福的原因之一。虽然我刚踏入前端圈不久，也是深有体会：手机硬件性能的不断提升，H5技术大行其道（这个不是贬义词吧？），外加前不久IE6退役的消息，还有“React Native”、“Node.js”，这两个是我比较喜欢的，哈哈。其实性能被渐渐忽略也是有原因的，也是符合趋势的，但是矛盾并不会消失，它只是不知不觉转移到了别的地方。计算机技术也没有那么神秘了，而是真正慢慢进入人们的生活，成为改善人们生活的推动力了。</p>
+<blockquote>
+<p>写在前面：我接下来写的东西完全是自己的理解，既不代表正义的一方，也不代表邪恶的一方，还得需要你们自己去分析形势，选择立场啊！（Webkit内核）</p>
+</blockquote>
+<p>记得毕业那段时间，去百度面试的经历（二面挂了 T_T），面试官就问了我知不知道<em>重排(回流)</em>和<em>重绘</em>，然后我就很天真的看着他，说：“不知道”（呵呵，没戏了）。其实说到性能，就离不开浏览器，而重排和重绘也是浏览器的重要的职能之一，好，那就先简单说一下浏览器加载页面的过程吧，先看一张图：</p>
+<p><img src="http://blog-nokey.qiniudn.com/2015-4-11-1.png" alt="Image"></p>
+<p>这张图实际是浏览器的加载过程：<em>蓝色的线</em>代表的是<em>DOMContentLoaded Event</em>触发的时刻；<em>红色的线</em>代表的是<em>Load Event</em>触发的时刻，我们可以在结合一张图看（Timeline）：</p>
+<p><img src="http://blog-nokey.qiniudn.com/2015-4-13-1.png" alt="Image"></p>
+<p>通过这张图我们可以更清楚的看到浏览器的一些请求行为，包括第一次请求<em>index首页</em>，到后续的一些<em>css文件</em>、<em>js文件</em>、<em>图片文件</em>的请求。这一部分有一些我理解的点，我们可以看到第二张图片多了一条<em>绿色的线</em>，这个是浏览器<strong>第一次在屏幕渲染页面的时间点（也就是第一次显示出东西来的时间点）</strong>，我通过观察<em>Timeline</em>分析并猜测，<strong>First Paint</strong>总是发生在<em>全部css文件加载完成之后</em>，而<strong>DOMContentLoaded</strong>则是发生在css和js文件全部加载完以后。在H5的一些宣传页上，我总是希望用户能够很快看到<strong>Loading</strong>页面，尤其是在网速慢的情况下，如果延迟加载js，那么loading页面就不能用<em>进度条</em>这种形式，但是无限<em>circle</em>的加载又会很容易让人烦躁，最终权衡下来，我还是推荐用<em>进度条</em>的加载形式。（PS：关于图片的请求，如果是以<strong>img</strong>标签的形式写在HTML里面，请求会发生在<strong>DOMContentLoaded</strong>之前，如果写在<strong>css</strong>文件里面，请求发生在<strong>DOMContentLoaded</strong>之后。如果图片数量很多的话，建议写在css的background-image里面，可参见淘宝首页，哈哈。）</p>
+<p>貌似有点跑题了。。。看完了浏览器的加载过程，接下来看看DOM的渲染吧：</p>
+<p><img src="http://blog-nokey.qiniudn.com/2015-4-10-2.jpg" alt="Image"></p>
+<p>我们都知道<em>DOM树</em>和<em>渲染树</em>，<strong>（接下来都是我自己的理解了）</strong>：当index.html加载完成后，会触发一个<em>Parse HTML</em>行为，它在生成DOM树的同时会发出页面中的一些异步请求，按理来说这些都是异步请求，理论上是同时请求的，但是我观察了下<em>Network</em>，浏览器貌似会对并发资源请求的数量进行一定的限制，Search一下后，发现果然浏览器对同一域名下的并发资源请求链接数有一定的限制，如果请求的资源较多，尽量将资源分布在不同的服务器上，例如淘宝，你会发现图片会分属在不同的域名下：gtms01.alicdn.com、gtms02.alicdn.com、gtms03.alicdn.com、gtms04.alicdn.com…。</p>
+<p>咳咳，请求这块说多了，那么在所有css加载完以后，浏览器会<strong>Recalculate Style</strong>重新计算样式，然后进行<strong>Layout(重排)(第一次布局)</strong>，<strong>Update Layer Tree</strong>更新渲染层树，为什么这里有一个<em>层</em>的概念呢，看上面那张图你就明白了。接着就进行<strong>Paint(重绘)(第一次绘制)</strong>，重绘的过程其实是为每个元素填充像素点，也就是直接显示在屏幕上的数据，那最后一步的<strong>Composite Layers</strong>是干什么呢？如果你用过PS，那么这个过程就很好理解了，就是<em>合并图层</em>，如果一个父元素是半透明的红色，子元素是半透明的蓝色，那么合在一起不就是XXX颜色了吗，哈哈！最后把合并后的当前窗口大小的数据流输出到显示内存里，就显示出来啦！（补充：浏览器在滚动的时候不会进行重排和重绘，但<em>Resize</em>基本上会涉及所有的过程。）</p>
+<p>重排的代价是比较大的，关于重排的重绘方面的优化问题，可以搜一下张鑫旭前辈翻译的两篇文章：</p>
+<ul>
+<li><a href="http://www.zhangxinxu.com/wordpress/2010/01/%E5%9B%9E%E6%B5%81%E4%B8%8E%E9%87%8D%E7%BB%98%EF%BC%9Acss%E6%80%A7%E8%83%BD%E8%AE%A9javascript%E5%8F%98%E6%85%A2%EF%BC%9F/" target="_blank" rel="external">回流与重绘：CSS性能让JavaScript变慢</a></li>
+<li><a href="http://www.zhangxinxu.com/wordpress/2009/10/attention-reflow-to-make-web-faster/" target="_blank" rel="external">翻译：让网络更快一些——最小化浏览器中的回流(reflow)</a></li>
+</ul>
+<p>在优化里面有一条就是尽量用absolute和fixed元素做动画，这就是与重排的另一个关键点了：<em>position</em>：</p>
+<ul>
+<li>static</li>
+<li>relative</li>
+<li>absolute</li>
+<li>fixed</li>
+</ul>
+<p>关于这些属性的不同点，可以看我的<a href="https://jsfiddle.net/nokey/tb7xmt6L/" target="_blank" rel="external">JSfiddle在线示例</a>。最后在附上我参考的几篇文章，还有css属性的重排和重绘查询表(有的需要翻墙)：</p>
+<ul>
+<li><a href="http://www.zan3.com/zan2596.html" target="_blank" rel="external">浏览器的渲染对性能 webkit浏览器渲染影响因素分析</a></li>
+<li><a href="https://speakerdeck.com/addyosmani/velocityconf-rendering-performance-case-studies" target="_blank" rel="external">rendering-performance-case-studies</a></li>
+<li><a href="http://blog.csdn.net/topviewers/article/details/21644305" target="_blank" rel="external">Html position（static、relative、absolute、fixed）</a></li>
+<li><a href="http://developer.51cto.com/art/201104/257345_all.htm" target="_blank" rel="external">高性能WEB开发之页面呈现、重绘、回流</a></li>
+<li><a href="https://docs.google.com/spreadsheet/pub?key=0ArK1Uipy0SbDdHVLc1ozTFlja1dhb25QNGhJMXN5MXc&amp;single=true&amp;gid=0&amp;output=html" target="_blank" rel="external">CSS properties by style operation required</a></li>
+<li><a href="http://csstriggers.com/" target="_blank" rel="external">csstriggers</a></li>
+</ul>
+
+    
+  </div>
+</div>
+
+
+    <section id="comment">
+        <!-- 多说评论框 start -->
+            <div class="ds-thread" data-thread-key="/2015/04/10/那些年，被无数前端撸过的“性能”（又名：你要是不知道重排和重绘都不好意思去面试）/" data-title="那些年，被无数前端撸过的“性能”（又名：你要是不知道重排和重绘都不好意思去面试）" data-url="http://blog.nokey.me/2015/04/10/那些年，被无数前端撸过的“性能”（又名：你要是不知道重排和重绘都不好意思去面试）/"></div>
+        <!-- 多说评论框 end -->
+    </section>
+
+    </div>
+    <footer>
+    <img alt="Nokey" data-url="http://blog-nokey.qiniudn.com/matrix.jpg" data-url-640="http://blog-nokey.qiniudn.com/blog_foot1.jpg!image640" data-url-320="http://blog-nokey.qiniudn.com/blog_foot1.jpg!image320">
+    <div class="i-want-say"></div>
+    <div class="qq-chat">QQ群：461790451</div>
+</footer>
+<div class="to-top icon-rocket" id="to_top"></div>
+
+    
+    <script src="/js/jquery-1.11.1.js" type="text/javascript"></script>
+
+<script src="/js/blog.js" type="text/javascript"></script>
+
+<script src="/js/head.min.js" type="text/javascript"></script>
+
+<script src="/js/snowfall.jquery.js" type="text/javascript"></script>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"nokey"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+<script>
+function merry_christmas(){
+    $(document).snowfall('clear');    
+    $(document).snowfall({
+        flakeCount: 50,
+        minSize: 12,
+        maxSize: 32
+    });
+}
+// merry_christmas();
+</script>
+</body>
+</html>

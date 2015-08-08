@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Shanghai</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <link rel="icon" type="image/x-icon" href="image/king.png">
+    <link rel="stylesheet" href="../../css/blog.css">
+    <link rel="stylesheet" href="../../css/noookey.css">
+</head>
+<body>
+
+    <!-- Page Model: -->
+    <div class="sh">
+        <div class="wrapper">
+            <p class="city">
+                上<i class="icon-location"></i>海
+            </p>
+        </div>
+    </div>
+    <script>
+        function invokeHere(o){
+            console.log('InvokeHere:');
+            if(o.win_w > 640){
+                $('<video autoplay loop id="vid"><source src="../../videos/variousways.mp4" type="video/mp4"><source src="../../videos/variousways.ogg" type="video/ogg"></video>').insertBefore('.sh');
+            }
+        }
+    </script>
+    <!-- endpage -->
+
+    <script src="../../js/jquery-1.11.1.js"></script>
+    <script src="../../js/blog.js"></script>
+</body>
+</html>

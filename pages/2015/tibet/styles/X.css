@@ -1,0 +1,292 @@
+/* 
+* @Author: Nokey-木马人
+*/
+
+/*Fonts*/
+@font-face {
+    font-family: 'Aftaserif';
+    src: url('fonts/aftaserifthin-regular.eot');
+    src: url('fonts/aftaserifthin-regular.eot') format('embedded-opentype'),
+         url('fonts/aftaserifthin-regular.woff') format('woff'),
+         url('fonts/aftaserifthin-regular.ttf') format('truetype'),
+         url('fonts/aftaserifthin-regular.svg#Aftaserif') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+/*   ICO moon   */
+@font-face {
+    font-family: 'icomoon';
+    src:url('fonts/icomoon.eot?-raejhd');
+    src:url('fonts/icomoon.eot?#iefix-raejhd') format('embedded-opentype'),
+        url('fonts/icomoon.ttf?-raejhd') format('truetype'),
+        url('fonts/icomoon.woff?-raejhd') format('woff'),
+        url('fonts/icomoon.svg?-raejhd#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    font-family: 'icomoon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-spinner11:before {
+    content: "\e984";
+}
+.icon-play3:before {
+    content: "\ea1c";
+}
+.icon-pause2:before {
+    content: "\ea1d";
+}
+
+/*   parallax-1   */
+.img-title{
+    position: relative;
+    width: 100%;
+    height: 660px;
+    overflow: hidden;
+}
+.parallax-box{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+#parallax_1{
+    background-image: url(../images/p1-1@2x.jpg);
+}
+.txt-title{
+    position: relative;
+}
+.txt-title p{
+    color: #fff;
+    text-align: center;
+    font-family: 'Aftaserif';
+    letter-spacing: 10px;
+    font-weight: bold;
+}
+.p1-txt1{
+    font-size: 80px;
+    margin-top: 240px;
+}
+.p1-txt2{
+    font-size: 18px;
+    margin-top: 25px;
+    line-height: 1.6em;
+}
+.p1-txt3{
+    width: 420px;
+    height: 224px;
+    background: url(../images/p1-2@2x.png) no-repeat;
+    background-size: 100%;
+    position: absolute;
+    left: 50%;
+    margin-left: -210px;
+    top: 100%;
+}
+.timeline{
+    position: relative;
+    height: 150px;
+    overflow: hidden;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+div[id*="trigger"]{
+    position: absolute;
+    left: 0;
+    top: -300px;
+    width: 1px;
+    height: 1px;
+}
+.tl-bar{
+    position: absolute;
+    top: -120px;
+    height: 100px;
+    width: 4px;
+    background-color: #000;
+}
+.tl-right .tl-bar{
+    right: 120px;
+}
+.tl-left .tl-bar{
+    left: 120px;
+}
+.tl-circle{
+    position: absolute;
+    left: -8px;
+    bottom: -8px;
+    width: 20px;
+    height: 20px;
+    background-color: #000;
+    border-radius: 50%;
+}
+.tl-date{
+    position: absolute;
+    bottom: -25px;
+    text-align: right;
+    font-size: 22px;
+    color: #000;
+}
+.tl-right .tl-date{
+    right: 30px;
+}
+.tl-left .tl-date{
+    left: 30px;
+}
+.content{
+    margin: 30px auto 100px;
+    width: 100%;
+    max-width: 960px;
+}
+.content p, .content-right p{
+    font-family: 'Aftaserif';
+    font-size: 15px;
+    max-width: 590px;
+    line-height: 1.6em;
+    margin: 0 0 1em 0;
+}
+.first-letter{
+    float: left;
+    font-size: 60px;
+    line-height: 1em;
+    margin: 0 15px 5px 0;
+}
+
+/*   page 2   */
+.page-2{
+    padding-top: 60px;
+    position: relative;
+}
+#parallax_2{
+    background-image: url(../images/p2-2@2x.png);
+}
+.p2-50{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    left: 50%;
+    margin-left: -100px;
+    top: -42px;
+    line-height: 200px;
+    border-radius: 50%;
+    font-size: 80px;
+    text-align: center;
+    color: #555;
+    font-family: 'Aftaserif';
+    background-color: #fff;
+    z-index: 10;
+}
+.p2-rotate-bg{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url(../images/p2-4@2x.png) no-repeat;
+    background-size: 100%;
+}
+.p2-train{
+    height: 100px;
+    width: 2009px;
+    position: absolute;
+    left: -2009px;
+    bottom: 0;
+    background: url(../images/p2-1@2x.png) no-repeat;
+    background-size: 100%;
+}
+.content-right{
+    margin: 30px auto 100px;
+    width: 100%;
+    max-width: 960px;
+    /*padding-left: 320px;*/
+}
+.content-inner{
+    text-align: center;
+    width: 100%;
+    max-width: 760px;
+    float: right;
+}
+.content-right p{
+    text-align: left;
+    width: 100%;
+    max-width: 760px;
+    padding-left: 170px;
+}
+.inset-img{
+    float: left;
+    margin: 15px 30px 15px 0;
+}
+.page-2 .inset-img{
+    height: 15em;
+}
+
+/*   page 3   */
+.p3-video{
+    width: 100%;
+}
+.p3-video-box{
+    position: relative;
+    opacity: 0;
+}
+.ctrl-btn{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    background-color: rgba(0,0,0,.7);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 22px;
+}
+.ctrl-btn:hover{
+    background-color: rgba(0,0,0,1);
+}
+
+@media screen and (max-width: 760px){
+    .img-title{
+        height: 300px;
+    }
+    .p1-txt1{
+        font-size: 40px;
+        margin-top: 80px;
+    }
+    .content-right p, .content{
+        padding: 0 5px 0 20px;
+    }
+    .page-2 .inset-img{
+        float: none;
+        margin: 30px 0;
+    }
+    .p1-txt3{
+        width: 280px;
+        margin-left: -140px;
+    }
+}
+
+@media screen and (min-width: 1600px){
+    .content, .content-right{
+        max-width: 1200px;
+    }
+}
+
+
+
+

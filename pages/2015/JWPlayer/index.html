@@ -1,0 +1,28 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JWPlayer</title>
+
+    <!-- JWPlayer -->
+    <script src="jwplayer/jwplayer.js"></script>
+    <script>jwplayer.key="zMHkSXABUB8WyFh60Ax6M+4nwPsbpEz/ltiv8A==";</script>
+</head>
+<body>
+    <div id="myHLS">
+        Loading...
+    </div>
+
+    <script>
+        var hls_player = jwplayer('myHLS');
+
+        hls_player.setup({
+            playlist: [{
+                image: './images/nokey.jpg',
+                sources: [{
+                    file: 'http://livenews.bjut.com/out_1/cctvnews1000.m3u8'
+                }]
+            }]
+        });
+    </script>
+</body>
+</html>

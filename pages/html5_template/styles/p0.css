@@ -1,0 +1,58 @@
+/* 
+* @Author: Nokey
+* @Date:   2014-12-08 20:40:59
+* @Last Modified by:   apple
+* @Last Modified time: 2014-12-30 22:38:11
+*/
+.swipe-up{
+    
+}
+@-webkit-keyframes swipeMove {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 5px, 0);
+    }
+    70% {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -8px, 0);
+    }
+}
+@keyframes swipeMove {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 5px, 0)
+    }
+    70% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0)
+    }
+    100% {
+        opacity: 0;
+        transform: translate3d(0, -8px, 0);
+    }
+}
+.swipeMove {
+    opacity: 1 !important;
+    -webkit-animation: swipeMove 1s ease-in infinite;
+    animation: swipeMove 1s ease-in infinite;
+}
+.rotate30{
+    -webkit-transform: rotate(30deg);
+    transform: rotate(30deg);
+}
+.rotate45{
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/*************************/
+/*        P0-Style       */
+
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-resolution: 240dpi){
+    
+}

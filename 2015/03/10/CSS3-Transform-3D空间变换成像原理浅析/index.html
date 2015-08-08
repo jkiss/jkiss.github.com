@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+            CSS3 Transform-3D空间变换成像原理浅析 |
+        －木马人－    
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta http-equiv="cache-control" content="max-age=7200">
+    <!-- 禁止百度微信转码（移动端还有点人性，哈哈） -->
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- 作者 -->
+    <meta name="author" content="Nokey-木马人">
+    <meta name="baidu-site-verification" content="lmqYZpJ2tZ" />
+    <link rel="icon" type="image/x-icon" href="/image/king.png">
+    <link rel="stylesheet" href="/css/blog.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/post.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/noookey.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/highlight.css" type="text/css">
+
+  </head>
+<body>
+    <div id='wx_pic' style='margin:0 auto;display:none;'>
+    <img src='/image/nokey.png'/>
+</div>
+<header>
+    <i class="left">
+        <span class="dash-left transition">--</span>
+        <span class="word-w transition">W</span>
+        <span class="word-e transition">e</span>
+        <span class="word-l transition">l</span>
+        <span class="word-c transition">c</span>
+        <span class="word-o transition">o</span>
+        <span class="word-m transition">m</span>
+        <span class="word-e transition">e </span>
+        <span class="word-t transition">t</span>
+        <span class="word-o transition">o </span>
+    </i>
+    <a href="/pages/shanghai"><span class="word-n transition">N</span></a>
+    <span class="word-o transition">o</span>
+    <span class="word-k transition">k</span>
+    <span class="word-e transition">e</span>
+    <span class="word-y transition">y</span>
+    <span class="word-_ transition">_</span>
+    <span class="word-b transition">b</span>
+    <span class="word-l transition">l</span>
+    <span class="word-o transition">o</span>
+    <span class="word-g transition">g </span>
+    <i class="right">
+        <span class="dash-right transition">--</span>
+    </i>
+    
+    <p class="home">
+        <a href="/" title="Return Home">
+            <i class="icon-home transition" alt="Return Home"></i>
+        </a>
+    </p>
+</header>
+<div class="yellow-progress-bar progress-move"></div>
+    <div class="main">
+        <div class="one">
+  <a href="http://blog.nokey.me/2015/03/10/CSS3-Transform-3D空间变换成像原理浅析/">
+    <h1 class="p-title transition">CSS3 Transform-3D空间变换成像原理浅析</h1>
+</a>
+
+  <div class="micro-data clearfix">
+    <div class="date-wrap wrap">
+        <i class="icon-calendar"></i>
+        <span class="date">3月 10 2015</span>
+    </div>
+    <div class="tag-wrap wrap">
+        
+    <i class="icon-tag"></i>
+    <a class="post-link" href="/tags/3D/">3D</a>&nbsp;&nbsp;<a class="post-link" href="/tags/Transform/">Transform</a>&nbsp;&nbsp;<a class="post-link" href="/tags/css3/">css3</a>
+
+    </div>
+</div>
+
+  <div class="content">
+    
+        <p><strong> 这篇文章我将向大家简单的介绍 CSS3 里面的 3D 变换的物理成像原理，所以只是浅析，并不涉及线性代数的矩阵变换 </strong></p>
+<p>先看一个简单的3D实例（PC端就把鼠标移上去，手机端就用手指在上面滑动，用原生JS写效果还真是…不过偶尔写写还是挺爽的）：</p>
+<p><div class="stage three-d"><br>    stage<br>    <div class="three-d-box"><br>        3D-Box<br>        <div class="front transition"><br>            Front<br>        </div><br>        <div class="back transition"><br>            Back<br>        </div><br>    </div><br></div></p>
+<script>
+var stage = document.querySelector('.stage'),
+    front = document.querySelector('.front'),
+    back = document.querySelector('.back'),
+    touchStartY, touchMoveY, touchEndY,
+    which = 'front';
+
+    stage.addEventListener('mouseenter', function(e){
+        console.log('Mouse Enter');
+        var e = e || window.event;
+        front.style.transform = 'rotatex(90deg) translatez(50px)';
+        back.style.transform = 'rotatex(0deg) translatez(50px)';
+        // -webkit-
+        front.style.webkitTransform = 'rotatex(90deg) translatez(50px)';
+        back.style.webkitTransform = 'rotatex(0deg) translatez(50px)';
+    });
+    stage.addEventListener('mouseleave', function(e){
+        console.log('Mouse Leave');
+        var e = e || window.event;
+        front.style.transform = 'rotatex(0deg) translatez(50px)';
+        back.style.transform = 'rotatex(-90deg) translatez(50px)';
+        // -webkit-
+        front.style.webkitTransform = 'rotatex(0deg) translatez(50px)';
+        back.style.webkitTransform = 'rotatex(-90deg) translatez(50px)';
+    });
+    function moveRotate(moveY){
+        var total_angle = 90,
+            w_h = window.innerHeight > 260 ? 260 : window.innerHeight < 150 ? 150 : window.innerHeight,
+            rotate_angle = 0,
+            ratio = 0;
+
+        ratio = total_angle / w_h;
+        rotate_angle = ratio * moveY;
+        // console.log(w_h);
+        if(moveY < 0 && which === 'front'){      // swipe up
+            front.style.transform = 'rotatex('+(0 - rotate_angle)+'deg) translatez(50px)';
+            back.style.transform = 'rotatex('+(-90 - rotate_angle)+'deg) translatez(50px)';
+            // -webkit-
+            front.style.webkitTransform = 'rotatex('+(0 - rotate_angle)+'deg) translatez(50px)';
+            back.style.webkitTransform = 'rotatex('+(-90 - rotate_angle)+'deg) translatez(50px)';
+        }else if(moveY > 0 && which === 'back'){ // swipe down
+            front.style.transform = 'rotatex('+(90 - rotate_angle)+'deg) translatez(50px)';
+            back.style.transform = 'rotatex('+(0 - rotate_angle)+'deg) translatez(50px)';
+            // -webkit-
+            front.style.webkitTransform = 'rotatex('+(90 - rotate_angle)+'deg) translatez(50px)';
+            back.style.webkitTransform = 'rotatex('+(0 - rotate_angle)+'deg) translatez(50px)';
+        }
+    }
+    function startTouch(event){
+        if(!event.touches.length){
+            return ;
+        }else{
+            var finger = event.touches[0];
+            touchStartY = finger.pageY;
+            touchEndY = 0;
+            console.log('touch start...');
+        }
+    }
+    function moveTouch(event){
+        var _me = this;
+        event.preventDefault();
+        event.stopPropagation();
+        if(!event.touches.length){
+            return ;
+        }else{
+            var finger = event.touches[0];
+            touchMoveY = finger.pageY - touchStartY;
+            touchEndY = finger.pageY;
+            moveRotate(touchMoveY);
+            console.log('touch move...'+touchMoveY);
+        }
+    }
+    function endTouch(event){
+        var startY = touchStartY,
+            endY = touchEndY;
+        if(endY && endY !== startY && endY - startY <= -25){
+            // swipe up
+            front.style.transform = 'rotatex(90deg) translatez(50px)';
+            back.style.transform = 'rotatex(0deg) translatez(50px)';
+            // -webkit-
+            front.style.webkitTransform = 'rotatex(90deg) translatez(50px)';
+            back.style.webkitTransform = 'rotatex(0deg) translatez(50px)';
+            which = 'back';
+        }else if(endY && endY !== startY && endY - startY >= 25){
+            // swipe down
+            front.style.transform = 'rotatex(0deg) translatez(50px)';
+            back.style.transform = 'rotatex(-90deg) translatez(50px)';
+            // -webkit-
+            front.style.webkitTransform = 'rotatex(0deg) translatez(50px)';
+            back.style.webkitTransform = 'rotatex(-90deg) translatez(50px)';
+            which = 'front';
+        }
+        console.log('touch end...');
+    }
+    stage.addEventListener('touchstart', function(e){
+        startTouch(e);
+    });
+    stage.addEventListener('touchmove', function(e){
+        moveTouch(e);
+    });
+    stage.addEventListener('touchend', function(e){
+        endTouch(e);
+    });
+</script>
+
+<a id="more"></a>
+<p>HTML的结构：</p>
+<figure class="highlight html"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"stage three-d"</span>&gt;</span></div><div class="line">    stage</div><div class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"three-d-box"</span>&gt;</span></div><div class="line">        3D-Box</div><div class="line">        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"front transition"</span>&gt;</span></div><div class="line">            Front</div><div class="line">        <span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"back transition"</span>&gt;</span></div><div class="line">            Back</div><div class="line">        <span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></figure>
+
+<p>CSS结构：</p>
+<figure class="highlight css"><pre><div class="line"><span class="class">.stage</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">30px</span> auto</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">140px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#956129</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.transition</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">-webkit-transition</span>:<span class="value"> all .<span class="number">3s</span> ease-out</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-moz-transition</span>:<span class="value"> all .<span class="number">3s</span> ease-out</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-ms-transition</span>:<span class="value"> all .<span class="number">3s</span> ease-out</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-o-transition</span>:<span class="value"> all .<span class="number">3s</span> ease-out</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">transition</span>:<span class="value"> all .<span class="number">3s</span> ease-out</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.three-d</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#fff</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">text-align</span>:<span class="value"> center</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">14px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-webkit-perspective</span>:<span class="value"> <span class="number">200px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-moz-perspective</span>:<span class="value"> <span class="number">200px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-ms-perspective</span>:<span class="value"> <span class="number">200px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">perspective</span>:<span class="value"> <span class="number">200px</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.three-d-box</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">top</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100%</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100%</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">line-height</span>:<span class="value"> <span class="number">100px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">text-align</span>:<span class="value"> center</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#fff</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="function">rgba</span>(<span class="number">50</span>,<span class="number">50</span>,<span class="number">50</span>,.<span class="number">6</span>)</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-webkit-transform</span>:<span class="value"> <span class="function">translatez</span>(-<span class="number">50px</span>)</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-moz-transform</span>:<span class="value"> <span class="function">translatez</span>(-<span class="number">50px</span>)</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-ms-transform</span>:<span class="value"> <span class="function">translatez</span>(-<span class="number">50px</span>)</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-o-transform</span>:<span class="value"> <span class="function">translatez</span>(-<span class="number">50px</span>)</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">translatez</span>(-<span class="number">50px</span>)</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-webkit-transform-style</span>:<span class="value"> preserve-<span class="number">3</span>d</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-moz-transform-style</span>:<span class="value"> preserve-<span class="number">3</span>d</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-ms-transform-style</span>:<span class="value"> preserve-<span class="number">3</span>d</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">transform-style</span>:<span class="value"> preserve-<span class="number">3</span>d</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.front</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">top</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100%</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100%</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">line-height</span>:<span class="value"> <span class="number">100px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">text-align</span>:<span class="value"> center</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#fff</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="function">rgba</span>(<span class="number">50</span>,<span class="number">100</span>,<span class="number">100</span>,.<span class="number">5</span>)</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-webkit-transform</span>:<span class="value"> <span class="function">rotatex</span>(<span class="number">0deg</span>) <span class="function">translatez</span>(<span class="number">50px</span>)</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-moz-transform</span>:<span class="value"> <span class="function">rotatex</span>(<span class="number">0deg</span>) <span class="function">translatez</span>(<span class="number">50px</span>)</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-ms-transform</span>:<span class="value"> <span class="function">rotatex</span>(<span class="number">0deg</span>) <span class="function">translatez</span>(<span class="number">50px</span>)</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-o-transform</span>:<span class="value"> <span class="function">rotatex</span>(<span class="number">0deg</span>) <span class="function">translatez</span>(<span class="number">50px</span>)</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">rotatex</span>(<span class="number">0deg</span>) <span class="function">translatez</span>(<span class="number">50px</span>)</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.back</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">top</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100%</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100%</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">line-height</span>:<span class="value"> <span class="number">100px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">text-align</span>:<span class="value"> center</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#fff</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="function">rgba</span>(<span class="number">150</span>,<span class="number">10</span>,<span class="number">10</span>,.<span class="number">5</span>)</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-webkit-transform</span>:<span class="value"> <span class="function">rotatex</span>(-<span class="number">90deg</span>) <span class="function">translatez</span>(<span class="number">50px</span>)</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-moz-transform</span>:<span class="value"> <span class="function">rotatex</span>(-<span class="number">90deg</span>) <span class="function">translatez</span>(<span class="number">50px</span>)</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-ms-transform</span>:<span class="value"> <span class="function">rotatex</span>(-<span class="number">90deg</span>) <span class="function">translatez</span>(<span class="number">50px</span>)</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-o-transform</span>:<span class="value"> <span class="function">rotatex</span>(-<span class="number">90deg</span>) <span class="function">translatez</span>(<span class="number">50px</span>)</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">rotatex</span>(-<span class="number">90deg</span>) <span class="function">translatez</span>(<span class="number">50px</span>)</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p>一个简单的立方体旋转效果，可以移到PC浏览，<strong>console玩一下</strong>试试效果。不难看出3D变换基于几个比较重要的属性：<em>perspective</em>、<em>translatez</em>、<em>preserve-3d</em>。那么，transform 的3D变换效果是基于哪种坐标呢？每个属性又是如何控制的呢？先说一下3个属性的继承性：</p>
+<ul>
+<li>perspective:  No (<a href="http://www.w3school.com.cn" target="_blank" rel="external">http://www.w3school.com.cn</a> 不太靠谱。。。)</li>
+<li>translatez(transform):  No</li>
+<li>preserve-3d(transform):  No</li>
+<li>补充一点：perspective虽然不具有继承性，但是它却决定了<em>后代元素</em>的视觉呈现。</li>
+</ul>
+<p>这段代码有几个关键点元素：<em>three-d</em>和<em>three-d-box</em>。<em>three-d</em>是3D变换的一个舞台元素，所有的元素都将在这里执行变换（因为它决定了所有后代元素的透视点）；<em>three-d-box</em>则是为进行立方体变换的元素准备的一个<strong>小舞台</strong>。为什么要准备这个小舞台呢？<em>three-d-box</em>进行了<strong>translatez(-50px)</strong>变换，而它的子元素为么又进行<strong>translatez(-50px)</strong>变换呢？这个<strong>50px</strong>的值能换成其他值吗？先看一张<strong>GIF</strong>：</p>
+<p><img src="http://blog-nokey.qiniudn.com/Cube_rotation.gif" alt="3D Cube"></p>
+<p>所以我们可以看出，立方体的每个2D平面都进行着3D变换，而且都围绕着一个点，这个点就是3维坐标系的中心点，而这个点也就是<em>three-d-box</em>的中心点。而<em>front</em>和<em>back</em>两个子元素的变换坐标系（准确的说是<strong>相对坐标系</strong>），就是基于<em>three-d-box</em>的三维坐标系（所有进行2D或3D变换的元素的坐标系都是基于父元素的坐标系，父元素的中心点就是2D或3D坐标系的原点，这个原点可以根据<strong>当前元素</strong>的<em>transform-origin</em>和<em>translatez</em>来改变，当然坐标是相对的，要理解这一点）。</p>
+<p>OK，继续解决上面两个问题：设置这个<strong>小舞台</strong>的目的是为了<strong>旋转元素大小</strong>的一个<strong>可控性</strong>，直接设置<em>three-d</em>的大小，而且旋转元素的宽高都设置了100%，那么它们的宽高就是一样的，这样旋转元素的大小就可以通过<em>three-d</em>控制了。那么<em>translatez</em>的值呢？我就这个 Cube－Rotate 的例子说，先看一张图：</p>
+<p><img src="http://blog-nokey.qiniudn.com/3d-coor-3.png" alt="Translatez"></p>
+<p>怎么样？一目了然了吧，<strong>translatez</strong>的值就是立方体高的50%，当然这个立方体的4个侧面是一样的，这个可以根据每个面的高度的值来确定对应的<strong>translatez</strong>的值（translatez的值到底是根据<strong>旋转元素</strong>的<em>height</em>还是<em>width</em>，这个也与旋转方向有关，那个<strong>GIF图</strong>不就很好的说明了吗？）。</p>
+<p><strong>下面在附两张我用OmniGraffle（很好用的一款思维导图绘制软件）画的两个示意图，仅供参考：</strong></p>
+<p>###示例中的各个元素在3D空间的Z轴方向的景深示意图(1-1)：<br><img src="http://blog-nokey.qiniudn.com/3d-coor-1.png" alt="3D示意图"></p>
+<p>###示例中元素在视觉系统中的成像示意图(1-2)：<br><img src="http://blog-nokey.qiniudn.com/3d-coor-2.png?v=1000" alt="成像示意图"></p>
+<p>PS：上面这个图的<strong>固定视点</strong>相当于一只<strong>“机器眼”</strong>，变换元素最终呈现的客观形态就是成像到这只“机器眼”的图像，如果我们<strong>人眼</strong>的位置正好处在这只“机器眼”的位置，我们看到的是<strong>最真实的形态</strong>，当然人眼是<strong>“活动的”</strong>，成像最终取决于最终视角，<em>和我们看现实世界的物体是一样的</em>。固定视点的空间位置是相当于当前元素<em>stage</em>的，它到<strong>stage平面</strong>的垂直距离是由perspective设置的，它的<strong>投影</strong>在<strong>stage平面</strong>的坐标是由<em>perspective-origin</em>决定的。</p>
+<p>####看了这么多理论，在线体验实践一下吧（其中还会有其他的要点）：</p>
+<blockquote>
+<p><a href="https://jsfiddle.net/nokey/h24y9q0h/11/" target="_blank" rel="external">Trandform-3D Demo created by Nokey</a></p>
+</blockquote>
+
+    
+  </div>
+</div>
+
+
+    <section id="comment">
+        <!-- 多说评论框 start -->
+            <div class="ds-thread" data-thread-key="/2015/03/10/CSS3-Transform-3D空间变换成像原理浅析/" data-title="CSS3 Transform-3D空间变换成像原理浅析" data-url="http://blog.nokey.me/2015/03/10/CSS3-Transform-3D空间变换成像原理浅析/"></div>
+        <!-- 多说评论框 end -->
+    </section>
+
+    </div>
+    <footer>
+    <img alt="Nokey" data-url="http://blog-nokey.qiniudn.com/matrix.jpg" data-url-640="http://blog-nokey.qiniudn.com/blog_foot1.jpg!image640" data-url-320="http://blog-nokey.qiniudn.com/blog_foot1.jpg!image320">
+    <div class="i-want-say"></div>
+    <div class="qq-chat">QQ群：461790451</div>
+</footer>
+<div class="to-top icon-rocket" id="to_top"></div>
+
+    
+    <script src="/js/jquery-1.11.1.js" type="text/javascript"></script>
+
+<script src="/js/blog.js" type="text/javascript"></script>
+
+<script src="/js/head.min.js" type="text/javascript"></script>
+
+<script src="/js/snowfall.jquery.js" type="text/javascript"></script>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"nokey"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+<script>
+function merry_christmas(){
+    $(document).snowfall('clear');    
+    $(document).snowfall({
+        flakeCount: 50,
+        minSize: 12,
+        maxSize: 32
+    });
+}
+// merry_christmas();
+</script>
+</body>
+</html>

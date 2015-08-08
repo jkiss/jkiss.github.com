@@ -1,0 +1,136 @@
+/* 
+* @Author: apple
+* @Date:   2014-12-04 22:44:56
+* @Last Modified by:   apple
+* @Last Modified time: 2014-12-08 20:30:14
+*/
+.p1-ui{
+    background: url(http://blog-nokey.qiniudn.com/cctv_ps@2x.png) no-repeat;
+    background-size: 60px;
+    width: 60px;
+    height: 61px;
+    left: 3.125%;
+    top: 0;
+    -webkit-transform: translate3d(0,-68px,0);
+    transform: translate3d(0,-68px,0);
+    opacity: 0;
+}
+.p1-en{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p1.png) -185px -186px no-repeat;
+    width: 23px;
+    height: 16px;
+    top: -18px;
+    left: 45px;
+    -webkit-transform: scaleY(.1);
+    transform: scaleY(.1);
+    opacity: 0;
+}
+.p1-cn{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p1.png) -113px -186px no-repeat;
+    width: 72px;
+    height: 18px;
+    top: 7px;
+    right: 45px;
+    -webkit-transform: scaleY(.1);
+    transform: scaleY(.1);
+    opacity: 0;
+}
+.p1-r1-1{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p1.png) -0px -62px no-repeat;
+    width: 262px;
+    height: 62px;
+    top: -8px;
+    left: 33px;
+}
+.p1-r1-2{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p1.png) -0px -224px no-repeat;
+    width: 262px;
+    height: 38px;
+    top: 64px;
+    left: 33px;
+}
+.p1-r1-3{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p1.png) -0px -262px no-repeat;
+    width: 262px;
+    height: 38px;
+    top: 112px;
+    left: 33px;
+}
+.p1-r1-4{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p1.png) -0px -124px no-repeat;
+    width: 262px;
+    height: 62px;
+    top: 158px;
+    left: 33px;
+}
+.p1-r2-title{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p1.png) -113px -204px no-repeat;
+    width: 65px;
+    height: 15px;
+    top: 230px;
+    left: 33px;
+}
+.p1-r2-1{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p1.png) -0px -0px no-repeat;
+    width: 262px;
+    height: 62px;
+    top: 253px;
+    left: 33px;
+}
+.p1-home{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p1.png) -0px -186px no-repeat;
+    width: 113px;
+    height: 38px;
+    bottom: 15px;
+    left: 50%;
+    margin-left: -57px;
+    -webkit-transform-origin: center bottom;
+    transform-origin: center bottom;
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+    opacity: 0;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-resolution: 240dpi), only screen and (min-resolution: 2dppx){
+    .p1-home{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p1@2x.png) 1px -124px no-repeat;
+        background-size: 524px;
+    }
+    .p1-r2-1{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p1@2x.png) -0px -0px no-repeat;
+        background-size: 524px;
+    }
+    .p1-r2-title{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p1@2x.png) -355px -100px no-repeat;
+        background-size: 524px;
+    }
+    .p1-r1-4{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p1@2x.png) -261px -0px no-repeat;
+        background-size: 524px;
+    }
+    .p1-r1-3{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p1@2x.png) -113px -124px no-repeat;
+        background-size: 524px;
+    }
+    .p1-r1-2{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p1@2x.png) -261px -62px no-repeat;
+        background-size: 524px;
+    }
+    .p1-r1-1{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p1@2x.png) -0px -62px no-repeat;
+        background-size: 524px;
+    }
+    .p1-cn{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p1@2x.png) -260px -100px no-repeat;
+        background-size: 524px;
+    }
+    .p1-en{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p1@2x.png) -332px -100px no-repeat;
+        background-size: 524px;
+    }
+}
+
+
+
+
+

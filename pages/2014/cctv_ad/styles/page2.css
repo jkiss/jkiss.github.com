@@ -1,0 +1,366 @@
+/* 
+* @Author: Nokey
+* @Date:   2014-12-04 22:44:42
+* @Last Modified by:   apple
+* @Last Modified time: 2014-12-07 19:32:50
+*/
+.moveDown, .moveLeft{
+    opacity: 1!important;
+    -webkit-transform: translate3d(0, 0, 0)!important;
+    transform: translate3d(0, 0, 0)!important;
+    -webkit-transition: all .5s ease-out;
+    transition: all .5s ease-out;
+}
+.scaleUp{
+    opacity: 1!important;
+    -webkit-transform: scaleY(1) !important;
+    transform: scaleY(1) !important;
+    -webkit-transform-origin: center bottom;
+    transform-origin: center bottom;
+    -webkit-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+}
+.scaleDown{
+    opacity: 1!important;
+    -webkit-transform: scaleY(1) !important;
+    transform: scaleY(1) !important;
+    -webkit-transform-origin: center top;
+    transform-origin: center top;
+    -webkit-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+}
+@-webkit-keyframes swipeRight {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(-5px, 0, 0);
+    }
+    70% {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: translate3d(8px, 0, 0);
+    }
+}
+@keyframes swipeRight {
+    0% {
+        opacity: 0;
+        transform: translate3d(-5px, 0, 0);
+    }
+    70% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate3d(8px, 0, 0);
+    }
+}
+.swipeRight{
+    -webkit-animation: swipeRight 1s ease-in infinite;
+    animation: swipeRight 1s ease-in infinite;
+}
+@-webkit-keyframes swipeLeft {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(8px, 0, 0);
+    }
+    70% {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: translate3d(-5px, 0, 0);
+    }
+}
+@keyframes swipeLeft {
+    0% {
+        opacity: 0;
+        transform: translate3d(8px, 0, 0);
+    }
+    70% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate3d(-5px, 0, 0);
+    }
+}
+.swipeLeft{
+    -webkit-animation: swipeLeft 1s ease-in infinite;
+    animation: swipeLeft 1s ease-in infinite;
+}
+.page2, .page1{
+    opacity: 0;
+    background-color: #f0f0f0;
+}
+.p2-bluebar-1, .p1-yellowbar-1{
+    width: 150%;
+    height: 200px;
+    right: 150px;
+    top: -200px;
+    background-color: #19e4dd;
+}
+.p1-yellowbar-1{
+    background-color: #e6ba0b;
+}
+.p2-bluebar-2, .p1-yellowbar-2{
+    width: 150%;
+    height: 120px;
+    right: 0;
+    bottom: 0;
+    background-color: #19e4dd;
+}
+.p1-yellowbar-2{
+    background-color: #e6ba0b;
+}
+
+/*    Icon  Style   */
+.p2-html5{
+    background: url(http://blog-nokey.qiniudn.com/cctv_html5@2x.png) no-repeat;
+    background-size: 60px;
+    width: 60px;
+    height: 68px;
+    left: 3.125%;
+    top: 0;
+    -webkit-transform: translate3d(0,-68px,0);
+    transform: translate3d(0,-68px,0);
+    opacity: 0;
+}
+.p2-black-bar, .p1-black-bar{
+    width: 220px;
+    height: 3px;
+    top: 28px;
+    right: 0;
+    background-color: #000;
+    -webkit-transform: translate3d(220px,0,0);
+    transform: translate3d(220px,0,0);
+    opacity: 0;
+}
+.p2-en{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p2.png) -113px -368px no-repeat;
+    width: 111px;
+    height: 16px;
+    top: -24px;
+    left: 25px;
+    -webkit-transform: scaleY(.1);
+    transform: scaleY(.1);
+    opacity: 0;
+}
+.p2-cn{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p2.png) -113px -350px no-repeat;
+    width: 141px;
+    height: 18px;
+    top: 10px;
+    right: 30px;
+    -webkit-transform: scaleY(.1);
+    transform: scaleY(.1);
+    opacity: 0;
+}
+.p2-req-wrap{
+    width: 320px;
+    height: 100%;
+    left: 50%;
+    top: 0;
+    margin-left: -160px;
+    overflow: hidden;
+    -webkit-transform: translate3d(50px,0,0);
+    transform: translate3d(50px,0,0);
+    opacity: 0;
+}
+.p2-require-1, .p2-require-2, .p1-require-1{
+    width: 320px;
+    height: 300px;
+    top: 50%;
+    margin-top: -150px;
+}
+.p2-require-1{
+    left: 0;
+}
+.p2-require-2{
+    left: 320px;
+}
+.p1-require-1{
+    left: 50%;
+    margin-left: -160px;
+    -webkit-transform: translate3d(0,50px,0);
+    transform: translate3d(0,50px,0);
+    opacity: 0;
+}
+.p2-square, .p1-square{
+    width: 5px;
+    height: 5px;
+    background-color: #ea1f1b;
+    top: 5px;
+    left: -18px;
+}
+.p2-r1-1{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p2.png) -0px -426px no-repeat;
+    width: 255px;
+    height: 38px;
+    top: -20px;
+    left: 33px;
+}
+.p2-r1-2{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p2.png) -0px -464px no-repeat;
+    width: 257px;
+    height: 38px;
+    top: 25px;
+    left: 33px;
+}
+.p2-r1-3{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p2.png) -0px -186px no-repeat;
+    width: 262px;
+    height: 62px;
+    top: 70px;
+    left: 33px;
+}
+.p2-r1-4{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p2.png) -0px -248px no-repeat;
+    width: 262px;
+    height: 62px;
+    top: 140px;
+    left: 33px;
+}
+.p2-r1-5{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p2.png) -0px -502px no-repeat;
+    width: 262px;
+    height: 38px;
+    top: 210px;
+    left: 33px;
+}
+.p2-r1-6{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p2.png) -0px -0px no-repeat;
+    width: 248px;
+    height: 62px;
+    top: 256px;
+    left: 33px;
+}
+.p2-to-right{
+    font-size: 25px;
+    width: 25px;
+    height: 25px;
+    top: 50%;
+    right: -80px;
+    margin-top: -12px;
+}
+.p2-home{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p2.png) -0px -350px no-repeat;
+    width: 113px;
+    height: 38px;
+    bottom: 15px;
+    left: 50%;
+    margin-left: -57px;
+    -webkit-transform-origin: center bottom;
+    transform-origin: center bottom;
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+    opacity: 0;
+}
+.p2-r2-title{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p2.png) -0px -540px no-repeat;
+    width: 65px;
+    height: 15px;
+    top: 0;
+    left: 33px;
+}
+.p2-r2-1{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p2.png) -0px -388px no-repeat;
+    width: 251px;
+    height: 38px;
+    top: 30px;
+    left: 33px;
+}
+.p2-r2-2{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p2.png) -0px -62px no-repeat;
+    width: 254px;
+    height: 62px;
+    top: 80px;
+    left: 33px;
+}
+.p2-r2-3{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p2.png) -0px -124px no-repeat;
+    width: 254px;
+    height: 62px;
+    top: 155px;
+    left: 33px;
+}
+.p2-r2-4{
+    background: url(http://blog-nokey.qiniudn.com/cctv_p2.png) -0px -310px no-repeat;
+    width: 254px;
+    height: 40px;
+    top: 230px;
+    left: 33px;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-resolution: 240dpi), only screen and (min-resolution: 2dppx){
+    .p2-r2-4{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p2@2x.png) -0px -308px no-repeat;
+        background-size: 262px;
+    }
+    .p2-r2-3{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p2@2x.png) -0px -62px no-repeat;
+        background-size: 262px;
+    }
+    .p2-r2-2{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p2@2x.png) -0px -123px no-repeat;
+        background-size: 262px;
+    }
+    .p2-r2-1{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p2@2x.png) -0px -348px no-repeat;
+        background-size: 262px;
+    }
+    .p2-r2-title{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p2@2x.png) -0px -536px no-repeat;
+        background-size: 262px;
+    }
+    .p2-home{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p2@2x.png) 1px -423px no-repeat;
+        background-size: 262px;
+    }
+    .p2-r1-6{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p2@2x.png) -0px 1px no-repeat;
+        background-size: 262px;
+    }
+    .p2-r1-5{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p2@2x.png) -0px -499px no-repeat;
+        background-size: 262px;
+    }
+    .p2-r1-4{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p2@2x.png) -0px -246px no-repeat;
+        background-size: 262px;
+    }
+    .p2-r1-3{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p2@2x.png) -0px -184px no-repeat;
+        background-size: 262px;
+    }
+    .p2-r1-2{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p2@2x.png) -0px -461px no-repeat;
+        background-size: 262px;
+    }
+    .p2-r1-1{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p2@2x.png) -0px -385px no-repeat;
+        background-size: 262px;
+    }
+    .p2-en{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p2@2x.png) -113px -442px no-repeat;
+        background-size: 262px;
+    }
+    .p2-cn{
+        background: url(http://blog-nokey.qiniudn.com/cctv_p2@2x.png) -113px -424px no-repeat;
+        background-size: 262px;
+    }
+}
+
+
+
+
+
+
+
+
+
+

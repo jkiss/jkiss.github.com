@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>央视CCTVNews - 多媒体全球工作室 - 市场化招聘</title>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <div class="loading-wrap">
+            <i class="abs loading hardware icon-spinner eleCircle"></i>
+            <div class="abs load-text">
+                <span>L</span>
+                <span>o</span>
+                <span>a</span>
+                <span>d</span>
+                <span>i</span>
+                <span>n</span>
+                <span>g</span>
+                <!-- 1-3个点循环 -->
+                <span class="ellipsis">...</span>
+            </div>
+        </div>
+        
+        <!-- Page0 -->
+        <div class="abs page page0">
+            <div class="abs p0-redbar-1 rotate-25-rb hardware"></div>
+            <div class="abs p0-redbar-2 rotate-25-rb hardware"></div>
+            <div class="abs p0-redbar-3 rotate-25-rt hardware"></div>
+            <div class="abs p0-redbar-4 rotate-25-rt hardware"></div>
+
+            <i class="abs p0-news">
+                <i class="abs p0-yangshi"></i>
+            </i>
+            <div class="abs p0-choice">
+                <i class="abs p0-html5"></i>
+                <i class="abs p0-ui"></i>
+            </div>
+            <i class="abs p0-workshop"></i>
+            <i class="abs p0-zhaopin"></i>
+        </div>
+
+        <!-- Mask -->
+        <div class="abs page page-mask" style="display:none;"></div>
+
+        <!-- Page2 -->
+        <div class="abs page page2 html5-ad hardware" style="display:none;">
+            <div class="abs p2-bluebar-1 rotate-25-rb hardware"></div>
+            <div class="abs p2-bluebar-2 rotate-25-rt hardware"></div>
+
+            <i class="abs p2-html5"></i>
+            <div class="abs p2-black-bar">
+                <i class="abs p2-en"></i>
+                <i class="abs p2-cn"></i>
+            </div>
+            
+            <div class="abs p2-req-wrap">
+                <ul class="abs p2-require-1">
+                    <li class="abs p2-r1-1">
+                        <i class="abs p2-square"></i>
+                    </li>
+                    <li class="abs p2-r1-2">
+                        <i class="abs p2-square"></i>
+                    </li>
+                    <li class="abs p2-r1-3">
+                        <i class="abs p2-square"></i>
+                    </li>
+                    <li class="abs p2-r1-4">
+                        <i class="abs p2-square"></i>
+                    </li>
+                    <li class="abs p2-r1-5">
+                        <i class="abs p2-square"></i>
+                    </li>
+                    <li class="abs p2-r1-6">
+                        <i class="abs p2-square"></i>
+                    </li>
+                </ul>
+                <ul class="abs p2-require-2">
+                    <li class="abs p2-r2-title"></li>
+                    <li class="abs p2-r2-1">
+                        <i class="abs p2-square"></i>
+                    </li>
+                    <li class="abs p2-r2-2">
+                        <i class="abs p2-square"></i>
+                    </li>
+                    <li class="abs p2-r2-3">
+                        <i class="abs p2-square"></i>
+                    </li>
+                    <li class="abs p2-r2-4">
+                        <i class="abs p2-square"></i>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="abs p2-home">
+                <i class="abs p2-to-right icon-arrow-circle-left swipeLeft"></i>
+            </div>
+        </div>
+
+        <!-- Page1 -->
+        <div class="abs page page1 ps-ad hardware" style="display:none;">
+            <div class="abs p1-yellowbar-1 rotate-25-rb hardware"></div>
+            <div class="abs p1-yellowbar-2 rotate-25-rt hardware"></div>
+
+            <i class="abs p1-ui"></i>
+            <div class="abs p1-black-bar">
+                <i class="abs p1-en"></i>
+                <i class="abs p1-cn"></i>
+            </div>
+
+            <ul class="abs p1-require-1">
+                <li class="abs p1-r1-1">
+                    <i class="abs p1-square"></i>
+                </li>
+                <li class="abs p1-r1-2">
+                    <i class="abs p1-square"></i>
+                </li>
+                <li class="abs p1-r1-3">
+                    <i class="abs p1-square"></i>
+                </li>
+                <li class="abs p1-r1-4">
+                    <i class="abs p1-square"></i>
+                </li>
+                <li class="abs p1-r2-title"></li>
+                <li class="abs p1-r2-1">
+                    <i class="abs p1-square"></i>
+                </li>
+            </ul>
+
+            <div class="abs p1-home"></div>
+        </div>
+        
+    </div>
+        
+    <script src="scripts/zepto.js"></script>
+    <script src="scripts/head.js"></script>
+    <script>
+        $(function(){
+            // Head Load
+            head.load(
+                'scripts/main.js',
+                'styles/icon.css',
+                'styles/page0.css',
+                function(){
+                    // Preload images
+                    preImage([
+                        getImgUrl($('.p0-news')),
+                        
+                    ], function(){
+                        // Hide Loading
+                        $('.loading-wrap').css('display', 'none');
+                        // Show Red Bars
+                        showRedbars();
+                        // First screen movie
+                        p0Ai();
+                        
+                        head.load(
+                            'styles/page2.css',
+                            'styles/page1.css',
+                            function(){
+                                preImage([
+                                    getImgUrl($('.p2-html5')),
+                                    getImgUrl($('.p2-en')),
+                                    getImgUrl($('.p1-ui')),
+                                    getImgUrl($('.p1-en'))
+                                ], function(){
+                                    // Btn event
+                                    pageBtn();
+                                });
+                            }
+                        );
+                    });
+                }
+            );
+
+            // response ctt-li
+            $(window).on('resize', function(event) {
+                $(".ctt-li").each(function() {
+                    $(this).css("height", $(window).height())
+                });
+                screenHeight = $(window).height();
+                console.log('Resize');
+            }).trigger('resize');
+        });
+    </script>
+</body>
+</html>
+
+
+

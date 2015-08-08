@@ -1,0 +1,102 @@
+/* 
+* @Author: Nokey
+* @Date:   2015-02-28 15:02:33
+* @Last Modified by:   Nokey
+* @Last Modified time: 2015-07-23 12:08:35
+*/
+
+/******   Fonts   ******/
+@font-face {
+    font-family: 'autour';
+    src: url('fonts/AutourOne-Regular-webfont.eot');
+    src: url('fonts/AutourOne-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/AutourOne-Regular-webfont.woff2') format('woff2'),
+         url('fonts/AutourOne-Regular-webfont.woff') format('woff'),
+         url('fonts/AutourOne-Regular-webfont.ttf') format('truetype'),
+         url('fonts/AutourOne-Regular-webfont.svg#autour_oneregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/****   index style   ****/
+body{
+    font-family: 'autour';
+    background-color: #222222;
+}
+
+h1{
+    color: #fff;
+    text-align: center;
+    border-top: 1px solid #fff;
+    min-height: 60px;
+    padding-top: 1em;
+}
+.node-wrap{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 80px;
+}
+.node-wrap .box{
+    margin: 80px 5px 50px 20px;
+}
+.node-wrap li{
+    height: 150px;
+}
+.title{
+    padding: 10px;
+    text-align: center;
+    word-break: break-all;
+}
+.node{
+    position: relative;
+    overflow: hidden;
+}
+.vpn:before{
+    content: 'VPN';
+    position: absolute;
+    font-size: 14px;
+    right: 10px;
+    bottom: 10px;
+    padding: 2px 5px;
+    border: 1px solid #222222;
+    border-radius: 3px;
+}
+/*  FDT Style  */
+.fdt .node{
+    color: #fff;
+    background-color: #00b285;
+    text-shadow: 0 0 2px #000;
+    border-color: #222222;
+}
+/*   UE Style   */
+.ue .node{
+    color: #fff;
+    background-color: #00b285;
+    text-shadow: 0 0 2px #000;
+    border-color: #222222;
+}
+/*   Online Style  */
+.online .node{
+    color: #fff;
+    background-color: #00b285;
+    text-shadow: 0 0 2px #000;
+    border-color: #222222;
+}
+/*  Bestcss Style  */
+.bestcss .node{
+    color: #fff;
+    background-color: #00b285;
+    text-shadow: 0 0 2px #000;
+    border-color: #222222;
+}
+/*  Library Style  */
+.library .node{
+    color: #fff;
+    background-color: #00b285;
+    text-shadow: 0 0 2px #000;
+    border-color: #222222;
+}
+
+
+

@@ -1,0 +1,327 @@
+/* 
+* @Author: Nokey - 木马人
+*/
+
+/**********************/
+/*   Aniamtion funcs  */
+.swipe-up{
+    width: 36px;
+    height: 36px;
+    left: 50%;
+    margin-left: -18px;
+    bottom: 10px;
+    color: #FA8072;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGgAAAA7CAQAAAA9DwdzAAAAlElEQVR4Ae3WxwECIRQA0d9/OeaT2Sq2BHM8OlZgTgvM+xUMsLDxKTQ5smD50iw40ox6Ycx7xnULGvCegUEGGWSQQQYZZFA6QTPeMwtJkpQgFsC5FgPdTwQtqY/ep3aoLroGGWSQQQYZ9CEG+euT9s+pJEk1wImcnIIFOVkYdItBBhlkkEEGGbQhJ5ugYs0yk1lTXQCtOZKnXYOwiQAAAABJRU5ErkJggg==) no-repeat;
+    background-size: 100%;
+}
+@-webkit-keyframes swipeMove {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 5px, 0);
+    }
+    70% {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -8px, 0);
+    }
+}
+@keyframes swipeMove {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 5px, 0)
+    }
+    70% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0)
+    }
+    100% {
+        opacity: 0;
+        transform: translate3d(0, -8px, 0);
+    }
+}
+.swipeMove {
+    opacity: 1 !important;
+    -webkit-animation: swipeMove 1s ease-in infinite;
+    animation: swipeMove 1s ease-in infinite;
+}
+@-webkit-keyframes show{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@keyframes show{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.show{
+    opacity: 1 !important;
+    -webkit-animation: show 1s ease;
+    animation: show 1s ease;
+}
+@-webkit-keyframes zoom{
+    0%{
+        -webkit-transform: scale(0);
+    }
+    50%{
+        -webkit-transform: scale(.7);
+    }
+    70%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        -webkit-transform: scale(1.2);
+    }
+}
+@keyframes zoom{
+    0%{
+        transform: scale(0);
+    }
+    50%{
+        transform: scale(.7);
+    }
+    70%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        transform: scale(1.2);
+    }
+}
+.zoom{
+    opacity: 1 !important;
+    -webkit-animation: zoom 2s linear infinite;
+    animation: zoom 2s linear infinite;
+}
+.center-X{
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+.center-Y{
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.center-XY{
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+/*     默认 6 Plus 样式    */
+/*************************/
+/*        P0 Style       */
+.bg-box{
+    width: 100%;
+    height: 100%;
+}
+.p0-bg{
+    min-width: 100%;
+    min-height: 100%;
+}
+.bg-mask{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);
+}
+.p0-1{
+    width: 70%;
+    top: 41%;
+}
+.p0-2{
+    width: 25%;
+    top: 25%;
+    left: 40%;
+}
+.p0-t1-1{
+    width: 66%;
+    left: 5%;
+    bottom: 37%;
+}
+.p0-t1-2{
+    width: 45%;
+    left: 33%;
+    bottom: 25%;
+}
+.p0-t1-3{
+    width: 90%;
+    left: 3%;
+    bottom: 12%;
+}
+.p0-t1-4{
+    width: 55%;
+    left: 4%;
+    top: 7%;
+}
+.p0-t1-5{
+    width: 70%;
+    right: 3%;
+    top: 17%;
+}
+.p0-t2-1{
+    width: 45%;
+    top: 8%;
+    left: 10%;
+}
+.p0-t2-2{
+    width: 75%;
+    right: 5%;
+    top: 18%;
+}
+.p0-t2-3{
+    width: 55%;
+    left: 5%;
+    bottom: 35%;
+}
+.p0-t2-4{
+    width: 50%;
+    right: 10%;
+    bottom: 22%;
+}
+.p0-t2-5{
+    width: 35%;
+    left: 10%;
+    bottom: 10%;
+}
+
+/*        P1 Style       */
+.p1-bg{
+    left: 0;
+    top: 0;
+    height: 100%;
+}
+.p1-1{
+    width: 50%;
+    top: 20%;
+}
+.p1-2{
+    width: 30%;
+    top: 37%;
+}
+.p1-3{
+    width: 60%;
+    top: 54%;
+}
+.p1-4{
+    width: 20%;
+    top: 70%;
+}
+
+/*        P2 Style       */
+.p2-bg{
+    left: 0;
+    top: 0;
+    height: 100%;
+}
+.p2-1{
+    width: 45%;
+    top: 20%;
+}
+.p2-2{
+    width: 70%;
+    top: 35%;
+}
+.p2-3{
+    width: 70%;
+    top: 52%;
+}
+.p2-4{
+    width: 45%;
+    top: 70%;
+}
+
+/*        P3 Style       */
+.p3-bg{
+    left: 0;
+    top: 0;
+    height: 100%;
+}
+.p3-1{
+    width: 10%;
+    top: 20%;
+}
+.p3-2{
+    width: 38%;
+    top: 36%;
+}
+.p3-3{
+    width: 60%;
+    top: 52%;
+}
+.p3-4{
+    width: 50%;
+    top: 68%;
+}
+
+/*        P4 Style       */
+.p4-bg{
+    left: 0;
+    top: 0;
+    height: 100%;
+}
+.p4-1{
+    width: 30%;
+    top: 20%;
+}
+.p4-2{
+    width: 55%;
+    top: 36%;
+}
+.p4-3{
+    width: 25%;
+    top: 52%;
+}
+.p4-4{
+    width: 55%;
+    top: 68%;
+}
+
+/*        P5 Style       */
+.p5-bg{
+    min-width: 100%;
+    min-height: 100%;
+}
+.p5-mask{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.3);
+}
+.p5-1{
+    width: 30%;
+    top: 17%;
+    right: 15%;
+}
+.p5-2{
+    width: 55%;
+    top: 30%;
+    right: 5%;
+}
+.p5-3{
+    width: 50%;
+    top: 46%;
+    right: 8%;
+}
+.p5-4{
+    width: 70%;
+    top: 60%;
+    right: 3%;
+}
+
+img[class*="-i"]{
+    width: 100%;
+}
+
+
+

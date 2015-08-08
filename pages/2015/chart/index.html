@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Nokey - Charts</title>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="SVG Animation, Merry Christmas">
+
+    <link rel="stylesheet" href="styles/index.css">
+    <style>
+        #nokey{
+            bottom: 0;
+            left: 0;
+            opacity: 0;
+        }
+        .p0-text{
+            width: 120px;
+            height: 120px;
+            background: url(images/text.png) no-repeat;
+            background-size: 100%;
+            right: 20px;
+            bottom: 15px;
+            opacity: 0;
+        }
+        @-webkit-keyframes flash {
+            0%, 50%, 100% {
+                opacity: 1;
+            }
+            25%, 75% {
+                opacity: 0;
+            }
+        }
+        @keyframes flash {
+            0%, 50%, 100% {
+                opacity: 1;
+            }
+            25%, 75% {
+                opacity: 0;
+            }
+        }
+        .flash {
+            -webkit-animation: flash 5s ease-out infinite;
+            animation: flash 5s ease-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div id='wx_pic' style='margin:0 auto;display:none;'>
+        <img src='thumbnail.png'/>
+    </div>
+<div class="container">
+    <ul class="content-list">
+        <li class="ctt-li">
+            <canvas id="my_chart" width="320px" height="320px"></canvas>
+            <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="320" height="504" viewBox="0, 0, 370, 550" id="nokey" class="abs">
+                <!-- stroke color: #020708 -->
+                <path d="M178.5,402.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3"/>
+                <path d="M178.5,402.5 L192.5,402.5 L204.5,389.5 L196.5,382.5 L172.5,365.5 L124.5,338.5 L94.5,336.5 L81.5,336.5 L71.5,336.5 L63.5,343.5 L54.5,345.5 L31.5,365.5 L21.5,389.5 L17.5,379.5 L19.5,367.5 L10.5,365.5 L13.5,379.5 L17.5,391.5 L11.5,392.5 L16.5,402.5 L22.5,419.5 L16.5,438.5 L19.5,475.5 L28.5,481.5 L18.5,489.5 L0.5,512.5 L0.5,568.5 L157.5,568.5 L129.5,538.5 L129.5,531.5 L140.5,525.5 L178.5,499.5 L171.5,493.5 L149.5,490.5 L135.5,479.5 L160.5,411.5 L178.5,402.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3"/>
+                <path d="M178.5,402.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3"/>
+                <path d="M167.5,409.5 L165.5,427.5 L161.5,432.5 L153.5,429.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3"/>
+                <path d="M171.5,493.5 L184.5,449.5 L167.5,432.5 L165.5,427.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3"/>
+                <path d="M174.669,470.98 C174.248,471.559 173.512,471.678 172.862,471.826" fill-opacity="0" stroke="#ff9c00" stroke-width="3" stroke-linecap="round"/>
+                <path d="M161.5,483.5 C164.307,474.383 163.5,473.519 163.5,483.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3" stroke-linecap="round"/>
+                <path d="M164.5,484.5 L166.5,481.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3" stroke-linecap="round"/>
+                <path d="M169.5,484.5 L170.5,481.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3" stroke-linecap="round"/>
+                <path d="M144.5,469.5 L144.5,472.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3" stroke-linecap="round"/>
+                <path d="M142.5,468.5 C142.5,472.554 142.816,470.551 141.5,474.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3" stroke-linecap="round"/>
+                <path d="M167.5,455.5 C171.601,454.76 177.434,458.302 175.5,452.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3" stroke-linecap="round"/>
+                <path d="M159.5,433.5 C156.777,437.844 156.816,439.474 159.5,443.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3" stroke-linecap="round"/>
+                <path d="M163.5,412.5 C164.234,414.591 158.022,420.022 159.5,421.5 C162.339,424.339 165.483,414.5 165.5,414.5 C167.341,414.5 165.036,430.652 159.5,426.5 C157.215,424.786 158.423,414.141 162.5,415.5 C164.949,416.316 158.8,423.901 158.5,424.5 C155.701,430.098 162.198,434.047 158.5,428.5 C156.155,424.983 156.453,409.281 164.5,412.5 C169.297,414.419 162.499,424.501 161.5,427.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3" stroke-linecap="round"/>
+                <path d="M28.5,481.5 L42.5,484.5 L68.5,493.5 L129.5,531.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3"/>
+                <path d="M28.5,483.5 L67.5,502.5 L113.5,538.5 L129.5,550.5 L144.5,568.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3"/>
+                <path d="M34.5,520.5 L60.5,522.5 L44.5,512.5 L34.5,520.5 z" fill-opacity="0" stroke="#ff9c00" stroke-width="3"/>
+                <path d="M34.5,537.5 L49.5,531.5 L76.5,547.5 L34.5,537.5 z" fill-opacity="0" stroke="#ff9c00" stroke-width="3"/>
+                <path d="M60.5,512.5 L122.5,568.5 L92.5,531.5 L60.5,512.5 z" fill-opacity="0" stroke="#ff9c00" stroke-width="3"/>
+                <path d="M31.5,550.5 C36.871,540.486 66.954,549.5 33.5,549.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3" stroke-linecap="round"/>
+                <path d="M51.5,556.5 C54.985,558.098 91.5,566.511 91.5,563.5 C91.5,562.904 51.267,552.089 46.5,550.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3" stroke-linecap="round"/>
+                <path d="M112.5,546.5 C117.513,551.682 122.519,557.173 129.5,559.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3" stroke-linecap="round"/>
+                <path d="M107.5,536.5 C112.605,542.803 124.622,542.99 126.5,550.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3" stroke-linecap="round"/>
+                <path d="M15.5,494.5 C20.478,500.808 28.526,499.175 35.5,501.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3" stroke-linecap="round"/>
+                <path d="M25.5,487.5 C32.857,490.032 39.119,495.04 46.5,497.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3" stroke-linecap="round"/>
+                <path d="M173.5,475.5 C172.184,479.449 172.5,477.446 172.5,481.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3" stroke-linecap="round"/>
+                <path d="M169.5,476.5 C168.833,478.5 168.167,480.5 167.5,482.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3" stroke-linecap="round"/>
+                <path d="M166.5,475.5 C165.5,478.5 164.5,481.5 163.5,484.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3" stroke-linecap="round"/>
+                <path d="M47.5,463.5 C60.439,473.677 106.916,477.749 113.5,497.5 C113.593,497.78 102.251,492.951 101.5,492.5 C94.096,488.057 86.486,480.162 78.5,477.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3" stroke-linecap="round"/>
+                <path d="M49.5,389.5 C53.618,368.738 83.722,349.198 103.5,360.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3" stroke-linecap="round"/>
+                <path d="M108.5,374.5 C99.569,375.389 80.5,369.654 80.5,382.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3" stroke-linecap="round"/>
+                <path d="M263.5,327.5" fill-opacity="0" stroke="#ff9c00" stroke-width="3"/>
+            </svg>
+            <div class="abs p0-text"></div>
+        </li>
+    </ul>
+
+    <!-- <div class="abs swipe-up swipeMove icon-angle-double-up"></div> -->
+
+    <!-- <div class="abs debug"></div> -->
+</div>
+
+    <script src="scripts/zepto.min.js"></script>
+    <script src="scripts/head.min.js"></script>
+    <script src="scripts/chart.js"></script>
+    <script src="scripts/vivus.js"></script>
+    <script src="scripts/index.js"></script>
+    <script>
+    $(function(){
+        var ctx = document.getElementById('my_chart').getContext('2d'),
+            my_chart = new Chart(ctx);
+        Chart.defaults.global.responsive = true;
+
+        var data = {
+                labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                datasets: [
+                    {
+                        label: "My First dataset",
+                        fillColor: "rgba(220,220,220,0.2)",
+                        strokeColor: "rgba(220,220,220,1)",
+                        pointColor: "rgba(220,220,220,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(220,220,220,1)",
+                        data: [65, 59, 80, 81, 56, 55, 40]
+                    },
+                    {
+                        label: "My Second dataset",
+                        fillColor: "rgba(151,187,205,0.2)",
+                        strokeColor: "rgba(151,187,205,1)",
+                        pointColor: "rgba(151,187,205,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(151,187,205,1)",
+                        data: [28, 48, 40, 19, 86, 27, 90]
+                    }
+                ]
+            };
+        setTimeout(function(){
+            my_chart.Line(data);
+        }, 300);
+        setTimeout(function(){
+            var 
+                nokey = new Vivus('nokey', {
+                    type: 'oneByOne',
+                    duration: 500
+                });
+            nokey.reset();
+            $('#nokey').css('opacity', '1');
+            nokey.play();
+        },800);
+        setTimeout(function(){
+            $('.p0-text').addClass('flash');
+        }, 10000);
+
+        // response ctt-li
+        $(window).on('resize', function(event) {
+            $(".ctt-li").each(function() {
+                $(this).css("height", $(window).height())
+            });
+            screenHeight = $(window).height();
+            console.log('Resize');
+        }).trigger('resize');
+    });
+    </script>
+</body>
+</html>
+
+
+

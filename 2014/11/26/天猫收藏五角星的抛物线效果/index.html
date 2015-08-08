@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+            天猫收藏五角星的抛物线效果，模仿了一下 |
+        －木马人－    
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta http-equiv="cache-control" content="max-age=7200">
+    <!-- 禁止百度微信转码（移动端还有点人性，哈哈） -->
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- 作者 -->
+    <meta name="author" content="Nokey-木马人">
+    <meta name="baidu-site-verification" content="lmqYZpJ2tZ" />
+    <link rel="icon" type="image/x-icon" href="/image/king.png">
+    <link rel="stylesheet" href="/css/blog.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/post.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/noookey.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/highlight.css" type="text/css">
+
+  </head>
+<body>
+    <div id='wx_pic' style='margin:0 auto;display:none;'>
+    <img src='/image/nokey.png'/>
+</div>
+<header>
+    <i class="left">
+        <span class="dash-left transition">--</span>
+        <span class="word-w transition">W</span>
+        <span class="word-e transition">e</span>
+        <span class="word-l transition">l</span>
+        <span class="word-c transition">c</span>
+        <span class="word-o transition">o</span>
+        <span class="word-m transition">m</span>
+        <span class="word-e transition">e </span>
+        <span class="word-t transition">t</span>
+        <span class="word-o transition">o </span>
+    </i>
+    <a href="/pages/shanghai"><span class="word-n transition">N</span></a>
+    <span class="word-o transition">o</span>
+    <span class="word-k transition">k</span>
+    <span class="word-e transition">e</span>
+    <span class="word-y transition">y</span>
+    <span class="word-_ transition">_</span>
+    <span class="word-b transition">b</span>
+    <span class="word-l transition">l</span>
+    <span class="word-o transition">o</span>
+    <span class="word-g transition">g </span>
+    <i class="right">
+        <span class="dash-right transition">--</span>
+    </i>
+    
+    <p class="home">
+        <a href="/" title="Return Home">
+            <i class="icon-home transition" alt="Return Home"></i>
+        </a>
+    </p>
+</header>
+<div class="yellow-progress-bar progress-move"></div>
+    <div class="main">
+        <div class="one">
+  <a href="http://blog.nokey.me/2014/11/26/天猫收藏五角星的抛物线效果/">
+    <h1 class="p-title transition">天猫收藏五角星的抛物线效果，模仿了一下</h1>
+</a>
+
+  <div class="micro-data clearfix">
+    <div class="date-wrap wrap">
+        <i class="icon-calendar"></i>
+        <span class="date">11月 26 2014</span>
+    </div>
+    <div class="tag-wrap wrap">
+        
+    <i class="icon-tag"></i>
+    <a class="post-link" href="/tags/html/">html</a>&nbsp;&nbsp;<a class="post-link" href="/tags/js/">js</a>
+
+    </div>
+</div>
+
+  <div class="content">
+    
+        <p>其实这个效果造就看到过，但是没有太在意，今天决定亲自实践一下( <strong>点击下面的小图标试试吧</strong> )：</p>
+<p><i class="icon-github ball" style="color:#2095F0;cursor:pointer;"></i></p>
+<script>
+window.onload = function(){
+    var ball_opt = {
+        'end': document.getElementById('to_top'),
+        'start': document.getElementsByClassName('icon-github')[0],
+        'time': 2
+    }
+    function Baseball(opt){
+        // The plane will fly from START to END
+        this.start = opt.start;
+        this.end = opt.end;
+
+        // Start & End Coordinate
+        this.start_x = 0;
+        this.start_y = 0;
+        this.end_x = 0;
+        this.end_y = 0;
+
+        // Horizontal distance & Vertical distance
+        this.h_dis = 0;
+        this.v_dis = 0;
+
+        // The Initial speed of Horizontal & Vertical
+        this.v1 = 0;    // Horizontal
+        this.v2 = 0;    // Vertical
+
+        // Motion duration
+        this.time = opt.time;
+
+        // G
+        this.G = 0;
+
+        // The maximum height of vertical motion
+        this.H = 0;
+
+        // The moving clone Ele
+        this.ball = document.createElement('i');
+
+        // If Animation
+        this.ing = false;
+    };
+    Baseball.prototype.init = function(){
+        var _me = this;
+
+        this.start_x = Math.floor(_me.start.getBoundingClientRect().left);
+        this.start_y = Math.floor(_me.start.getBoundingClientRect().top);
+        this.end_x = Math.floor(_me.end.getBoundingClientRect().left);
+        this.end_y = Math.floor(_me.end.getBoundingClientRect().top);
+
+        this.v_dis = this.end_y - this.start_y;
+        this.h_dis = this.end_x - this.start_x;
+
+        _me.ball.setAttribute('class', 'icon-github');
+        _me.ball.setAttribute('date-prop', 'clone');
+        _me.ball.setAttribute('id', 'clone_ball');
+        document.getElementsByTagName('body')[0].appendChild(_me.ball);
+
+        // init ball
+        _me.ball.style.left = _me.start_x + 'px';
+        _me.ball.style.top = _me.start_y + 'px';
+
+        return this;
+    };
+    Baseball.prototype.set_v1 = function(){
+        this.v1 = this.h_dis / this.time;
+        return this;
+    }
+    Baseball.prototype.set_v2 = function(){
+        var _me = this,
+            delta = 0,
+            x1 = 0,
+            x2 = 0;
+        // Set H
+        if(_me.start_y > 50){
+            _me.H = _me.start_y - 50;
+        }else{
+            _me.H = _me.start_y;
+        }
+        // Calculation v2
+        delta = 16*_me.H*_me.time*_me.time*(_me.H+_me.v_dis);
+            console.log('delta:'+delta);
+        if(delta >= 0){
+            x1 = (4*_me.H*_me.time + Math.sqrt(delta))/(2*_me.time*_me.time);
+            x2 = (4*_me.H*_me.time - Math.sqrt(delta))/(2*_me.time*_me.time);
+                console.log('x1='+x1+'  x2='+x2);
+            if(x1 > 0){
+                _me.v2 = x1;
+            }else{
+                _me.v2 = x2;
+            }
+            console.log('v2:'+_me.v2);
+            _me.G = (_me.v2*_me.v2)/(2*_me.H);console.log('G:'+_me.G);
+        }else{
+            // No Answer
+            console.log('No Answer');
+        }
+
+        return this;
+    };
+    Baseball.prototype.coo_x = function(t){
+        return this.v1 * t + this.start_x;
+    };
+    Baseball.prototype.coo_y = function(t){
+        // return this.start_y - (this.v2 * t - );
+        return this.start_y - (this.v2 * t) + (this.G * t * t / 2);
+    };
+    Baseball.prototype.move = function(callback){
+        var _me = this,
+            start = (new Date()).getTime();
+
+        _me.ball.style.display = 'block';
+        _me.ing = true;
+        // start animation
+        animate();
+
+        function animate(){
+            var now = (new Date()).getTime(),
+                elapsed = now - start,
+                fraction = elapsed / 1000 / _me.time;
+
+            if(fraction < 1){
+                var left = _me.coo_x(elapsed / 1000),
+                    top = _me.coo_y(elapsed / 1000);
+
+                _me.ball.style.left = left + 'px';
+                _me.ball.style.top = top + 'px';
+
+                setTimeout(animate, Math.min(25, _me.time - elapsed));
+            }else{
+                _me.ball.style.display = 'none';
+                _me.ing = false;
+                if(callback) callback();
+            }
+        }
+    };
+
+    var fly_ball = new Baseball(ball_opt),
+        addEvent = function(e, type, handler){
+        if(e.addEventListener) e.addEventListener(type, handler, false);
+        else
+            e.attachEvent('on' + type, function(event){
+                return handler.call(e, event);
+            });
+    };
+
+    // for(var i in ball){
+    //     console.log(ball[i]);
+    // }
+    console.log(fly_ball.init().set_v1().set_v2());
+    addEvent(ball_opt.start, 'click', function(){
+        !fly_ball.ing && fly_ball.init().set_v1().set_v2().move();
+    });
+}
+</script>
+
+<p>###一、嗯，先分析分析：</p>
+<p>这个效果从视觉上来说，是一个 <em>抛物线轨迹</em> ，而做前端页面效果无非就是 JS 、 CSS ，CSS我就不考虑了，那么用JS做动画有一个不可或缺的东西，就是 <strong>缓动函数</strong> ，它会让元素属性按照一定的规律进行动画变换，我之前做过一个 <strong>飞图</strong> 的效果，类似于 <strong>百度图片</strong> 里点击图片收藏的那个飞图效果，有兴趣的同学可以试一下 <a href="http://image.baidu.com/i?tn=baiduimage&amp;ps=1&amp;ct=201326592&amp;lm=-1&amp;cl=2&amp;nc=1&amp;word=w3ctech&amp;ie=utf-8&amp;ie=utf-8" target="_blank" rel="external">Baidu Image Effect</a>。这样大体思路就确定了：</p>
+<a id="more"></a>
+<ol>
+<li>首先在文档里面插入一个 <strong>Clone</strong> 元素，也就是克隆一个需要进行效果变换的元素；</li>
+<li>然后用  <strong>getBoundingClientRect</strong> 获取起始元素的位置，设置 left 、 top 属性；</li>
+<li>使用 JS 根据缓动函数进行动画。</li>
+</ol>
+<p>###二、可以动手了：</p>
+<p>首先是Clone元素的样式：</p>
+<figure class="highlight css"><pre><div class="line"><span class="id">#clone_ball</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> fixed</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value"> none</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">top</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">color</span>:<span class="value"><span class="hexcolor">#2095F0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">cursor</span>:<span class="value">pointer</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">z-index</span>:<span class="value"> <span class="number">9999</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">16px</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p>然后我就想我是否能够根据我做的 <strong>飞图</strong> 效果来做这个，因为这两个的 <em>建模</em> 思想都是一样的，在 飞图 里面，我抽象出一个 <strong>飞机</strong> 对象，而每个被点击的图片就是 <strong>乘客</strong> ，行为触发是这样的：每当点击图片，都会有一个飞机来接这位乘客，然后运 <strong>送到</strong> 目的地，这里的运送就是动画的过程了，那么我主要写缓动函数就行了，但是由于时间和一些额外的因素，我用了 <strong>原生JS</strong> 写了这个动画，而且jQuery的animate加载自定义缓动函数没怎么用过，所以就用原生吧！</p>
+<p>###三、构建物理模型：</p>
+<p>那么在这里遇到的最大困难就是 <em>建模</em> 了，起初我并不是这么想的，而是想用数学的思想，用抛物线的顶点式 <strong>y = a(x-h)^2 + k</strong> ，来解出一个方程式，奈何坐标变换、求根推算了半天，没算出来。然后想到为何不用物理的方式来解决，但是 <strong>物理建模</strong> 对于接触不多的我来说也不是很简单的，一开始我想把它抽象成 <strong>斜拋运动</strong> ，众所周知，不管“斜拋”、“平抛”还是怎么抛，它的重力加速度都是一定的 <strong>G</strong> ，但通过一系列演算（感觉像回到了高三，幸好哥的物理还不错），我发觉斜拋运动并不符合 <strong>可以设定时间的动画</strong> ，然后我就想为何不把它抽象成更一般的匀加速运动呢？而且，在匀变速运动中，可以把速度分解为 <strong>水平速度</strong> 和 <strong>垂直速度</strong> ，分别对应 <strong>left</strong> 和 <strong>top</strong> ，也就是在在水平方向做 <strong>匀速运动</strong> ，垂直方向做 <strong>初速度不为0的匀减速直线运动</strong> （要注意方向！）</p>
+<p>分解完运动，就可以根据已知条件求解运动函数了，也就是所谓的 <em>缓动函数</em> （花最多时间的也就是这里了＝.＝）。求解过程大家自己去尝试吧，我就简单的说一下垂直方向的匀减速直线运动：</p>
+<ul>
+<li>已知条件：以设定的最大高度 <strong>H</strong> ，垂直方向上的位移 <strong>v_dis</strong> ，已设定的总时间 <strong>time</strong> </li>
+<li>需求解变量：初速度 <strong>v2</strong> ，加速度 <strong>G</strong> </li>
+<li>最后根据 <strong>s=vt-1/2at^2</strong> 就OK了</li>
+</ul>
+<p>###四、创建对象（总免不了要面向对象，哈哈）：</p>
+<p>我把这个对象的名字取名为： <em>Baseball</em> （当然你也可以取名 Football、Basketball。。。），直接上代码：</p>
+<figure class="highlight javascript"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Baseball</span><span class="params">(opt)</span></span>{</div><div class="line">  <span class="comment">// The plane will fly from START to END</span></div><div class="line">  <span class="keyword">this</span>.start = opt.start;</div><div class="line">  <span class="keyword">this</span>.end = opt.end;</div><div class="line"></div><div class="line">  <span class="comment">// Start & End Coordinate</span></div><div class="line">  <span class="keyword">this</span>.start_x = <span class="number">0</span>;</div><div class="line">  <span class="keyword">this</span>.start_y = <span class="number">0</span>;</div><div class="line">  <span class="keyword">this</span>.end_x = <span class="number">0</span>;</div><div class="line">  <span class="keyword">this</span>.end_y = <span class="number">0</span>;</div><div class="line"></div><div class="line">  <span class="comment">// Horizontal distance & Vertical distance</span></div><div class="line">  <span class="keyword">this</span>.h_dis = <span class="number">0</span>;</div><div class="line">  <span class="keyword">this</span>.v_dis = <span class="number">0</span>;</div><div class="line"></div><div class="line">  <span class="comment">// The Initial speed of Horizontal & Vertical</span></div><div class="line">  <span class="keyword">this</span>.v1 = <span class="number">0</span>;    <span class="comment">// Horizontal</span></div><div class="line">  <span class="keyword">this</span>.v2 = <span class="number">0</span>;    <span class="comment">// Vertical</span></div><div class="line"></div><div class="line">  <span class="comment">// Motion duration</span></div><div class="line">  <span class="keyword">this</span>.time = opt.time;</div><div class="line"></div><div class="line">  <span class="comment">// G</span></div><div class="line">  <span class="keyword">this</span>.G = <span class="number">0</span>;</div><div class="line"></div><div class="line">  <span class="comment">// The maximum height of vertical motion</span></div><div class="line">  <span class="keyword">this</span>.H = <span class="number">0</span>;</div><div class="line"></div><div class="line">  <span class="comment">// The moving clone Ele</span></div><div class="line">  <span class="keyword">this</span>.ball = <span class="built_in">document</span>.createElement(<span class="string">'i'</span>);</div><div class="line">  </div><div class="line">};</div><div class="line"></div><div class="line">Baseball.prototype.init = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{};</div><div class="line">Baseball.prototype.set_v1 = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{}</div><div class="line">Baseball.prototype.set_v2 = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{};</div><div class="line">Baseball.prototype.coo_x = <span class="function"><span class="keyword">function</span><span class="params">(t)</span></span>{};</div><div class="line">Baseball.prototype.coo_y = <span class="function"><span class="keyword">function</span><span class="params">(t)</span></span>{};</div><div class="line">Baseball.prototype.move = <span class="function"><span class="keyword">function</span><span class="params">(callback)</span></span>{};</div></pre></figure>
+
+<p>###五、来看一下效果：</p>
+<p>这是我的 Blog，最近才搭建好，我还没做优化和响应 ＝.＝，先将就看吧，第一篇文章就是，点击那个 <em>Github</em> 图标就可以看到</p>
+<blockquote>
+<p><strong><a href="http://blog.nokey.me" target="_blank" rel="external">Nokey</a></strong> </p>
+</blockquote>
+
+    
+  </div>
+</div>
+
+
+    <section id="comment">
+        <!-- 多说评论框 start -->
+            <div class="ds-thread" data-thread-key="/2014/11/26/天猫收藏五角星的抛物线效果/" data-title="天猫收藏五角星的抛物线效果，模仿了一下" data-url="http://blog.nokey.me/2014/11/26/天猫收藏五角星的抛物线效果/"></div>
+        <!-- 多说评论框 end -->
+    </section>
+
+    </div>
+    <footer>
+    <img alt="Nokey" data-url="http://blog-nokey.qiniudn.com/matrix.jpg" data-url-640="http://blog-nokey.qiniudn.com/blog_foot1.jpg!image640" data-url-320="http://blog-nokey.qiniudn.com/blog_foot1.jpg!image320">
+    <div class="i-want-say"></div>
+    <div class="qq-chat">QQ群：461790451</div>
+</footer>
+<div class="to-top icon-rocket" id="to_top"></div>
+
+    
+    <script src="/js/jquery-1.11.1.js" type="text/javascript"></script>
+
+<script src="/js/blog.js" type="text/javascript"></script>
+
+<script src="/js/head.min.js" type="text/javascript"></script>
+
+<script src="/js/snowfall.jquery.js" type="text/javascript"></script>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"nokey"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+<script>
+function merry_christmas(){
+    $(document).snowfall('clear');    
+    $(document).snowfall({
+        flakeCount: 50,
+        minSize: 12,
+        maxSize: 32
+    });
+}
+// merry_christmas();
+</script>
+</body>
+</html>

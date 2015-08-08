@@ -1,0 +1,99 @@
+/* 
+* @Author: apple
+* @Date:   2014-12-04 22:44:56
+* @Last Modified by:   apple
+* @Last Modified time: 2014-12-09 05:29:30
+*/
+.page0{
+    background-color: #232429;
+}
+.rotate-25-rb{
+    -webkit-transform-origin: right bottom;
+    transform-origin: right bottom;
+    -webkit-transform: rotateZ(-25deg);
+    transform: rotateZ(-25deg);
+}
+.rotate-25-rt{
+    -webkit-transform-origin: right top;
+    transform-origin: right top;
+    -webkit-transform: rotateZ(-25deg);
+    transform: rotateZ(-25deg);
+}
+.p0-redbar-1{
+    right: 86px;
+    top: -200px;
+    height: 200px;
+    width: 150%;
+    background-color: #ea1f1b;
+    opacity: 0;
+}
+.p0-redbar-2{
+    right: 50px;
+    top: -8px;
+    height: 8px;
+    width: 150%;
+    background-color: #ea1f1b;
+    opacity: 0;
+}
+.p0-redbar-3{
+    right: 0;
+    bottom: 145px;
+    width: 150%;
+    height: 160px;
+    background-color: #ea1f1b;
+    opacity: 0;
+}
+.p0-redbar-4{
+    right: 0;
+    bottom: 102px;
+    width: 150%;
+    height: 15px;
+    background-color: #ea1f1b;
+    opacity: 0;
+}
+.p0-choice{
+    height: 100px;
+    width: 320px;
+    top: 50%;
+    left: 50%;
+    margin: -65px 0 0 -160px;
+}
+.riseUp{
+    opacity: 1!important;
+    -webkit-transform: translate3d(0, 0, 0)!important;
+    transform: translate3d(0, 0, 0)!important;
+    -webkit-transition: all .5s ease-out;
+    transition: all .5s ease-out;
+}
+.bubbleShow{
+    opacity: 1!important;
+    -webkit-transform: scale(1) translate3d(0,0,0) !important;
+    transform: scale(1) translate3d(0,0,0) !important;
+    -webkit-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+}
+@-webkit-keyframes coinToss{
+    0%{
+        -webkit-transform: scaleZ(3) rotateX(0deg);
+    }
+    100%{
+        -webkit-transform: scaleZ(3) rotateX(360deg);
+    }
+}
+@keyframes coinToss{
+    0%{
+        transform: scaleZ(3) rotateX(0deg);
+    }
+    100%{
+        transform: scaleZ(3) rotateX(360deg);
+    }
+}
+.coinToss{
+    opacity: 1 !important;
+    -webkit-animation: coinToss .4s ease-out;
+    animation: coinToss .4s ease-out;
+}
+.page-mask{
+    opacity: 0;
+    background-color: #f0f0f0;
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>CCTVNews - Happy new year of sheep</title>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+    html, body{
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
+    body{
+        position: relative;
+    }
+    .debug{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        font-size: 32px;
+        text-align: center;
+        color: #a6e22d;
+        background-color: #272822;
+    }
+    </style>
+</head>
+<body>
+    <div class="debug" id="debug1"></div>
+
+    <script src="scripts/head.js"></script>
+    <script>
+        var win = window,
+            html = window.document.documentElement,
+            debug1 = document.getElementById('debug1');
+            
+        function viewportWH(){
+            // Viewport width
+            var iw = win.innerWidth || html.clientWidth,
+                ih = win.innerHeight || html.clientHeight;
+
+            debug1.innerHTML = iw + 'x' + ih;
+
+            window.onresize = function(){
+                // Viewport width
+                var iw = win.innerWidth || html.clientWidth,
+                    ih = win.innerHeight || html.clientHeight;
+
+                debug1.innerHTML = iw + 'x' + ih;
+            }
+        }
+        viewportWH();
+
+        function audioContext(){
+            if(window.AudioContext){
+                debug1.innerHTML = 'AudioContext';
+            }else if(window.webkitAudioContext){
+                debug1.innerHTML = 'webkitAudioContext';
+            }
+        }
+        // audioContext();
+
+        function agentWechat(){
+            debug1.innerHTML = navigator.userAgent;
+        }
+        // agentWechat();
+        
+    </script>
+</body>
+</html>
