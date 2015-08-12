@@ -118,7 +118,25 @@
 <li>Looks like you have partitioned that block device. In this case, you need to mount <em>/dev/xvdf1</em>, not just <em>/dev/xvdf</em>.</li>
 </ul>
 <p>其实，当连接<strong>Volume A</strong>到新实例的时候，命名的是<em>/dev/sdf</em>，但实际看到的是它只是<em>/dev/xvdf</em>的一个软链接，至于为什么还会分割出一个<em>/dev/xvdf1</em>，我也不太清楚原因了，而且这个<strong>xvdf1</strong>才是主要的磁盘。</p>
-<p>主要学到的Linux命令：<strong>mount</strong>、<strong>ln -s</strong>。</p>
+<p>主要学到的Linux命令：<strong>mount -o rw</strong>、<strong>ln -s</strong>。</p>
+<p>－－－－－－－－－－－－－－－－－－－－－－</p>
+<p>好吧，我承认我又年轻了，我上面的解决方案是申请的临时账号测试的，然后今天对实际服务器实例解决的时候，又碰到了问题：关于 <strong>Linux 的文件系统类型</strong>。</p>
+<p>其实我有料到，肯定会在挂载那里再出问题，可是这次替换 <em>/dev/xvdf</em> 为 <em>/dev/xvdf1</em> 并没有什么卵用，那么为什么要替换呢？let’s do this first:</p>
+<figure class="highlight bash"><pre><div class="line">Nokey$ <span class="built_in">sudo</span> fdisk <span class="operator">-l</span></div></pre></figure>
+
+<p>然后你将看到系统当前连接的磁盘的一些详细信息，其中有几列数据是这样的：</p>
+<figure class="highlight bash"><pre><div class="line">磁盘 /dev/xvda：<span class="number">107.4</span> GB, <span class="number">107374182400</span> 字节，<span class="number">209715200</span> 个扇区</div><div class="line">...</div><div class="line">...</div><div class="line"><span class="comment">#        Start          End    Size  Type            Name</span></div><div class="line"><span class="number">1</span>         <span class="number">2048</span>         <span class="number">4095</span>      <span class="number">1</span>M  BIOS boot parti </div><div class="line"><span class="number">2</span>         <span class="number">4096</span>    <span class="number">209715166</span>    <span class="number">100</span>G  Microsoft basic</div></pre></figure>
+
+<p><em>/dev/xvda</em>就是代表当前的磁盘引用，关键就要看<em>#</em>那一列，第一行的值是1，第二行是2，所以你也就明白 <strong>/dev/xvda1</strong>和<strong>/dev/xvda2</strong>代表什么意思了吧。<em>Size</em>和<em>Type</em>也是比较重要的两列信息，尤其是<em>Type</em>，它关系到挂载的时候指定的磁盘的文件类型。当然我们也可以使用 <em>blkid</em> 这个命令来查看卷文件类型：</p>
+<figure class="highlight bash"><pre><div class="line">Nokey$ blkid</div><div class="line">/dev/block/<span class="number">202</span>:<span class="number">2</span>: UUID=<span class="string">"6785eb86-c596-4229-85fb-4d30c848c6e8"</span> TYPE=<span class="string">"xfs"</span> PARTUUID=<span class="string">"e8c8ba12-3669-4698-b59b-2db878461f9a"</span> </div><div class="line">/dev/xvdf2: UUID=<span class="string">"6785eb86-c596-4229-85fb-4d30c848c6e8"</span> TYPE=<span class="string">"xfs"</span> PARTUUID=<span class="string">"e8c8ba12-3669-4698-b59b-2db878461f9a"</span></div></pre></figure>
+
+<p>细心的同学会发现，这两个磁盘的UUID<strong>（UUID是一个标帜你系统中的存储设备的字符串，其目的是帮助使用者唯一的确定系统中的所有存储设备，不管它们是什么类型的。它可以标识DVD驱动器，USB存储设备以及你系统中的硬盘设备等。<a href="http://www.linux.org/threads/what-are-those-dev-files.4713/" target="_blank" rel="external">What are those /dev/ Files?</a>）</strong>不一样，<strong>（至于为什么<em>/dev/block/202:2</em>会挂载磁盘我还没搞清楚，/block 目录下是块设备的一些软链接，那个202:2就是一个软链接，而202:82又反链接回到 ../xvdf2，202:2反链接到 ../xvda2，这两个设备的UUID冲突了）</strong> 也就是因为UUID的相同，你在mount的时候又会出现那个错误：</p>
+<figure class="highlight bash"><pre><div class="line">Nokey$ mount -t xfs /dev/xvdf2 /mnt/tmp</div><div class="line">mount: wrong fs <span class="built_in">type</span>, bad option, bad superblock on /dev/xvdf,</div><div class="line">       missing codepage or helper program, or other error</div><div class="line"></div><div class="line">       In some cases useful info is found <span class="keyword">in</span> syslog - try</div><div class="line">       dmesg | tail or so.</div><div class="line">Nokey$ dmesg | tail</div><div class="line">...</div><div class="line">[ <span class="number">8952.229018</span>] XFS (xvdf2): Filesystem has duplicate UUID <span class="number">6785</span>eb86-c596-<span class="number">4229</span>-<span class="number">85</span>fb-<span class="number">4</span>d30c848c6e8 - can<span class="string">'t mount</span></div><div class="line">...</div></pre></figure>
+
+<p>打印出的错误也的确是这样的，那么只能更改 /xvdf2 的 UUID 了，然后我又Google到了这篇文章：<a href="http://linux-tips.org/t/xfs-filesystem-has-duplicate-uuid-problem/181" target="_blank" rel="external">XFS Filesystem has duplicate UUID problem</a>，也就是用<strong>xfs_admin</strong>这个命令：</p>
+<figure class="highlight bash"><pre><div class="line">Nokey$ xfs_admin -U generate /dev/xvdf2</div><div class="line">Clearing log and setting UUID</div><div class="line">writing all SBs</div><div class="line">new UUID = <span class="number">01</span>fbb5f2-<span class="number">1</span>ee0-<span class="number">4</span>cce-<span class="number">94</span>fc-<span class="number">024</span>efb3<span class="built_in">cd</span>3a4</div></pre></figure>
+
+<p>继续mount，然后发现又成功了，嗯？我为什么说了“又”？</p>
 
     
   </div>
