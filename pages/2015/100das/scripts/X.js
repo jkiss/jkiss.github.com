@@ -27,6 +27,13 @@
 }());
 
 (function($, win){
+// Blast txt effect
+    $('.con-top p').blast({
+        delimiter: 'character',
+        customClass: 'hide'
+    });
+// Blast END
+
 // Some Eles Parameters
     var
         screen_w = $(window).outerWidth(),
@@ -118,13 +125,6 @@
     });
 
 // Video END
-
-// Blast txt effect
-    $('.con-top p').blast({
-        delimiter: 'character',
-        customClass: 'hide'
-    });
-// Blast END
 
 // TODO: 监测浏览器是否支持transform，如果支持，那么视差滚动的位移操作都交给translate3d来做
     var el = document.createElement('div'),
