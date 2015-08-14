@@ -54,13 +54,16 @@
         event.preventDefault();
     });
     video.on('canplay', function(event) {
+
+    });
+    video.get(0).oncanplay = function(){
         console.log('canplay...');
         video_bg.velocity({
             opacity: 1
         }, 500);
 
         showLogos();
-    });
+    };
 
     video_mask.on('click', function(e) {
         console.log(e.target);
