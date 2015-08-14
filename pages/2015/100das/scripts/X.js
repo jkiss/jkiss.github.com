@@ -54,6 +54,7 @@
         event.preventDefault();
     });
     video.on('canplay', function(event) {
+        console.log('canplay...');
         video_bg.velocity({
             opacity: 1
         }, 500);
