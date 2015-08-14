@@ -62,7 +62,7 @@
 
         showLogos();
     });
-    console.log(video.get(0));
+    console.log(video.get(0).readyState);
 
     video_mask.on('click', function(e) {
         var _target = $(e.target);
