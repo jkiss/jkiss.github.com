@@ -52,21 +52,21 @@
     });
     video.on('timeupdate', function(event) {
         event.preventDefault();
+        console.log(video.get(0).currentTime);
     });
     video.on('canplay', function(event) {
-
-    });
-    video.get(0).oncanplay = function(){
         console.log('canplay...');
         video_bg.velocity({
             opacity: 1
         }, 500);
 
         showLogos();
+    });
+    video.get(0).oncanplay = function(){
+
     };
 
     video_mask.on('click', function(e) {
-        console.log(e.target);
         var _target = $(e.target);
 
         if(_target.attr('id') === 'play_btn'){
