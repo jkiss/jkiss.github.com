@@ -63,6 +63,14 @@
         showLogos();
     });
     console.log(video.get(0).readyState);
+    if(video.get(0).readyState > 3){
+        console.log('canplay...');
+        video_bg.velocity({
+            opacity: 1
+        }, 500);
+
+        showLogos();
+    }
 
     video_mask.on('click', function(e) {
         var _target = $(e.target);
