@@ -52,7 +52,7 @@
     });
     video.on('timeupdate', function(event) {
         event.preventDefault();
-        console.log(video.get(0).currentTime);
+        // console.log(video.get(0).currentTime);
     });
     video.on('canplay', function(event) {
         console.log('canplay...');
@@ -62,9 +62,7 @@
 
         showLogos();
     });
-    video.get(0).oncanplay = function(){
-
-    };
+    console.log(video.get(0));
 
     video_mask.on('click', function(e) {
         var _target = $(e.target);
