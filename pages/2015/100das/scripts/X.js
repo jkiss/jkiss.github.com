@@ -35,26 +35,41 @@
         html = $('html'),
 
         video = $('#dollar'),
+        video_w = video.data('width'),
+        video_h = video.data('height'),
+        video_mask = $('.video-mask'),
+        video_bg = $('.video-bg'),
         play_btn = $('#play_btn'),
         pause_btn = $('#pause_btn'),
-        btn_moving = false;
+        btn_moving = false,
 
+        logos = $('.logos');
+
+// Video JS
     video.on('ended', function(event) {
         event.preventDefault();
         /* Act on the event */
     });
     video.on('timeupdate', function(event) {
         event.preventDefault();
-        console.log(video.get(0).currentTime);
+    });
+    video.on('canplay', function(event) {
+        video_bg.velocity({
+            opacity: 1
+        }, 500);
+
+        showLogos();
     });
 
-    $('.video-mask').on('click', function(e) {
+    video_mask.on('click', function(e) {
         console.log(e.target);
         var _target = $(e.target);
-        _target.css('visibility', 'hidden');
+
         if(_target.attr('id') === 'play_btn'){
+            _target.css('visibility', 'hidden');
             pause_btn.css('visibility', 'visible');
         }else if(_target.attr('id') === 'pause_btn'){
+            _target.css('visibility', 'hidden');
             play_btn.css('visibility', 'visible');
         }
     });
@@ -65,6 +80,41 @@
     pause_btn.on('click', function(event) {
         video.get(0).pause();
     });
+
+    setTimeout(function(){
+        pause_btn.css('visibility', 'visible').velocity({
+            opacity: 1
+        }, "ease");
+    }, 5000);
+
+    function showLogos(){
+        console.log(getBCR(logos.get(0), 'top'));
+        if(getBCR(logos.get(0), 'top') < (screen_h-50)){
+            console.log(getBCR(logos.get(0), 'top'));
+
+            logos.velocity({
+                opacity: 1
+            }, 800);
+
+            $('.blast').velocity('fadeIn',{
+                delay: 1000,
+                stagger: 100,
+                drag: true
+            });
+        }
+    }
+    $(window).on('scroll', function(event) {
+        console.log('scroll');
+    });
+
+// Video END
+
+// Blast txt effect
+    $('.con-top p').blast({
+        delimiter: 'character',
+        customClass: 'hide'
+    });
+// Blast END
 
 // TODO: 监测浏览器是否支持transform，如果支持，那么视差滚动的位移操作都交给translate3d来做
     var el = document.createElement('div'),
@@ -145,7 +195,14 @@
         }
     }
 
-
+// Tool Funcs
+    function getBCR(ele, type){
+        if(type !== undefined){
+            return ele.getBoundingClientRect()[type];
+        }else{
+            return ele.getBoundingClientRect();
+        }
+    }
 
 }(jQuery, window));
 

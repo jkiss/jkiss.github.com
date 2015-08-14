@@ -6,6 +6,7 @@
 body{
     /*width: 1200px;*/
     margin: 0 auto;
+    min-width: 1050px;
 }
 header{
     height: 50px;
@@ -26,6 +27,7 @@ header{
 /*  video  */
 .video-bg{
     position: relative;
+    width: 100%;
 }
 #dollar{
     width: 100%;
@@ -47,10 +49,7 @@ header{
     margin-left: -40px;
     margin-top: -40px;
     cursor: pointer;
-    /*display: none;
-    opacity: 0;*/
-    -webkit-transition: all .3 ease;
-    transition: all .3 ease;
+    visibility: hidden;
 }
 
 /*  Logos  */
@@ -66,12 +65,12 @@ header{
 .con-left{
     float: left;
     height: 115px;
-    width: 65%;
+    width: 68%;
 }
 .con-right{
     float: left;
     height: 115px;
-    width: 35%;
+    width: 32%;
 }
 .con-top{
     width: 100%;
