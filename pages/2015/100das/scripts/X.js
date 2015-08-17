@@ -104,7 +104,7 @@
 
     function showLogos(){
         console.log(getBCR(logos.get(0), 'top'));
-        if(getBCR(logos.get(0), 'top') < (screen_h-50)){
+        if(getBCR(logos.get(0), 'top') < (screen_h-20)){
             console.log(getBCR(logos.get(0), 'top'));
 
             logos.velocity({
