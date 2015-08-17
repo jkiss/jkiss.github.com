@@ -62,16 +62,14 @@
         // console.log(video.get(0).currentTime);
     });
     video.on('canplay', function(event) {
-        console.log('canplay...');
         video_bg.velocity({
             opacity: 1
         }, 500);
 
         showLogos();
     });
-    console.log(video.get(0).readyState);
+
     if(video.get(0).readyState > 3){
-        console.log('canplay...');
         video_bg.velocity({
             opacity: 1
         }, 500);
@@ -115,7 +113,7 @@
 
             $('.blast').velocity('fadeIn',{
                 delay: 1000,
-                stagger: 100,
+                stagger: 80,
                 drag: true
             });
         }
