@@ -96,11 +96,11 @@
         video.get(0).pause();
     });
 
-    setTimeout(function(){
-        pause_btn.css('visibility', 'visible').velocity({
-            opacity: 1
-        }, "ease");
-    }, 5000);
+    // setTimeout(function(){
+    //     pause_btn.css('visibility', 'visible').velocity({
+    //         opacity: 1
+    //     }, "ease");
+    // }, 5000);
 
     function showLogos(){
         console.log(getBCR(logos.get(0), 'top'));

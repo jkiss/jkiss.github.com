@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:wb="http://open.weibo.com/wb">
+<head>
+    <meta charset="UTF-8">
+    <title>Live</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta property="wb:webmaster" content="df7f2bbff2f5028d" />
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/nokey-pc.css">
+    <link rel="stylesheet" href="styles/X.css">
+    <!-- html5 hack -->
+    <!--[if lt IE 9]>
+        <script src="scripts/html5shiv.min.js"></script>
+        <script src="scripts/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- JWPlayer -->
+    <script src="./jwplayer/jwplayer.js"></script>
+    <script>jwplayer.key="IaFpnm2qy71qN1ip6dC+1PkqT2JClZfpdNl7lYjX15g=";</script>
+
+</head>
+<body>
+    <div class="menu-wrap">
+        <div class="menu">
+            <i class="logo"></i>
+            <a href="https://www.facebook.com/cctvnewschina?fref=ts" target="_blank"><i class="icon-fb"></i></a>
+            <a href="https://twitter.com/cctvnews?lang=en" target="_blank"><i class="icon-tw"></i></a>
+            <a href="http://weibo.com/cctvnewsbeijing" target="_blank"><i class="icon-wb"></i></a>
+            <a href="#" target="_blank"><i class="icon-wx"></i></a>
+            <span class="logo-txt">CCTVNEWS LIVE</span>
+        </div>
+    </div>
+    <div class="container-wrap">
+        <div class="container">
+<!-- Danmu Start: -->
+            <div class="danmu-box">
+                <div id="myHLS">
+                    <p class="hls-loading">Loading...</p>
+                </div>
+                <div id="danmu"></div>
+            </div>
+            <div class="danmu-ctrl">
+                <span class="danmu-label">弹幕</span>
+                <span class="danmu-switch">
+                    <i class="danmu-switch-open"></i>
+                    <i class="danmu-switch-close"></i>
+                    <i class="danmu-switch-btn" data-switch="close"></i>
+                </span>
+                <input type="text" id="danmu_txt" max="30">
+                <span id="danmu_send">发送</span>
+                <!--  -->
+                <span class="watched-box">Watched by <em id="watched_num">10000</em></span>
+                <i class="v-line"></i>
+                <span class="zan-num">10000</span>
+                <i class="icon-zan" id="icon_zan" data-status="no">
+                    <i class="icon-zan-copy"></i>
+                </i>
+            </div>
+<!-- Danmu End! -->
+
+            <img src="images/index3@2x.png" alt="old-soldiers" class="old-soldiers">
+            <img src="images/index4@2x.png" alt="guard-honour" class="guard-honour">
+            <img src="images/index2@2x.png" alt="index2" class="index2">
+
+<!-- Disqus Start: -->
+            <div class="disqus-box">
+                <div id="disqus_thread"></div>
+                <div class="disqus-mask hide"></div>
+            </div>
+            <script type="text/javascript">
+                var disqus_shortname = 'cctvnewslive';
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            </script>
+<!-- Disqus End! -->
+        </div>
+    </div>
+    <footer>
+        <div class="f-box clearfix">
+            <p class="f-left">All Rights Reserved by CCTVNEWS</p>
+            <p class="f-right">Beijing ICP prepared No. 15002225-1</p>
+            <i class="logo-bottom"></i>
+        </div>
+    </footer>
+    <!-- Scripts -->
+    <script src="https://cdn.wilddog.com/js/client/current/wilddog.js"></script>
+    <script src="./scripts/jquery-1.11.3.min.js"></script>
+    <script src="./scripts/velocity.min.js"></script>
+    <script src="./scripts/X.js"></script>
+</body>
+</html>

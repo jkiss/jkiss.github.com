@@ -1,0 +1,337 @@
+/*
+* @Author: Nokey-木马人
+* bg-color1: #c83a2a
+* bg-color2: #
+*/
+
+/**  Main Container  **/
+body{
+    background: url(../images/bg-blue@2x.png) repeat-x;
+    background-size: auto 80%;
+    background-color: #c83a2a;
+    min-height: 800px;
+    padding: 1px 0;
+    margin-top: -1px;
+}
+.container-wrap{
+    padding: 1px;
+    width: 100%;
+    max-width: 1500px;
+    margin: 20px auto;
+    background: url(../images/index1@2x.png) no-repeat center top;
+    background-size: 95%;
+    overflow: hidden;
+}
+.container{
+    position: relative;
+    max-width: 800px;
+    margin: 100px auto 150px;
+}
+@media screen and (max-width: 800px){
+    .container{
+        margin: 70px auto 150px;
+    }
+}
+.hls-loading{
+    font-size: 18px;
+    text-align: center;
+    color: #bfae62;
+    height: 30px;
+    line-height: 30px;
+}
+.old-soldiers{
+    position: absolute;
+    width: 180px;
+    top: 550px;
+    right: -150px;
+}
+.guard-honour{
+    position: absolute;
+    width: 450px;
+    left: -200px;
+    top: 550px;
+}
+.index2{
+    position: absolute;
+    width: 600px;
+    left: 50%;
+    margin-left: -300px;
+    bottom: -130px;
+}
+
+/**  Menu  **/
+.menu-wrap{
+    height: 30px;
+    margin-top: 30px;
+    background-color: #fff;
+}
+.menu{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.menu i[class*="icon"]{
+    float: right;
+    width: 20px;
+    height: 20px;
+    margin: 5px 5px;
+    background-size: 100%;
+}
+.icon-fb{
+    background-image: url(../images/fb.png);
+}
+.icon-tw{
+    background-image: url(../images/tw.png);
+}
+.icon-wb{
+    background-image: url(../images/weibo.png);
+}
+.icon-wx{
+    background-image: url(../images/weixin.png);
+}
+.logo-txt{
+    float: right;
+    height: 30px;
+    line-height: 30px;
+    font-size: 18px;
+    color: #bfae62;
+    margin-right: 20px;
+}
+.logo{
+    position: absolute;
+    width: 100px;
+    height: 115px;
+    background: url(../images/logo.jpg) no-repeat;
+    background-size: 100%;
+    left: 0;
+    top: -31px;
+    background-color: #fff;
+}
+
+/**  Disqus  **/
+.disqus-box{
+    position: relative;
+    margin-top: 30px;
+    padding: 10px;
+    background-color: #fff;
+    min-height: 350px;
+}
+.disqus-mask{
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    right: 10px;
+    height: 53px;
+    background-color: #fff;
+}
+@media screen and (max-width: 513px){
+    .disqus-mask{
+        height: 227px;
+    }
+}
+
+/**  Danmu  **/
+.danmu-ctrl{
+    height: 35px;
+    color: #bfae62;
+    font-size: 14px;
+    background-color: #313131;
+}
+.danmu-label{
+    float: left;
+    height: 35px;
+    line-height: 35px;
+    margin-left: 15px;
+}
+.danmu-switch{
+    float: left;
+    position: relative;
+    margin-left: 10px;
+    height: 12px;
+    line-height: 12px;
+    width: 30px;
+    margin-top: 11px;
+    border-radius: 6px;
+    display: inline-block;
+    background-color: #000;
+}
+.danmu-switch-open{
+    position: absolute;
+    height: 12px;
+    width: 15px;
+    left: 0;
+    top: 0;
+    background: url(../images/line@2x.png) no-repeat 50% 50%;
+    background-size: auto 60%;
+}
+.danmu-switch-close{
+    position: absolute;
+    height: 12px;
+    width: 15px;
+    right: 0;
+    top: 0;
+    background: url(../images/circle@2x.png) no-repeat 50% 50%;
+    background-size: auto 60%;
+}
+.danmu-switch-btn{
+    position: absolute;
+    left: -5px;
+    top: -4px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ad9962;
+}
+#danmu_send{
+    cursor: pointer;
+}
+.danmu-box{
+    position: relative;
+    overflow: hidden;
+}
+.nokey-danmu-msg{
+    position: absolute;
+    line-height: 1.2em;
+    width: 10em;
+    pointer-events: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+}
+#danmu_txt{
+    float: left;
+    display: inline-block;
+    vertical-align: text-top;
+    border: none;
+    outline: none;
+    height: 19px;
+    margin-top: 8px;
+    border-radius: 3px;
+    margin-left: 10px;
+    padding: 0 3px;
+}
+#danmu_send{
+    float: left;
+    width: 2.4em;
+    height: 19px;
+    line-height: 19px;
+    text-align: center;
+    margin-top: 8px;
+    margin-left: -4px;
+    border-radius: 4px;
+    color: #333;
+    background-color: #ad9962;
+}
+#danmu_send:hover{
+    color: #fff;
+}
+.watched-box, .zan-num{
+    float: right;
+    color: #ad9962;
+    height: 35px;
+    line-height: 35px;
+}
+.watched-box{
+    margin-right: 10px;
+}
+#watched_num{
+    color: #ad9962;
+}
+.v-line{
+    float: right;
+    width: 15px;
+    height: 15px;
+    margin-top: 10px;
+    background: url(../images/line@2x.png) no-repeat 50% 50%;
+    background-size: auto 100%;
+}
+.icon-zan{
+    position: relative;
+    float: right;
+    width: 30px;
+    height: 20px;
+    margin-top: 7px;
+    background: url(../images/like@2x.png) no-repeat 50% 50%;
+    background-size: auto 100%;
+    margin-right: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+.icon-zan-copy{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px;
+    height: 20px;
+    background: url(../images/liked@2x.png) no-repeat 50% 50%;
+    background-size: auto 100%;
+}
+@media screen and (max-width: 510px){
+    .danmu-label, .danmu-switch, #danmu_txt, #danmu_send{
+        display: none;
+    }
+    .logo{
+        top: 0;
+        left: 10px;
+        width: 70px;
+        height: 75px;
+    }
+    .logo-txt{
+        display: none;
+    }
+    .menu-wrap{
+        margin-top: 0;
+    }
+}
+
+/*  Footer  */
+footer{
+    border-top: 1px solid #ad9962;
+    margin-bottom: 100px;
+}
+footer .f-box{
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+}
+footer p{
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    color: #fff;
+}
+.f-left{
+    float: left;
+}
+.f-right{
+    float: right;
+}
+@media screen and (max-width: 535px){
+    .f-left, .f-right{
+        float: none;
+        text-align: center;
+    }
+    footer .f-box{
+        padding-top: 30px;
+    }
+    .old-soldiers, .guard-honour{
+        display: none;
+    }
+    .disqus-box, .danmu-ctrl, .danmu-box{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+.logo-bottom{
+    position: absolute;
+    width: 80px;
+    height: 44px;
+    left: 50%;
+    top: -22px;
+    margin-left: -40px;
+    background: url(../images/logo-bottom.jpg) no-repeat;
+    background-size: 100%;
+}
