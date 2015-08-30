@@ -40,7 +40,7 @@ header{
     top: 0;
     width: 100%;
     height: 99.7%;
-    background-color: rgba(0,0,0,.2);
+    background-color: transparent;
 }
 .video-btn{
     position: absolute;
