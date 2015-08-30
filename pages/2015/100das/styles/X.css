@@ -6,7 +6,8 @@
 body{
     /*width: 1200px;*/
     margin: 0 auto;
-    min-width: 1050px;
+    /*min-width: 1050px;*/
+    overflow: hidden;
 }
 header{
     height: 50px;
@@ -55,7 +56,6 @@ header{
 
 /*  Logos  */
 .logos{
-    height: 120px;
     width: 1000px;
     margin: 50px auto;
 }
@@ -98,4 +98,45 @@ footer{
     font-size: 14px;
     height: 30px;
     line-height: 30px;
+}
+
+@media screen and (max-width: 1000px){
+    .logos{
+        width: 100%;
+    }
+    .con-left, .con-right{
+        float: none;
+        width: 565px;
+        margin: 0 auto;
+    }
+    .con-right{
+        margin-top: 10px;
+    }
+}
+
+@media screen and (max-width: 565px){
+    .logo{
+        display: none;
+    }
+    .con-top p{
+        padding: 0;
+    }
+    .con-left, .con-right{
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .con-top p{
+        font-size: 24px;
+    }
+    .logos{
+        padding: 10px;
+    }
+    .con-left, .con-right{
+        width: 100%;
+    }
+    header{
+        padding-right: 10px;
+    }
 }
