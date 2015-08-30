@@ -132,6 +132,7 @@ footer{
     }
     .logos{
         padding: 10px;
+        margin: 20px auto;
     }
     .con-left, .con-right{
         width: 100%;
