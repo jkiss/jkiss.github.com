@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>Personal Resume</title>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="styles/index.css">
+
+</head>
+<body>
+    <div class="container">
+        <div class="loading-wrap">
+            <div class="abs box loading">
+                <i class="abs dot dot-1"></i>
+                <i class="abs dot dot-2"></i>
+                <i class="abs dot dot-3"></i>
+            </div>
+            <span class="abs loading-text">
+                别着急，载入中 . . .
+            </span>
+        </div>
+        <!-- Content : -->
+        <ul class="content-list">
+            <li class="ctt-li">
+                <div class="page p0">
+                    <div class="abs p0-avatar"></div>
+                    <div class="abs p0-t1">
+                        姓名：Nokey
+                    </div>
+                    <div class="abs p0-t2">
+                        爱好：街舞 涂鸦 滑板
+                    </div>
+                    <div class="abs p0-t3">
+                        一个走在前端道路上的文艺青年？
+                    </div>
+                </div>
+            </li>
+            <li class="ctt-li">
+                <img src="images/p1_bg1.jpg" class="abs p1-bg">
+                <div class="abs p1-words1">
+                    ohhh...it's time to get up, my lovely bed and pillow! =.=
+                </div>
+                <div class="abs p1-desc">
+                    每天早上都起床，为什么会有这么痛苦的事，不过人生就是在痛苦中寻求快乐！
+                </div>
+            </li>
+            <li class="ctt-li">
+                <img src="images/p2_bg1.jpg" class="abs p2-bg">
+                <div class="abs p2-words1">
+                    a....wash my face and tooth, look myself in mirror, so Handsome!
+                </div>
+                <div class="abs p2-desc">
+                    起床后就是洗漱了，其实我一直觉得早晨洗漱很重要，因为新一天的开始总要有一个新面孔去面对，美好的一天就是从整洁的出门开始！^-^
+                </div>
+            </li>
+            <li class="ctt-li">
+                <img src="images/p3_bg1.jpg" class="abs p3-bg">
+                <div class="abs p3-words1">
+                    I know i'm a gentalman, do some breakfast to eat, bread and milk, healthy diet!
+                </div>
+                <div class="abs p3-words2">
+                    also hungry...
+                </div>
+                <div class="abs p3-desc">
+                    一日三餐，早餐很重要，可是基本上很少吃早餐，牛奶加面包，简单却很有营养，就像生活，总是简单中充满着幸福和快乐。
+                </div>
+            </li>
+            <li class="ctt-li">
+                <div class="abs p4-video-mask"></div>
+                <div class="abs p4-location icon-location bounce"></div>
+                <div class="abs p4-city">北&nbsp;&nbsp;京</div>
+                <div class="abs p4-author">
+                    Designed by 木马人
+                </div>
+            </li>
+        </ul>
+        <!-- end; -->
+        <div class="abs swipe-up icon-drupal"></div>
+        <div class="abs speaker icon-vynil eleCircle"></div>
+        <audio id="audio" src="assets/counting_start.mp3" loop="loop" preload="auto" autoplay="true"></audio>
+    </div>
+
+    <script src="scripts/zepto.js"></script>
+    <script src="scripts/head.js"></script>
+    <!-- // <script type="text/javascript" src="scripts/index.js"></script> -->
+    <script>
+    $(document).ready(function(){
+        // 根据手机系统版本加载不同文件，并对文件加载进行优化
+        var
+            UA = navigator.userAgent.toLowerCase(),
+            isAndroid = 'android' == UA.match(/android/i),
+            version = parseFloat(UA.slice(UA.indexOf('android')+8));
+        isAndroid && 3 > version
+        ? void(0)
+            // 加载低版本Android的 JS 和 CSS 文件
+        : void(0)
+            // 加载高版本Android的 JS 和 CSS 文件
+        ;
+
+        // Head.js
+        head.load(
+            'scripts/index.js',
+            function(){
+                preImage([
+                    'http://blog-nokey.qiniudn.com/blog_beijing.gif',
+                    'images/p2_bg1.jpg'
+                ], function(){
+                    function autoPlay(){
+                        $('html').on('touchstart', function(event) {
+                            0 == mark && (audio.play(), mark = 1)
+                        });
+                    }
+                    var audio, mark;
+                    $('.loading-wrap').css('display', 'none');
+                    audio = document.querySelector('audio');
+                    audio.oncanplay = autoPlay();
+                    mark = 0;
+                    // First scren movie
+                    firstScreenMovie();
+                });
+                // var img1 = preImage('images/p1_bg1.jpg');
+                // img1.onload = function(){
+                //     function autoPlay(){
+                //         $('html').on('touchstart', function(event) {
+                //             0 == mark && (audio.play(), mark = 1)
+                //         });
+                //     }
+                //     var audio, mark;
+                //     $('.loading-wrap').css('display', 'none');
+                //     audio = document.querySelector('audio');
+                //     audio.oncanplay = autoPlay();
+                //     mark = 0;
+                //     // First scren movie
+                //     firstScreenMovie();
+                // }
+            }
+        );
+
+        // Hide loading after pre-load img
+        window.onload = function(){
+            
+            
+        }
+
+        // Responsive with resize
+        // window.onresize = function() {
+        //     $(".ctt-li").each(function() {
+        //         $(this).css("height", $(window).height())
+        //     });
+        //     screenHeight = $(window).height();
+        //     console.log('Resize');
+        // };
+        // setTimeout(function() {
+        //     $(window).resize();
+        // }, 1e3);
+        $(window).on('resize', function(event) {
+            $(".ctt-li").each(function() {
+                $(this).css("height", $(window).height())
+            });
+            screenHeight = $(window).height();
+            console.log('Resize');
+        }).trigger('resize');
+    });
+    </script>
+</body>
+</html>

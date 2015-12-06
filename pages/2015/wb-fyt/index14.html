@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的附近</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+
+    <!-- Baidu Map API -->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=09cd844d3f46221820849d4ac4762dbc"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/init.css">
+    <link rel="stylesheet" href="styles/index14.css">
+</head>
+<body>
+
+    <div class="my-map" id="my_map"></div>
+
+    <div class="ctrl-board" id="ctrl_board">
+        <div class="p14-bg-wrap">
+            <img class="p14-bg" src="images/index14/p14-bg@2x.png" alt="Png">
+            <div class="p14-1 ctrl-btn" data-keyword="建设银行"></div>
+            <div class="p14-2 ctrl-btn" data-keyword="4s店"></div>
+            <div class="p14-3 ctrl-btn" data-keyword="停车场"></div>
+            <div class="p14-4 ctrl-btn"  data-keyword="加油站"></div>
+        </div>
+    </div>
+
+    <div id="location_me" class="location-me"></div>
+
+    <img id="loading_gif" class="loading-gif none" src="images/index14/loading.gif" alt="Gif">
+
+    <!-- JS -->
+    <script src="scripts/zepto.min.js"></script>
+    <script>
+        // 百度地图API功能
+        var map = new BMap.Map("my_map");
+
+        map.addControl(new BMap.NavigationControl());
+
+        var point = new BMap.Point(116.331398,39.897445);
+        map.centerAndZoom(point,15);
+
+        // IP location
+        function myFun(result){
+            var cityName = result.name;
+            map.setCenter(cityName);
+            console.log('City: '+cityName);
+        }
+        var myCity = new BMap.LocalCity();
+        myCity.get(myFun);
+
+        // Search
+        var loading_gif = $('#loading_gif');
+        var search_options = {
+            onSearchComplete: function(results){
+                console.log('Search complete...');
+                loading_gif.addClass('none');
+                if (local.getStatus() == BMAP_STATUS_SUCCESS){
+
+                }
+            },
+            renderOptions:{map: map}
+        }
+        var local = new BMap.LocalSearch(map, search_options);
+
+        // Btns Ctrl
+        $('#ctrl_board').on('touchend', '.ctrl-btn', function(event) {
+            event.preventDefault();
+            var
+                target = $(event.target),
+                key_word = target.data('keyword');
+
+            // local.search(key_word);
+            loading_gif.removeClass('none');
+            local.searchInBounds(key_word, map.getBounds());
+        });
+
+        // Location ME
+        $('#location_me').on('touchend', function(event) {
+            myCity.get(myFun);
+        });
+
+    </script>
+</body>
+</html>

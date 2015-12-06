@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>CCTVNEWS - Two Chinese idioms about sheep</title>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="CCTVNews is constantly updated with top news from China and around the world. Offering news reports, live and on-demand video content and searchable archives.">
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/p0.css">
+    
+</head>
+<body>
+    <div id="wx_pic" style="margin:0 auto;display:none;">
+        <img src='images/thumbnail.png'/>
+    </div>
+    <div class="container">
+        <div class="loading-wrap">
+            <i class="abs loading hardware bounceInDown"></i>
+            <div class="abs loading-text"></div>
+        </div>
+        <div class="abs page-bg transition"></div>
+        <ul class="content-list">
+            <li class="ctt-li">
+                <!-- page 0 -->
+                <div class="abs single-page">
+                    <div class="abs p0-1 transition"></div>
+                    <div class="abs p0-2 transition"></div>
+                </div>
+                <!-- page 1 -->
+                <div class="abs single-page">
+                    <div class="abs p1-2"></div>
+                    <div class="abs p1-3"></div>
+                    <div class="abs p1-4"></div>
+                    <div class="abs p1-1 transition"></div>
+                </div>
+                <!-- page 2 -->
+                <div class="abs single-page">
+                    <div class="abs p2-2"></div>
+                    <div class="abs p2-3"></div>
+                    <div class="abs p2-4"></div>
+                    <div class="abs p2-1 transition"></div>
+                </div>
+                <!-- page 3 -->
+                <div class="abs single-page">
+                    <div class="abs p3-2"></div>
+                    <div class="abs p3-1 transition"></div>
+                </div>
+                <!-- page 4 -->
+                <div class="abs single-page">
+                    <div class="abs p4-2"></div>
+                    <div class="abs p4-3"></div>
+                    <div class="abs p4-1 transition"></div>
+                </div>
+                <!-- page 5 -->
+                <div class="abs single-page">
+                    <div class="abs p5-1 transition"></div>
+                    <div class="abs p5-2 transition"></div>
+                </div>
+                <!-- end -->
+                <div class="abs single-page">
+                    <div class="abs end-1 transition"></div>
+                    <div class="abs end-2 transition pulse"></div>
+                </div>
+            </li>
+        </ul>
+
+        <div class="abs swipe-gesture swipeLeft icon-angle-double-up"></div>
+
+        <div class="music-play-btn"></div>
+
+        <audio id="bg_music" style="display: none" loop preload>
+            <source src="musics/music1.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- <div class="abs debug"></div> -->
+    </div>
+
+    <script src="scripts/zepto.min.js"></script>
+    <script src="scripts/head.min.js"></script>
+    <script src="scripts/index.js"></script>
+    <script>
+    $(function(){
+        // 预加载图片
+        preImage([
+            getImgUrl($('.page-bg')),
+            getImgUrl($('.p0-1')),
+            getImgUrl($('.p0-2'))
+        ], function(){
+            var loading = $('.loading-wrap'),
+                _audio = $('#bg_music')[0],
+                _audio_play_btn = $('.music-play-btn'),
+                mark = 0;
+                
+            loading.addClass('fadeOut');
+            setTimeout(function(){
+                loading.css('display', 'none');
+            },300);
+
+            firstScreenMovie();
+
+            function autoPlay(){
+                $('html').on('touchstart', function(event) {
+                    if(0 == mark){
+                        _audio.play();
+                        mark = 1;
+                        _audio_play_btn.addClass('eleCircle');
+                    }
+                });
+            }
+            _audio.oncanplay = autoPlay();
+
+            // Parallax image_bg per_w
+            // console.log(movePageWidth());
+        });
+
+        // response ctt-li
+        $(window).on('resize', function(event) {
+            $(".ctt-li").each(function() {
+                $(this).css("height", $(window).height())
+            });
+            screenHeight = $(window).height();
+
+            // console.log('Resize');
+        }).trigger('resize');
+    });
+    </script>
+</body>
+</html>

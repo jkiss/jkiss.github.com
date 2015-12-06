@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!-- Meta -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="author" content="Nokey-木马人">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="copyright" content="Copyright (c) CCTVNEWS">
+    <meta name="description" content="CCTVNews is constantly updated with top news from China and around the world. Offering news reports, live and on-demand video content and searchable archives.">
+    <!-- Title -->
+    <title>CCTVNEWS</title>
+    <!-- Style files -->
+    <link rel="stylesheet" href="styles/init.css">
+    <link rel="stylesheet" href="styles/x.css">
+</head>
+<body>
+    <!-- Thumbnail image -->
+    <div id="wx_pic" style="margin:0 auto;display:none;">
+        <img id="thumbnail" src="images/thumbnail.png" alt="Thumbnail"/>
+    </div>
+    <!-- Main -->
+    <div class="container">
+        <!-- Loading -->
+        <div id="loading_box" class="loading-wrap">
+            <div class="abs p-box">
+                <div class="abs l-progress-bar"></div>
+                <div class="abs l-frame">
+                    CCTVNEWS
+                </div>
+            </div>
+            <div class="abs l-persent">0%</div>
+        </div>
+        <!-- Content -->
+        <ul id="content" class="content-list">
+            <li id="stage" class="ctt-li">
+                <!-- page 0 -->
+                <div id="p0" data-forward-in-type="zoomInUp" data-forward-out-type="fadeOutUp" data-back-in-type="zoomInDown" data-back-out-type="fadeOutDown">
+                    <img src="images/p0-1@2x.png" alt="CCTVNEWS" class="abs p0-1">
+                    <img src="images/p0-2@2x.png" alt="CCTVNEWS" class="abs p0-2">
+                    <!-- Logo -->
+                    <img src="images/logo@2x.png" alt="CCTVNEWS" data-in-type="fadeIn" data-out-type="fadeOut" data-animate-delay="300" class="abs p0-logo">
+                </div>
+                <!-- page 1 -->
+                <div id="p1" data-forward-in-type="zoomInUp" data-forward-out-type="fadeOutUp" data-back-in-type="zoomInDown" data-back-out-type="fadeOutDown">
+                    <img src="images/p1-1@2x.png" alt="CCTVNEWS" class="abs p1-1">
+                </div>
+                <!-- page 2 -->
+                <div id="p2" data-forward-in-type="zoomInUp" data-forward-out-type="fadeOutUp" data-back-in-type="zoomInDown" data-back-out-type="fadeOutDown">
+                    <img src="images/p2-1@2x.png" alt="CCTVNEWS" class="abs p2-1">
+                </div>
+                <!-- page 3 -->
+                <div id="p3" data-forward-in-type="zoomInUp" data-forward-out-type="fadeOutUp" data-back-in-type="zoomInDown" data-back-out-type="fadeOutDown">
+                    <img src="images/p3-1@2x.png" alt="CCTVNEWS" class="abs p3-1">
+                </div>
+                <!-- ... -->
+                <!-- Page end -->
+            </li>
+        </ul>
+
+        <!-- Swipe gesture -->
+        <div id="swipe_gesture" class="abs swipe-gesture swipeUp"></div>
+        
+        <!-- Music play btn -->
+        <!-- <div id="music_play_btn" class="music-play-btn"></div> -->
+
+        <!-- Music -->
+        <!-- <audio id="bg_music" style="display: none" loop preload>
+            <source src="musics/music1.mp3" type="audio/mpeg">
+        </audio> -->
+    </div>
+
+    <!-- Script files -->
+    <script src="scripts/zepto.min.js"></script>
+    <script src="scripts/head.min.js"></script>
+    <script src="scripts/h5.js"></script>
+    <script>
+    $(function(){
+        /*
+        *   id类元素都是固定页面元素
+        */
+        var img_array = [];
+        $('#content').find('img').forEach(function(e){
+            img_array.push($(e).attr('src'));
+        });
+        console.log(img_array);
+        // H5 configure
+        var opt = {
+            title_txt: 'CCTVNEWS',
+            thumbnail_src: 'images/thumbnail.png',
+            preload_array: img_array,
+            music_ify: false
+        };
+
+        (new H5(opt).go());
+
+        // response ctt-li
+        $(window).on('resize', function(event) {
+            $(".ctt-li").each(function() {
+                $(this).css("height", $(window).height())
+            });
+            screenHeight = $(window).height();
+        }).trigger('resize');
+    });
+    </script>
+</body>
+</html>

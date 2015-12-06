@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>问题反馈</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/init.css">
+    <link rel="stylesheet" href="styles/index11.css">
+</head>
+<body>
+    <form action="" method="post" id="my_form">
+        <div class="textarea-wrap">
+            <textarea id="user_advice" name="name" class="user-advice" placeholder="请输入您的意见与问题反馈"></textarea>
+        </div>
+
+
+        <div class="submit-wrap">
+            <!-- <input type="submit" class="submit-btn" value="提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交"> -->
+            <div id="submit_btn" class="submit-btn">提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</div>
+        </div>
+    </form>
+
+    <!-- JS -->
+    <script src="scripts/zepto.min.js"></script>
+    <script>
+        //********************** validate  *****************
+        function isEmpty(input){
+            var val = $.trim(input.val());
+
+            return val.length === 0;
+        }
+        $('#user_advice').on('blur', function(event) {
+            var _me = $(this),
+                parent = _me.parent(),
+                err_msg = '<div class="val-error-msg">请输入您的反馈</div>';
+
+            if(isEmpty(_me)){
+                _me.addClass('val-error').data('validate', false);
+                parent.find('.val-error-msg').length === 0 && parent.append(err_msg);
+            }else{
+                _me.removeClass('val-error').data('validate', true);
+                parent.find('.val-error-msg').remove();
+            }
+        });
+
+        $('#submit_btn').on('tap', function(event) {
+            var
+                user_advice = $('#user_advice'),
+                my_form = $('#my_form');
+
+                user_advice.trigger('blur');
+
+            if(user_advice.data('validate')){
+                // console.log('submit');
+                my_form.submit();
+            }
+        });
+    </script>
+
+</body>
+</html>

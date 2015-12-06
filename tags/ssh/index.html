@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+            Tag: ssh |
+        －木马人－    
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta http-equiv="cache-control" content="max-age=7200">
+    <!-- 禁止百度微信转码（移动端还有点人性，哈哈） -->
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- 作者 -->
+    <meta name="author" content="Nokey-木马人">
+    <meta name="baidu-site-verification" content="lmqYZpJ2tZ" />
+    <link rel="icon" type="image/x-icon" href="/image/king.png">
+    <link rel="stylesheet" href="/css/blog.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/post.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/noookey.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/highlight.css" type="text/css">
+
+  </head>
+<body>
+    <div id='wx_pic' style='margin:0 auto;display:none;'>
+    <img src='/image/nokey.png'/>
+</div>
+<header>
+    <i class="left">
+        <span class="dash-left transition">--</span>
+        <span class="word-w transition">W</span>
+        <span class="word-e transition">e</span>
+        <span class="word-l transition">l</span>
+        <span class="word-c transition">c</span>
+        <span class="word-o transition">o</span>
+        <span class="word-m transition">m</span>
+        <span class="word-e transition">e </span>
+        <span class="word-t transition">t</span>
+        <span class="word-o transition">o </span>
+    </i>
+    <a href="/pages/shanghai"><span class="word-n transition">N</span></a>
+    <span class="word-o transition">o</span>
+    <span class="word-k transition">k</span>
+    <span class="word-e transition">e</span>
+    <span class="word-y transition">y</span>
+    <span class="word-_ transition">_</span>
+    <span class="word-b transition">b</span>
+    <span class="word-l transition">l</span>
+    <span class="word-o transition">o</span>
+    <span class="word-g transition">g </span>
+    <i class="right">
+        <span class="dash-right transition">--</span>
+    </i>
+    
+    <p class="home">
+        <a href="/" title="Return Home">
+            <i class="icon-home transition" alt="Return Home"></i>
+        </a>
+    </p>
+</header>
+<div class="yellow-progress-bar progress-move"></div>
+    <div class="main">
+        
+    
+        <div class="one">
+  <a href="http://blog.nokey.me/2015/08/07/AWS亚马逊云服务器-ssh目录下的authorized-keys文件被覆盖或修改后连接不上实例的解决方案（亲测）/">
+    <h1 class="p-title transition">AWS亚马逊云服务器.ssh目录下的authorized_keys文件被覆盖或修改后连接不上实例的解决方案（亲测）</h1>
+</a>
+
+  <div class="micro-data clearfix">
+    <div class="date-wrap wrap">
+        <i class="icon-calendar"></i>
+        <span class="date">8月 7 2015</span>
+    </div>
+    <div class="tag-wrap wrap">
+        
+    <i class="icon-tag"></i>
+    <a class="post-link" href="/tags/AWS/">AWS</a>&nbsp;&nbsp;<a class="post-link" href="/tags/authorized-keys/">authorized_keys</a>&nbsp;&nbsp;<a class="post-link" href="/tags/ssh/">ssh</a>&nbsp;&nbsp;<a class="post-link" href="/tags/无法连接服务器/">无法连接服务器</a>
+
+    </div>
+</div>
+
+  <div class="content">
+    
+        <blockquote>
+<p>一切源于自己对服务器知识理解的浅薄，主要是SSH和SFTP连接的规则。自己也是手贱啊，正因为贱所以才有机会接触这些知识领域，正所谓：兵来将挡，水来土掩！</p>
+</blockquote>
+<p><strong> 问题出现的场景：公司PM给了我一个空的服务器（也就是亚马逊的云服务器AWS）让我临时传一些东西，然后我发现这个密钥只能用在SFTP上，而Xshell却用不了，我想安装一个node.js，所以必须用命令行，所以就萌生了用Xshell重新生成一个RSA密钥对，放到服务器上，覆盖掉<em>authorized_keys</em>这个文件（这即将成为一个很危险的操作）。当我覆盖完之后，尝试连接，失败。。。我发现我生成的是<em>DSA</em>的密钥类型！！！（其实当时即使我生成的是RSA估计也不行，因为那个密钥是亚马逊第一次创建实例的时候生成的）。最后我面临的问题就是：服务器的授权密钥文件被覆盖，无法使用SSH登陆，而且也没有口令登陆等其他方式。可选的解决方案是：修改或恢复authorized_keys文件。 </strong></p>
+<p>当时头脑的第一反应就是，服务器的管理后台能够重新生成密钥对，结果是AWS是在实例创建的时候生成的一个密钥对，在控制面板并没有重新生成的选项。。。然后我想恢复这个实例，没想到恢复也这么麻烦，需要创建一个警报，我又不知道如何触发这个警报，无语了。</p>
+<p>好吧，进入主题：Google “aws change key pair”，然后第一条就找到了这篇文章<a href="https://stackoverflow.com/questions/7881469/change-key-pair-for-ec2-instance" target="_blank" rel="external">《Change key pair for ec2 instance》</a>，</p>
+
+    
+  </div>
+</div>
+    
+    
+
+    </div>
+    <footer>
+    <img alt="Nokey" data-url="http://blog-nokey.qiniudn.com/matrix.jpg" data-url-640="http://blog-nokey.qiniudn.com/blog_foot1.jpg!image640" data-url-320="http://blog-nokey.qiniudn.com/blog_foot1.jpg!image320">
+    <div class="i-want-say"></div>
+    <div class="qq-chat">QQ群：461790451</div>
+</footer>
+<div class="to-top icon-rocket" id="to_top"></div>
+
+    
+    <script src="/js/jquery-1.11.1.js" type="text/javascript"></script>
+
+<script src="/js/blog.js" type="text/javascript"></script>
+
+<script src="/js/head.min.js" type="text/javascript"></script>
+
+<script src="/js/snowfall.jquery.js" type="text/javascript"></script>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"nokey"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+<script>
+function merry_christmas(){
+    $(document).snowfall('clear');    
+    $(document).snowfall({
+        flakeCount: 50,
+        minSize: 12,
+        maxSize: 32
+    });
+}
+// merry_christmas();
+</script>
+</body>
+</html>

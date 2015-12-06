@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>汽车金融</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/init.css">
+    <link rel="stylesheet" href="styles/index13.css">
+</head>
+<body>
+    <div class="finance-type-wrap">
+        <div class="finance-type">
+            <span id="type_calculator" class="type-name type-left selected">
+                汽车分期贷款计算器
+            </span>
+            <span id="type_introduction" class="type-name type-right">
+                汽车分期介绍
+            </span>
+        </div>
+    </div>
+    <div class="frame-wrap">
+    <iframe src="http://www.ccb.com/cn/personal/interest/calculator.html" frameborder="0" id="calculator" class="">
+    </iframe>
+    <iframe src="http://www.ccb.com/ha/branch/business/20111130_1322649120.html" frameborder="0" id="introduction" class="display-none"></iframe>
+    </div>
+
+
+    <!-- JS -->
+    <script src="scripts/zepto.min.js"></script>
+    <script>
+        // Type choose
+        var type_calculator = $('#type_calculator'),
+            type_introduction = $('#type_introduction'),
+            calculator_frame = $('#calculator'),
+            introduction_frame = $('#introduction');
+
+        $('.finance-type').on('tap', 'span', function(event) {
+            // console.log(event.srcElement);
+            var _target = $(event.target);
+
+            if(!_target.hasClass('selected')){
+                var id = _target.attr('id'),
+                    another_id = id == 'type_calculator' ? 'type_introduction' : 'type_calculator';
+
+                $('#'+another_id).removeClass('selected');
+                _target.addClass('selected');
+
+                if(id == 'type_calculator'){
+                    calculator_frame.removeClass('display-none');
+                    introduction_frame.addClass('display-none');
+                }else{
+                    calculator_frame.addClass('display-none');
+                    introduction_frame.removeClass('display-none');
+                }
+
+            }
+        });
+    </script>
+</body>
+</html>

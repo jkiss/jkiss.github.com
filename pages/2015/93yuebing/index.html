@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>CCTVNEWS Live</title>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="description" content="CCTVNEWS Live">
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/X.css">
+
+    <!-- Live Reload -->
+    <script src="http://localhost:35729/livereload.js"></script>
+</head>
+<body>
+<!-- Thumbnail -->
+<div id="wx_pic" style="margin:0 auto;display:none;">
+    <img src="images/thumbnail.png"/>
+</div>
+<!-- Main -->
+<div class="container">
+    <!-- Loading -->
+    <div id="loading_box" class="loading-wrap">
+        <div class="abs l-3d-box">
+            <div class="cubic-container">
+                <div class="cube" id="l_cubic">
+                    <figure class="back"></figure>
+                    <figure class="top"></figure>
+                    <figure class="bottom"></figure>
+                    <figure class="left"></figure>
+                    <figure class="right"></figure>
+                    <figure class="front"></figure>
+                </div>
+            </div>
+        </div>
+        <div class="abs l-progress">
+            Loading...
+            <span id="l_persent">0%</span>
+        </div>
+
+    <!-- All Elements -->
+        <img class="abs bg-grid" src="images/bg_grid@2x.png" alt="BG">
+
+
+            <img class="abs weapon1 weapon hardware" data-pos="0" data-opacity="1" data-txtid="weapon1_txt" src="images/weapon1@2x.png" alt="weapon1">
+
+
+
+            <img class="abs weapon2 weapon hardware" data-pos="1" data-opacity=".8" data-txtid="weapon2_txt" src="images/weapon2@2x.png" alt="weapon2">
+
+
+
+            <img class="abs weapon3 weapon hardware" data-pos="2" data-opacity=".6" data-txtid="weapon3_txt" src="images/weapon3@2x.png" alt="weapon3">
+
+
+
+            <img class="abs weapon4 weapon hardware" data-pos="3" data-opacity=".4" data-txtid="weapon4_txt" src="images/weapon4@2x.png" alt="weapon4">
+
+
+
+            <img class="abs weapon5 weapon hardware" data-pos="4" data-opacity="6" data-txtid="weapon5_txt" src="images/weapon5@2x.png" alt="weapon5">
+
+
+
+            <img class="abs weapon6 weapon hardware" data-pos="5" data-opacity=".8" data-txtid="weapon6_txt" src="images/weapon6@2x.png" alt="weapon6">
+
+
+    <!-- Txt -->
+        <div class="abs weapon-txt" id="weapon1_txt">
+            <h1 class="weapon-name">
+                99A
+            </h1>
+            <p class="weapon-detail hide">
+                The 99A is a domestically designed tank<br> that serves as a key battle tank of the<br> Chinese forces. It features advanced<br> firepower, mobility and defensive<br> capabilities.
+            </p>
+        </div>
+        <div class="abs weapon-txt" id="weapon2_txt">
+            <h1 class="weapon-name">
+                DF-21D
+            </h1>
+            <p class="weapon-detail hide">
+                The DF-21D is a land-based anti-ship<br> ballistic missile. It covers a large<br> deterrence area, and is capable of<br> fast strike and penetrations.
+            </p>
+        </div>
+        <div class="abs weapon-txt" id="weapon3_txt">
+            <h1 class="weapon-name">
+                H-6K
+            </h1>
+            <p class="weapon-detail hide">
+                The H-6K is an important strike force<br> that can carry long-range strategic cruise<br> missiles and air-to-surface missiles. <br>It is capable of long-distance raids, <br>wide-ranging patrol and strikes that <br>can reach outside defense zones.
+            </p>
+        </div>
+        <div class="abs weapon-txt" id="weapon4_txt">
+            <h1 class="weapon-name">
+                HQ-9
+            </h1>
+            <p class="weapon-detail hide">
+                HQ-9 is China’s third-generation <br>surface-to-air missile system. It is capable <br>of countering saturation attacks, <br>operating under complex electromagnetic <br>environments, and intercepting multiple <br>airstrike weapons.
+            </p>
+        </div>
+        <div class="abs weapon-txt" id="weapon5_txt">
+            <h1 class="weapon-name">
+                J-15
+            </h1>
+            <p class="weapon-detail hide">
+                The J-15 fighter marks the breakthrough <br>in China’s fixed-wing aircrafts, turning <br>from land-based to carrier-based. It is <br>capable of ski-jump take-offs and <br>arresting gear landings on China’s <br>first aircraft carrier, Liaoning.
+            </p>
+        </div>
+        <div class="abs weapon-txt" id="weapon6_txt">
+            <h1 class="weapon-name">
+                UAV
+            </h1>
+            <p class="weapon-detail hide">
+                China’s UAV unit has been developing <br>rapidly, and provides a new means for <br>the military to handle diversified tasks, <br>including reconnaissance, guides <br>and strikes.
+            </p>
+        </div>
+
+    <!-- Lines -->
+
+    </div>
+
+    <!-- QR -->
+    <div class="abs qr-wrap">
+        <div class="abs qr-box">
+            <img class="wx_wrap-i" src="images/wx_wrap@2x.png" alt="QR">
+            <img class="abs wx_e1" src="images/wx_e1@2x.png" alt="QR">
+            <img class="abs wx_e2" src="images/wx_e2@2x.png" alt="QR">
+
+            <div class="abs wx_qr">
+                <img class="wx_qr-i" src="images/wx_qr@2x.png" alt="QR">
+                <img class="abs wx_light-1" src="images/wx_light@2x.png" alt="light">
+                <img class="abs wx_light-2" src="images/wx_light@2x.png" alt="light">
+            </div>
+
+            <p class="abs qr-txt">
+                Press the QR code to follow CCTVNEWS
+            </p>
+        </div>
+    </div>
+
+    <!-- Logo -->
+    <img src="images/logo_70@2x.png" alt="Logo70" class="abs logo-70">
+
+    <!-- QR btn -->
+    <div class="abs qr-btn-click" data-state="close"></div>
+
+    <!-- Swipe gesture -->
+    <!-- <div class="abs swipe-up icon-angle-double-up hide swipeMove"></div> -->
+
+    <!-- BGM -->
+    <div class="music-play-btn"></div>
+    <audio id="bg_music" style="display: none" loop preload>
+        <source src="music/bg_music.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+    <script src="scripts/zepto.min.js"></script>
+    <script src="scripts/head.min.js"></script>
+    <script src="scripts/jquery.blast.js"></script>
+    <script src="scripts/velocity.min.js"></script>
+    <script src="scripts/velocity.ui.min.js"></script>
+    <script src="scripts/X.js"></script>
+    <script>
+    $(function(){
+    // Preload Images
+        var center_img_boxs = $('.center-image'),
+            img_array = [];
+        $('img').forEach(function(e){
+            img_array.push($(e).attr('src'));
+        });
+        console.log(img_array);
+
+        preImage(img_array, function(){
+
+            var loading = $('.loading-wrap'),
+                _audio = $('#bg_music')[0],
+                _audio_play_btn = $('.music-play-btn'),
+                mark = 0,
+                touch_mark = 0;
+
+            setTimeout(function(){
+                firstScreenMovie();
+            }, 200);
+            function autoPlay(){
+                // $('html').on('touchstart', function(event) {
+                    if(0 == mark){
+                        _audio.play();
+                        mark = 1;
+                        _audio_play_btn.css('opacity', 1).addClass('eleCircle');
+                    }
+                // });
+            }
+            $('html').on('touchstart', function(event) {
+                if(touch_mark == 0){
+                    _audio.play();
+                    touch_mark = 1;
+                    _audio_play_btn.addClass('eleCircle');
+                }
+            });
+            _audio.oncanplay = autoPlay();
+        });
+
+    // Blast
+        $('.weapon-name').blast({
+            delimiter: 'character',
+            customClass: 'hide'
+        });
+        // $('.weapon-detail').blast({
+        //     delimiter: 'character',
+        //     customClass: 'hide'
+        // });
+
+    });
+    </script>
+</body>
+</html>

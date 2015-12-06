@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>预约试驾</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/init.css">
+    <link rel="stylesheet" href="styles/index3.css">
+</head>
+<body>
+    <div class="tip-msg">
+        需要提前24小时预约
+    </div>
+<form action="" method="post" id="my_form">
+    <div class="input-box input-sep clearfix">
+        <label for="user_name" class="input-left">姓名：</label>
+        <input type="text" name="userName" id="user_name" class="input-right" placeholder="请输入您的姓名">
+    </div>
+    <div class="input-box clearfix">
+        <label for="user_phone" class="input-left">联系方式：</label>
+        <input type="text" name="userPhone" id="user_phone" class="input-right" placeholder="请输入您的联系方式">
+    </div>
+    <div class="input-box clearfix">
+        <label for="user_email" class="input-left">Email：</label>
+        <input type="text" name="userEmail" id="user_email" class="input-right" placeholder="请输入您的Email">
+    </div>
+
+    <div class="input-box input-sep">
+        <label for="car_type" class="input-left">试驾车型</label>
+        <input type="text" name="carType" id="car_type" class="input-right" placeholder="车型">
+    </div>
+    <div class="input-box select-4s">
+        <label for="store_type" class="input-left">4S店</label>
+        <input type="text" name="storeType" id="store_type" class="input-right" placeholder="" readonly>
+    </div>
+    <div class="input-box">
+        <label for="drive_addr" class="input-left">试驾地址</label>
+        <input type="text" name="driveAddr" id="drive_addr" class="input-right" placeholder="地址">
+    </div>
+    <div class="input-box">
+        <label for="drive_time" class="input-left">试驾时间</label>
+        <input type="text" name="driveTime" id="drive_time" class="input-right" placeholder="" readonly>
+    </div>
+
+    <div class="submit-wrap">
+        <!-- <input type="submit" value="提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交" class="submit-btn"> -->
+        <div id="submit_btn" class="submit-btn">提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</div>
+    </div>
+</form>
+
+
+    <!-- JS -->
+    <script src="scripts/zepto.min.js"></script>
+    <script src="scripts/iscroll.min.js"></script>
+    <script src="scripts/X.js"></script>
+    <script>
+        $('#store_type').iSelect({
+            items: ['北京中汽雷日', 'item2', 'item3', 'item4', 'item5', 'item6'],
+            id: '4s',
+            triggerID: 'store_type'
+        });
+
+        $('#drive_time').mtimer({
+            triggerID: 'drive_time',
+            timeNum: 8
+        });
+
+        //********************** validate  *****************
+        function isEmpty(input){
+            var val = $.trim(input.val());
+
+            return val.length === 0;
+        }
+        $('#user_name').on('blur', function(event) {
+            var _me = $(this),
+                parent = _me.parent(),
+                err_msg = '<div class="val-error-msg">请输入您的名字</div>';
+
+            if(isEmpty(_me)){
+                _me.addClass('val-error').data('validate', false);
+                parent.find('.val-error-msg').length === 0 && parent.append(err_msg);
+            }else{
+                _me.removeClass('val-error').data('validate', true);
+                parent.find('.val-error-msg').remove();
+            }
+        });
+
+        function isMobileNum(input){
+            var re = /^1[3|5|8]\d{9}$/,
+                val = $.trim(input.val());
+
+            return re.test(val);
+        }
+        $('#user_phone').on('blur', function(event) {
+            var _me = $(this),
+                parent = _me.parent(),
+                err_msg = '<div class="val-error-msg">请输入您的手机号，例：15588888888</div>';
+
+            if(!isMobileNum(_me)){
+                _me.addClass('val-error').data('validate', false);
+                parent.find('.val-error-msg').length === 0 && parent.append(err_msg);
+            }else{
+                _me.removeClass('val-error').data('validate', true);
+                parent.find('.val-error-msg').remove();
+            }
+        });
+
+        function isEmail(input){
+            var re = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/,
+                val = $.trim(input.val());
+
+            return re.test(val);
+        }
+        $('#user_email').on('blur', function(event) {
+            var _me = $(this),
+                parent = _me.parent(),
+                err_msg = '<div class="val-error-msg">请输入您的邮箱或者不填写</div>';
+
+            if(!isEmail(_me) && !isEmpty(_me)){
+                _me.addClass('val-error').data('validate', false);
+                parent.find('.val-error-msg').length === 0 && parent.append(err_msg);
+            }else{
+                _me.removeClass('val-error').data('validate', true);
+                parent.find('.val-error-msg').remove();
+            }
+        });
+
+        $('#submit_btn').on('tap', function(event) {
+            var
+                user_name = $('#user_name'),
+                user_phone = $('#user_phone'),
+                user_email = $('#user_email'),
+                my_form = $('#my_form');
+
+                user_email.trigger('blur');
+                user_name.trigger('blur');
+                user_phone.trigger('blur');
+
+            if(user_name.data('validate') && user_phone.data('validate')){
+                // console.log('submit');
+                my_form.submit();
+            }
+        });
+    </script>
+</body>
+</html>

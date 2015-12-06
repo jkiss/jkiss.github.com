@@ -1,0 +1,32 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas Erase</title>
+    <style>
+    html{
+      background-color: #333;
+    }
+    .fog-mask{
+      width: 300px;
+      height: 600px;
+      background-color: transparent;
+      background-image: url(images/peer.jpg);
+      /* background-position: 10px 10px; */
+      background-repeat: no-repeat;
+    }
+    .blur-img, .fog-mask{
+      position: absolute;
+      left: 20px;
+      top: 20px;
+    }
+
+    </style>
+</head>
+<body>
+    <img id="blurimg" src="images/peer.jpg" height="600" width="600" alt="peer" style="visibility: hidden;">
+    <canvas id="mask" width="300" height="600" class="fog-mask"></canvas>
+
+    <script src="scripts/StackBlur.js"></script>
+    <script src="scripts/X.js"></script>
+</body>
+</html>

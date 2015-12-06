@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+            Javascript 中小数和大整数的精度丢失问题 |
+        －木马人－    
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta http-equiv="cache-control" content="max-age=7200">
+    <!-- 禁止百度微信转码（移动端还有点人性，哈哈） -->
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- 作者 -->
+    <meta name="author" content="Nokey-木马人">
+    <meta name="baidu-site-verification" content="lmqYZpJ2tZ" />
+    <link rel="icon" type="image/x-icon" href="/image/king.png">
+    <link rel="stylesheet" href="/css/blog.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/post.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/noookey.css" type="text/css">
+
+    <link rel="stylesheet" href="/css/highlight.css" type="text/css">
+
+  </head>
+<body>
+    <div id='wx_pic' style='margin:0 auto;display:none;'>
+    <img src='/image/nokey.png'/>
+</div>
+<header>
+    <i class="left">
+        <span class="dash-left transition">--</span>
+        <span class="word-w transition">W</span>
+        <span class="word-e transition">e</span>
+        <span class="word-l transition">l</span>
+        <span class="word-c transition">c</span>
+        <span class="word-o transition">o</span>
+        <span class="word-m transition">m</span>
+        <span class="word-e transition">e </span>
+        <span class="word-t transition">t</span>
+        <span class="word-o transition">o </span>
+    </i>
+    <a href="/pages/shanghai"><span class="word-n transition">N</span></a>
+    <span class="word-o transition">o</span>
+    <span class="word-k transition">k</span>
+    <span class="word-e transition">e</span>
+    <span class="word-y transition">y</span>
+    <span class="word-_ transition">_</span>
+    <span class="word-b transition">b</span>
+    <span class="word-l transition">l</span>
+    <span class="word-o transition">o</span>
+    <span class="word-g transition">g </span>
+    <i class="right">
+        <span class="dash-right transition">--</span>
+    </i>
+    
+    <p class="home">
+        <a href="/" title="Return Home">
+            <i class="icon-home transition" alt="Return Home"></i>
+        </a>
+    </p>
+</header>
+<div class="yellow-progress-bar progress-move"></div>
+    <div class="main">
+        <div class="one">
+  <a href="http://blog.nokey.me/2015/01/05/Javascript-中小数和大整数的精度丢失问题/">
+    <h1 class="p-title transition">Javascript 中小数和大整数的精度丢失问题</h1>
+</a>
+
+  <div class="micro-data clearfix">
+    <div class="date-wrap wrap">
+        <i class="icon-calendar"></i>
+        <span class="date">1月 5 2015</span>
+    </div>
+    <div class="tag-wrap wrap">
+        
+    <i class="icon-tag"></i>
+    <a class="post-link" href="/tags/Javascript/">Javascript</a>&nbsp;&nbsp;<a class="post-link" href="/tags/数字-精度/">数字 精度</a>
+
+    </div>
+</div>
+
+  <div class="content">
+    
+        <p>事情的起因是昨天在群里（什么群？还没有加入<strong>W3ctech交流群</strong>你就OUT了，群号：175603092）和 <em>@丷悠飏♬♩♪♫</em> 和 <em>@1900.</em> 发生的激烈讨论，有段时间没有这么好的感觉了，哈哈，又学到了新知识，所以，在此和大家分享一下我们讨论的成果，也希望大家参与其中，发掘更多的技术，毕竟<strong>探索</strong>是咱们程序员必备技能之一嘛！</p>
+<h2 id="事情的起因：">事情的起因：</h2>
+<a id="more"></a>
+<p>起因源于jQuery的两个函数<em>data()</em>和<em>attr()</em>对于 <strong>DOM</strong> 数据的存储和读取，一个是隐性的设置和读取DOM的属性名和属性值，一个是设置和读取HTML标签设置的属性，我在这里简单的引用一下：</p>
+<h3 id="data()">data()</h3>
+<blockquote>
+<p>Store arbitrary data associated with the matched elements or return the value at the named data store for the first element in the set of matched elements.<br>The <em>.data()</em> method allows us to attach data of any type to DOM elements in a way that is safe from circular references and therefore from memory leaks.</p>
+</blockquote>
+<h3 id="attr()">attr()</h3>
+<blockquote>
+<p>Get the value of an attribute for the first element in the set of matched elements or set one or more attributes for every matched element.<br>The .attr() method gets the attribute value for only the first element in the matched set. To get the value for each element individually, use a looping construct such as jQuery’s .each() or .map() method.</p>
+</blockquote>
+<p>更详细的解释可以去<a href="https://api.jquery.com/attr/" target="_blank" rel="external">jQuery</a>的官方文档去查看。这本来是无可厚非的两个方法，不过问题这就来了，看下面的代码：</p>
+<figure class="highlight javascript"><pre><div class="line">$(<span class="string">'#A'</span>).data(<span class="string">'id'</span>);</div><div class="line"><span class="comment">// output: 10150104320000128</span></div><div class="line">$(<span class="string">'#A'</span>).attr(<span class="string">'data-id'</span>);</div><div class="line"><span class="comment">// output: 10150104320000127</span></div></pre></figure>
+
+<p>HTML代码应该是这样的：</p>
+<figure class="highlight html"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"A"</span> <span class="attribute">data-id</span>=<span class="value">"10150104320000127"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></figure>
+
+<p>一开始我以为 <em>@1900.</em> 用 <strong>data</strong> 设置了一个值，所以会导致两次输出结果不一样，可事实并非如此，就简单的HTML代码，然后调用这两个函数就会出现不同的结果，WHY？然后 <em>@丷悠飏♬♩♪♫</em> 提出了是 <strong>Javascript大数损失精度</strong> 的问题，并给出了<a href="http://demon.tw/copy-paste/javascript-precision.html" target="_blank" rel="external">链接</a>。身为小伙伴的我瞬间就震惊了有没有，不过看完这篇 blog 后，学到很多东西，同时深感自己学识的匮乏，幸好毕业没多长时间，《计算机组成原理》的一些东西还没忘干净。。。下面我就做一下简单的梳理：</p>
+<ul>
+<li>首先在 <em>div</em> 标签上设置了 <em>data-id</em> 属性；</li>
+<li>然后调用 <em>data</em> 函数读取 <em>id</em> 属性值；（这里我要解释一下，自从HTML5出来以后，对这种非标准的数据属性给出了一个解决方案，就是给Element对象设置一个<strong>dataset</strong>属性，任何以“data-”为前缀的小写属性名字都是合法的，所以自从jQuery1.4.3版本以后<a href="http://ejohn.org/blog/html-5-data-attributes/" target="_blank" rel="external">HTML 5 data- attributes</a>在jQuery封装对象的时候都会自动放入jQuery的<em>data对象</em>，所以用data()函数才能读到值，所以才会发生数据转换。）</li>
+<li>由于data-id的字符串值转换成了 Number，而且符合大数丢失精度的条件，所以精度丢失，最后输出的是丢失精度的值。</li>
+</ul>
+<p>####我记得在看《权威指南》的时候，看到过一个关于精确度的例子：</p>
+<figure class="highlight javacript"><pre><div class="line">var <span class="variable">x =</span> .<span class="number">3</span> - .<span class="number">2</span>;</div><div class="line">var <span class="variable">y =</span> .<span class="number">2</span> - .<span class="number">1</span>;</div><div class="line"><span class="variable">x =</span>= y      // =&gt; <span class="constant">false</span>：两值不相等</div></pre></figure>
+
+<p>书中还明确指出：在任何使用二进制浮点数的编程语言中都会有这样的问题。只是感觉很奇怪，但是没有细想，只怪当时太年轻 T.T 。大家可以先看一下这篇<a href="http://demon.tw/copy-paste/javascript-precision.html" target="_blank" rel="external">博客</a>，那么关键就在于二进制双精度浮点数的存储方式：<em>s x m x 2^e</em> 。<strong>s</strong> 是符号位， <strong>m</strong> 是尾数，有52bits，<strong>e</strong> 是指数，有11bits，关键点就在那个<strong>尾数 m</strong>，大家可以在博客中看到Number.MAX_VALUE是一个很大的值，而这个很大的值是相对于那个<strong>指数e</strong>说的，实际存储的精度还得看 <strong>尾数 m</strong>，而尾数m只有52位，所以当 x 小于等于<em>2^53</em>时可以确保x的精度不会丢失。当 x 大于2^53时，x 的精度有可能会丢失，那么这里为什么是小于等于 2^53,而不是小于 2^53 呢，原因就在于<em>隐藏位（hidden bit）</em>，博客中也有提到，当 <em>指数e的二进制位全为0</em> 时，隐藏位为0，如果不全为0，则隐藏位为1，这应该是基于指数表达式的存储方式决定的，隐藏位也就是指数的底数里面的<em>整数部分</em>，尾数 m则是指数中底数的 <em>fraction</em> 小数部分。博客中也给出了隐藏位的<a href="http://www.mobilefish.com/tutorials/java/java_quickguide_double.html" target="_blank" rel="external">参考链接</a>，如果想深入学习的话，可以看看。</p>
+<p>那面对精度的丢失是否解决方案呢，答案是有的，比如 Java 就进行了数据类型的封装，网上一般给出的方法是将数据转成字符串，进行分割，分别计算，比如小数的计算：</p>
+<figure class="highlight javascript"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">numAdd</span><span class="params">(num1[String], num2[String])</span> </span>{ </div><div class="line">    <span class="keyword">var</span> baseNum, baseNum1, baseNum2; </div><div class="line">    <span class="keyword">try</span> { </div><div class="line">        baseNum1 = num1.split(<span class="string">"."</span>)[<span class="number">1</span>].length; </div><div class="line">    } <span class="keyword">catch</span> (e) { </div><div class="line">        baseNum1 = <span class="number">0</span>; </div><div class="line">    } </div><div class="line">    <span class="keyword">try</span> { </div><div class="line">        baseNum2 = num2.split(<span class="string">"."</span>)[<span class="number">1</span>].length; </div><div class="line">    } <span class="keyword">catch</span> (e) { </div><div class="line">        baseNum2 = <span class="number">0</span>;</div><div class="line">    } </div><div class="line">    baseNum = <span class="built_in">Math</span>.pow(<span class="number">10</span>, <span class="built_in">Math</span>.max(baseNum1, baseNum2)); </div><div class="line">    <span class="keyword">return</span> (num1 * baseNum + num2 * baseNum) / baseNum; </div><div class="line">};</div></pre></figure>
+
+<p>当然实际的生产环境不会用这么简单的方法，其中应该先设计大整数的运算方法，再在小数运算中引用，返回值也应该是字符串，这个待我再研究研究，希望大家也能提提意见啦！</p>
+
+    
+  </div>
+</div>
+
+
+    <section id="comment">
+        <!-- 多说评论框 start -->
+            <div class="ds-thread" data-thread-key="/2015/01/05/Javascript-中小数和大整数的精度丢失问题/" data-title="Javascript 中小数和大整数的精度丢失问题" data-url="http://blog.nokey.me/2015/01/05/Javascript-中小数和大整数的精度丢失问题/"></div>
+        <!-- 多说评论框 end -->
+    </section>
+
+    </div>
+    <footer>
+    <img alt="Nokey" data-url="http://blog-nokey.qiniudn.com/matrix.jpg" data-url-640="http://blog-nokey.qiniudn.com/blog_foot1.jpg!image640" data-url-320="http://blog-nokey.qiniudn.com/blog_foot1.jpg!image320">
+    <div class="i-want-say"></div>
+    <div class="qq-chat">QQ群：461790451</div>
+</footer>
+<div class="to-top icon-rocket" id="to_top"></div>
+
+    
+    <script src="/js/jquery-1.11.1.js" type="text/javascript"></script>
+
+<script src="/js/blog.js" type="text/javascript"></script>
+
+<script src="/js/head.min.js" type="text/javascript"></script>
+
+<script src="/js/snowfall.jquery.js" type="text/javascript"></script>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"nokey"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+<script>
+function merry_christmas(){
+    $(document).snowfall('clear');    
+    $(document).snowfall({
+        flakeCount: 50,
+        minSize: 12,
+        maxSize: 32
+    });
+}
+// merry_christmas();
+</script>
+</body>
+</html>
