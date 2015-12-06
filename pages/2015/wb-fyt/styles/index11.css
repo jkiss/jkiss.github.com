@@ -1,0 +1,40 @@
+/*
+* @Author: Nokey - 木马人
+* front-color: #4c89db
+* background-color: #ebebeb;
+* text-color: #707070
+*/
+
+/*  Index-11  */
+.user-advice{
+    display: block;
+    width: 90%;
+	height: 140px;
+    margin: 10px auto;
+	font-size: 12px;
+	line-height: 1.4em;
+	padding: 1em;
+	color: #bbb;
+    border-radius: 8px;
+	background-color: #fbfbfb;
+}
+.submit-wrap{
+	position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+	background-color: #ebebeb;
+}
+.submit-btn{
+	display: block;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	color: #fff;
+	background-color: #4c89db;
+	width: 80%;
+	border-radius: 6px;
+	font-size: 14px;
+	margin: 10px auto;
+}

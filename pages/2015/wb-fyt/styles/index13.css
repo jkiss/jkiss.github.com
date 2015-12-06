@@ -1,0 +1,65 @@
+/*
+* @Author: Nokey - 木马人
+* front-color: #4c89db
+* background-color: #ebebeb;
+* text-color: #707070
+*/
+
+/*  Index-13  */
+html, body{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.finance-type-wrap{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 200px;
+    width: 100%;
+}
+.finance-type{
+    margin: 20px 30px;
+    height: 160px;
+}
+.frame-wrap{
+    position: absolute;
+    left: 0;
+    top: 200px;
+    width: 100%;
+    bottom: 0;
+    -webkit-overflow-scrolling: touch;
+    overflow: scroll;
+}
+.type-name{
+    float: left;
+    display: block;
+    width: 50%;
+    height: 160px;
+    line-height: 160px;
+    text-align: center;
+    color: #4c89db;
+    font-size: 50px;
+    background-color: #fbfbfb;
+    border: 1px solid #4c89db;
+}
+.type-name.selected {
+    color: #fff;
+    background-color: #4c89db;
+}
+.type-left {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+.type-right {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+iframe{
+    border: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}

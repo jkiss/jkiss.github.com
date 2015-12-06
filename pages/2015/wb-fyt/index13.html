@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人金融</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/init.css">
+    <link rel="stylesheet" href="styles/index13.css">
+</head>
+<body>
+    <div class="finance-type-wrap">
+        <div class="finance-type">
+            <span id="type_period" class="type-name type-left selected">
+                车位分期介绍
+            </span>
+            <span id="type_card" class="type-name type-right">
+                车主卡
+            </span>
+        </div>
+    </div>
+    <div class="frame-wrap">
+    <iframe src="http://www.ccb.com/ha/branch/business/20120703_1341307159.html" frameborder="0" id="period" class="">
+    </iframe>
+    <iframe src="http://mp.weixin.qq.com/s?__biz=MjM5NDAwNjI5Nw==&mid=202406592&idx=3&sn=dadbc98642a279258a1d26b82326302b&scene=18#rd" frameborder="0" id="card" class="display-none"></iframe>
+    </div>
+
+    <!-- JS -->
+    <script src="scripts/zepto.min.js"></script>
+    <script>
+        // Type choose
+        var type_period = $('#type_period'),
+            type_card = $('#type_card'),
+            period_frame = $('#period'),
+            card_frame = $('#card');
+
+        $('.finance-type').on('tap', 'span', function(event) {
+            // console.log(event.srcElement);
+            var _target = $(event.target);
+
+            if(!_target.hasClass('selected')){
+                var id = _target.attr('id'),
+                    another_id = id == 'type_period' ? 'type_card' : 'type_period';
+
+                $('#'+another_id).removeClass('selected');
+                _target.addClass('selected');
+
+                if(id == 'type_period'){
+                    period_frame.removeClass('display-none');
+                    card_frame.addClass('display-none');
+                }else{
+                    period_frame.addClass('display-none');
+                    card_frame.removeClass('display-none');
+                }
+
+            }
+        });
+    </script>
+</body>
+</html>

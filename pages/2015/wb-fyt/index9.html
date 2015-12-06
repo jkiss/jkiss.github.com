@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>安全带提示灯</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/init.css">
+    <link rel="stylesheet" href="styles/index9.css">
+</head>
+<body>
+    <div class="desc-title-img center-image">
+        <img src="images/index9/car1@2x.png" alt="Title-Image">
+        <p class="mask-title-bottom">
+            安全提示第一招
+        </p>
+    </div>
+    <div class="desc-txt">
+        <p>
+            驻车制动(手刹)提示灯：十分常见的安全性提示灯，它的意思是车辆的手刹、脚刹处在刹车的状态下，此时不宜开动车辆。如果松开刹车后提示灯依然常亮的话那么很可能就是车辆的制动系统出现了问题。
+        </p>
+        <p>
+            安全带提示灯：看图标就能够明白意思，如果驾驶员的安全带没有系好的话，提示灯会开启。
+        </p>
+        <p>
+                   车门提示灯：提示司机车辆车门或者后备箱车门处在打开状态。
+        </p>
+    </div>
+
+    <!-- JS -->
+    <script src="scripts/zepto.min.js"></script>
+    <script src="scripts/X.js"></script>
+    <script>
+        $(window).load(function(){
+            centerImage();
+        });
+        $(window).resize(function(){
+            centerImage();
+        });
+    </script>
+</body>
+</html>

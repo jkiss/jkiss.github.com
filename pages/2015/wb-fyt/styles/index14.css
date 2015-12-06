@@ -1,0 +1,84 @@
+/*
+* @Author: Nokey - 木马人
+* front-color: #4c89db
+* background-color: #ebebeb;
+* text-color: #707070
+*/
+
+/*  Index-14  */
+html, body{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.my-map{
+    width: 100%;
+    height: 100%;
+}
+.BMap_stdMpCtrl{
+    bottom: 45% !important;
+}
+.anchorBL{
+    visibility: hidden !important;
+}
+.ctrl-board{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+.p14-bg-wrap{
+    width: 80%;
+    margin-left: 10%;
+    position: relative;
+}
+.p14-bg{
+    width: 100%;
+}
+.p14-1{
+    right: 25%;
+    top: -8%;
+    background: url(../images/index14/p14-1@2x.png) no-repeat;
+}
+.p14-2{
+    right: 0%;
+    top: 36%;
+    background: url(../images/index14/p14-2@2x.png) no-repeat;
+}
+.p14-3{
+    left: 25%;
+    top: -8%;
+    background: url(../images/index14/p14-3@2x.png) no-repeat;
+}
+.p14-4{
+    left: 0%;
+    top: 36%;
+    background: url(../images/index14/p14-4@2x.png) no-repeat;
+}
+.ctrl-btn{
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    background-size: 100%;
+}
+.loading-gif{
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    margin-left: -25px;
+    margin-top: -25px;
+    width: 50px;
+    height: 50px;
+}
+.location-me{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 26px;
+    height: 26px;
+    background: url(../images/index14/p14-me@2x.png) no-repeat;
+    background-size: 100%;
+}
+.none{
+    display: none;
+}

@@ -1,4 +1,4 @@
-/* 
+/*
 * @Author: Nokey-木马人
 */
 
@@ -302,7 +302,7 @@ body{
     border-left: 1px solid #ccc;
 }
 #side_menu_box ul{
-    
+
 }
 #side_menu_box ul li{
     height: 40px;
@@ -377,7 +377,7 @@ body{
 .download-button{
     position: relative;
     height: 30px;
-    margin-top: 20px;
+    margin-top: 50px;
 }
 .download-button a{
     display: block;
@@ -552,9 +552,9 @@ body{
         margin-top: 10px;
     }
     /*  page 2  */
-    
+
     /*  page 3  */
-    
+
 }
 @media screen and (max-width: 920px) and (min-width: 850px){
     .p3-watch{
@@ -612,7 +612,3 @@ body{
         max-width: 700px;
     }
 }
-
-
-
-

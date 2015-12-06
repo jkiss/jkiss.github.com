@@ -1,0 +1,194 @@
+/*
+* @Author: Nokey - 木马人
+* front-color: #4c89db
+* background-color: #ebebeb;
+* text-color: #707070
+*/
+
+/*  Index-1  */
+body{
+	padding-bottom: 15px;
+}
+.tip-msg{
+	margin-top: 8px;
+	height: 22px;
+	line-height: 22px;
+	text-align: center;
+	color: #4c89db;
+	background-color: #fbfbfb;
+}
+.input-box{
+	padding-top: 10px;
+	width: 90%;
+	margin: 0 auto;
+	position: relative;
+}
+.input-box:before{
+	content: '';
+	display: block;
+	position: absolute;
+	top: 22px;
+	left: 12px;
+	border-left: 1px solid #ccc;
+	height: 15px;
+}
+.input-box input{
+	display: block;
+	height: 40px;
+	/*line-height: 40px;*/
+	width: 100%;
+	border-radius: 5px;
+	color: #bbb;
+	padding: 0 15px;
+}
+.plan-title{
+	height: 40px;
+	margin: 0 15px;
+	font-size: 14px;
+	padding: 12px 0 0 8px;
+	position: relative;
+}
+.icon-location:before{
+	content: '';
+	display: inline-block;
+	width: 10px;
+	height: 100%;
+	background: url(../images/index1/icon_location@2x.png) 50% 40% no-repeat;
+	background-size: 100% auto;
+	vertical-align: middle;
+}
+.icon-time:before{
+	content: '';
+	display: inline-block;
+	width: 10px;
+	height: 100%;
+	background: url(../images/index1/icon_time@2x.png) 50% 40% no-repeat;
+	background-size: 100% auto;
+	vertical-align: middle;
+}
+.icon-car:before{
+	content: '';
+	display: inline-block;
+	width: 20px;
+	height: 100%;
+	background: url(../images/index1/icon_car@2x.png) 50% 45% no-repeat;
+	background-size: 100% auto;
+	vertical-align: middle;
+}
+.plan-note{
+	font-size: 10px;
+}
+.plan-select{
+	height: 40px;
+	position: relative;
+	background-color: #fbfbfb;
+	padding-left: 37px;
+}
+.store-name, .meet-time{
+	display: block;
+	height: 40px;
+	line-height: 40px;
+	font-size: 14px;
+	color: #4c89db;
+	width: 65%;
+	background-color: #fbfbfb;
+}
+.store-btn{
+	position: absolute;
+	right: 20px;
+	top: 0;
+	height: 40px;
+	line-height: 40px;
+}
+.store-btn:after{
+	content: '';
+	display: inline-block;
+	width: 10px;
+	height: 100%;
+	margin-left: 5px;
+	vertical-align: middle;
+	background: url(../images/index1/icon_right_arrow@2x.png) 50% 42% no-repeat;
+	background-size: 100% auto;
+}
+.meet-time{
+	width: 90%;
+}
+.plan-type{
+	margin: 10px 30px;
+	height: 40px;
+}
+.type-name{
+	float: left;
+	display: block;
+	width: 50%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	color: #4c89db;
+	font-size: 14px;
+	background-color: #fbfbfb;
+	border: 1px solid #4c89db;
+}
+.type-name.selected{
+	color: #fff;
+	background-color: #4c89db;
+}
+.type-left{
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+}
+.type-right{
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+.plan-km{
+	position: relative;
+	height: 40px;
+	font-size: 14px;
+	padding: 0 23px;
+	background-color: #fbfbfb;
+}
+.km-number{
+	position: absolute;
+	right: 23px;
+	top: 0;
+	height: 40px;
+	width: 50%;
+	text-align: right;
+}
+.service-desc{
+	margin-top: 3px;
+	height: 100px;
+	padding-left: 35px;
+	background-color: #fbfbfb;
+}
+.service-txt{
+	width: 90%;
+	height: 100%;
+	font-size: 12px;
+	line-height: 1.4em;
+	padding: .5em;
+	color: #bbb;
+	background-color: #fbfbfb;
+}
+.submit-wrap{
+	/*position: fixed;
+    left: 0;
+    bottom: 0;*/
+    height: 60px;
+    width: 100%;
+	background-color: #ebebeb;
+}
+.submit-btn{
+	display: block;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	color: #fff;
+	background-color: #4c89db;
+	width: 80%;
+	border-radius: 6px;
+	font-size: 14px;
+	margin: 10px auto;
+	cursor: pointer;
+}

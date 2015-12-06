@@ -7,7 +7,7 @@
     var _win = $(win),
         _ua = win.navigator.userAgent.toLowerCase();
         _isMac = /macintosh|mac os x/.test(_ua),
-        _isMobile = /mobile|android|kindle|silk|midp|phone|(windows .+arm|touch)/.test(ua),
+        _isMobile = /mobile|android|kindle|silk|midp|phone|(windows .+arm|touch)/.test(_ua),
         center_img_boxs = $('.center-image'),
         preload_img_srcs = [],
         auto_play_videos = $('.trigger-play');
@@ -35,7 +35,7 @@
     }
     !_isMac && !_isMobile && smoothScroll();
 
-// Center images: background-image
+// Load image && Center images: background-image
     center_img_boxs.each(function(i) {
         preload_img_srcs.push(getImgUrl($(this)));
     });
@@ -48,6 +48,7 @@
         videos.each(function(index, el) {
             $(el).hasClass('no-play') && getBCR(el, 'top') < _win.height()/4 && el.play();
         });
+        console.log('video play...');
     }
     function videoControl(videos){
         // TODO: 视频播放控制

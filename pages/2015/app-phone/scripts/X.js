@@ -68,7 +68,7 @@
     }
 // Dectect css3 properties
     var canTransform = testAll('transform');
-    
+
     function translateY(ele, y){
         if(canTransform){
             ele.css({
@@ -114,7 +114,7 @@
         var st = o.scrollTop(),
             dis = opt.distance,
             start = (new Date()).getTime();
-       
+
         time ? void(0) : time = 500;
 
         _cAF(_af) || animate();
@@ -123,7 +123,7 @@
             var now = (new Date()).getTime(),
                 elapsed = now - start,
                 fraction = elapsed / time;
-             
+
             if(fraction < 1){
                 var final = st + dis*Math.sin(fraction*Math.PI/2);
                 o.scrollTop(final);
@@ -157,7 +157,7 @@
 
             if(!_me.hasClass('no-parallax') && _top < 0 && Math.abs(_top) < page_h){
                 translateY(parallax_box, Math.abs(_top) * parallax_ratio);
-            }else if(_top > 0){
+            }else if(_top >= 0){
                 translateY(parallax_box, 0);
             }
         });
@@ -176,12 +176,12 @@
     isMobile && noParallax();
 
 // Menu Switch
-    setInterval(function(){
+    setInterval(function(){  // judge scroll direction
         scroll_end = getScrollTop();
         if((scroll_end - scroll_start) > 10){  // scroll Down
             nav_1.css('opacity', 0);
             nav_2.css('top', 0);
-        }else if((scroll_end - scroll_start) < -10){
+        }else if((scroll_end - scroll_start) < -10){  // scroll Up
             nav_1.css('opacity', 1);
             nav_2.css('top', '-70px');
         }
@@ -308,7 +308,7 @@
             // console.log('Start Preload...');
             for (var i = 0; i < i_array.length; i++) {
                 i_array[i] = new Image();
-                
+
                 console.log(i_array[i].complete);
                 if(i_array[i].complete){
                     console.log('End Preload...');

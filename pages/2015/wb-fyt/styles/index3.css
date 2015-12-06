@@ -1,0 +1,81 @@
+/*
+* @Author: Nokey - 木马人
+* front-color: #4c89db
+* background-color: #ebebeb;
+* text-color: #707070
+*/
+
+/*  Index-3  */
+body{
+    padding-bottom: 10px;
+}
+.tip-msg{
+    margin-top: 8px;
+	height: 22px;
+	line-height: 22px;
+	text-align: center;
+	color: #4c89db;
+	background-color: #fbfbfb;
+}
+.input-sep{
+    margin-top: 8px !important;
+}
+.input-box{
+    margin-top: 2px;
+    padding: 0 15px;
+    font-size: 14px;
+    color: #707070;
+    background-color: #fbfbfb;
+}
+.input-box label{
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    width: 30%;
+    float: left;
+}
+.input-box input{
+    height: 40px;
+    width: 70%;
+    font-size: 12px;
+    display: inline-block;
+    background-color: #fbfbfb;
+}
+.select-4s{
+    position: relative;
+}
+.select-4s:after{
+    content: '';
+    display: block;
+    position: absolute;
+    right: 15px;
+    top: 0;
+    width: 10px;
+    height: 100%;
+    vertical-align: middle;
+	background: url(../images/index1/icon_right_arrow@2x.png) 50% 50% no-repeat;
+	background-size: 100% auto;
+}
+.submit-wrap{
+    /*position: fixed;
+    left: 0;
+    bottom: 0;*/
+    height: 60px;
+    width: 100%;
+}
+.submit-btn{
+    display: block;
+    margin: 10px auto;
+    height: 40px;
+    line-height: 40px;
+    width: 80%;
+    color: #fff;
+	background-color: #4c89db;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.val-error-msg{
+    padding-left: 7em;
+}

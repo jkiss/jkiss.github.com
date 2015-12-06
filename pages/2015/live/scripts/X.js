@@ -64,4 +64,37 @@ $(function(){
         return min + Math.floor(Math.random()*(max - min + 1));
     }
 
+    function formatNum(n, sep){
+        if(n.toString() !== n){
+            console.warn('N should be a Number String!');
+            return ;
+        }
+
+        var counter = 0,
+            sep_char = sep || '\'',
+            new_n = '';
+        for (var i = n.length - 1; i >= 0; i--) {
+            if(++counter % 3 === 0 && i > 0){
+                new_n += n[i] + sep_char;
+            }else{
+                new_n += n[i];
+            }
+        }
+
+        return new_n.split('').reverse().join('');
+    }
+
+    $.ajax({
+        url: 'http://api.nokey.me/api/watched',
+        type: 'GET',
+        dataType: 'json'
+    })
+    .done(function(data) {
+        $('#watched_num').text(formatNum(data.watched.toString(), ' \''));
+        $('.watched-box').css('display', 'block');
+    })
+    .fail(function() {
+        console.log("Server error");
+    });
+
 });

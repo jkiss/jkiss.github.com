@@ -6,8 +6,7 @@
 body{
     /*width: 1200px;*/
     margin: 0 auto;
-    /*min-width: 1050px;*/
-    overflow: hidden;
+    min-width: 1050px;
 }
 header{
     height: 50px;
@@ -23,7 +22,6 @@ header{
     color: #3caa7a;
     font-size: 18px;
     padding: 0 10px;
-    text-decoration: none;
 }
 
 /*  video  */
@@ -40,7 +38,7 @@ header{
     top: 0;
     width: 100%;
     height: 99.7%;
-    background-color: transparent;
+    background-color: rgba(0,0,0,.5);
 }
 .video-btn{
     position: absolute;
@@ -56,6 +54,7 @@ header{
 
 /*  Logos  */
 .logos{
+    height: 120px;
     width: 1000px;
     margin: 50px auto;
 }
@@ -98,46 +97,4 @@ footer{
     font-size: 14px;
     height: 30px;
     line-height: 30px;
-}
-
-@media screen and (max-width: 1000px){
-    .logos{
-        width: 100%;
-    }
-    .con-left, .con-right{
-        float: none;
-        width: 565px;
-        margin: 0 auto;
-    }
-    .con-right{
-        margin-top: 10px;
-    }
-}
-
-@media screen and (max-width: 565px){
-    .logo{
-        display: none;
-    }
-    .con-top p{
-        padding: 0;
-    }
-    .con-left, .con-right{
-        width: 400px;
-    }
-}
-
-@media screen and (max-width: 400px){
-    .con-top p{
-        font-size: 24px;
-    }
-    .logos{
-        padding: 10px;
-        margin: 20px auto;
-    }
-    .con-left, .con-right{
-        width: 100%;
-    }
-    header{
-        padding-right: 10px;
-    }
 }
